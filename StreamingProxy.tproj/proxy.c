@@ -1355,8 +1355,6 @@ void service_session(rtsp_session *s)
                             return;
                     }
                 }
-                s->server_interface_addr = get_interface_addr(s->server_skt);
-                s->server_skt_pending_connection = false;
                 
             }
 
@@ -1385,6 +1383,10 @@ void service_session(rtsp_session *s)
                     s->amtInServerOutBuffer -= num;
                     if (s->amtInServerOutBuffer == 0)
                         s->state = stServerTransactionRecv;
+                }
+                if (s->server_skt_pending_connection) {
+                    s->server_interface_addr = get_interface_addr(s->server_skt);
+                    s->server_skt_pending_connection = false;
                 }
             }
 
