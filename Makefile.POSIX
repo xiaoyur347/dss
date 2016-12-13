@@ -21,6 +21,7 @@ CCFLAGS += -IAPIModules
 CCFLAGS += -IAPICommonCode
 CCFLAGS += -IAPIModules/OSMemory_Modules
 CCFLAGS += -IAPIModules/QTSSAccessLogModule
+CCFLAGS += -IAPIModules/QTSSDSAuthModule
 CCFLAGS += -IAPIModules/QTSSFileModule
 CCFLAGS += -IAPIModules/QTSSFlowControlModule
 CCFLAGS += -IAPIModules/QTSSReflectorModule
