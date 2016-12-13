@@ -329,101 +329,101 @@ else
 	
 	echo Building CommonUtilitiesLib for $PLAT with $CPLUS
 	cd CommonUtilitiesLib/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 
 	echo Building QTFileLib internal for $PLAT with $CPLUS
 	cd ../QTFileLib/
 	
 	if [ "$*" = "clean" ] ; then
-		$MAKE -f Makefile.POSIX $*
+		$MAKE -f Makefile.POSIX $* || exit 1
 	else
-		$MAKE -f Makefile.POSIX all $*
+		$MAKE -f Makefile.POSIX all $* || exit 1
 	fi
 	
 	echo Building StreamingServer for $PLAT with $CPLUS
 	cd ..
 	
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 	
 	echo Building RefMovieModule for $PLAT with $CPLUS
 	cd APIModules/QTSSRefMovieModule/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 	
 	echo Building DemoAuthorizationModule for $PLAT with $CPLUS
 	cd ../QTSSDemoAuthorizationModule.bproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 	
 	echo Building RawFileModule for $PLAT with $CPLUS
 	cd ../QTSSRawFileModule.bproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 	
 	echo Building SpamDefenseModule for $PLAT with $CPLUS
 	cd ../QTSSSpamDefenseModule.bproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 
 	echo Building HomeDirectoryModule for $PLAT with $CPLUS
 	cd ../QTSSHomeDirectoryModule/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 	
 	cd ..
 	
 	echo Building StreamingProxy for $PLAT with $CPLUS
 	cd ../StreamingProxy.tproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 	
 	echo Building qtpasswd for $PLAT with $CPLUS
 	cd ../qtpasswd.tproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 
 	echo Building PlaylistBroadcaster for $PLAT with $CPLUS
 	cd ../PlaylistBroadcaster.tproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 	
 	echo Building MP3Broadcaster for $PLAT with $CPLUS
 	cd ../MP3Broadcaster/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 	
 	echo Building QTFileTools for $PLAT with $CPLUS
         cd ../QTFileTools/
 
 	echo Building QTBroadcaster for $PLAT with $CPLUS
 	cd QTBroadcaster.tproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 
 	echo Building QTFileInfo for $PLAT with $CPLUS
 	cd ../QTFileInfo.tproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 
 	echo Building QTFileTest for $PLAT with $CPLUS
 	cd ../QTFileTest.tproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 
 	echo Building QTRTPFileTest for $PLAT with $CPLUS
 	cd ../QTRTPFileTest.tproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 
 	echo Building QTRTPGen for $PLAT with $CPLUS
 	cd ../QTRTPGen.tproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 
 	echo Building QTSDPGen for $PLAT with $CPLUS
 	cd ../QTSDPGen.tproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 
 	echo Building QTSampleLister for $PLAT with $CPLUS
 	cd ../QTSampleLister.tproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 
 	echo Building QTTrackInfo for $PLAT with $CPLUS
 	cd ../QTTrackInfo.tproj/
-	$MAKE -f Makefile.POSIX $*
+	$MAKE -f Makefile.POSIX $* || exit 1
 	
 	cd ..
 	
 	if [ -d ../StreamingLoadTool ]; then
 		echo Building StreamingLoadTool for $PLAT with $CPLUS
 			cd ../StreamingLoadTool/
-			$MAKE -f Makefile.POSIX $*
+			$MAKE -f Makefile.POSIX $* || exit 1
 	fi
 
 	if [ "$*" = "install" ] ; then
