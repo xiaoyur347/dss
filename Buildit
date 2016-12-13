@@ -101,7 +101,7 @@ case $PLAT in
 			COMPILER_FLAGS="$COMPILER_FLAGS -fPIC"
 		fi
 		
-		CORE_LINK_LIBS="-lpthread -ldl -lstdc++ -lm -lcrypt"
+		CORE_LINK_LIBS="-pthread -ldl -lstdc++ -lm -lcrypt"
 
 		SHARED=-shared
 		MODULE_LIBS=
