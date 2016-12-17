@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=`grep kVersion revision.h | grep -o [:0123456789:].*[:0123456789:]`
+VERSION=`grep kVersion revision.h | grep -o [0123456789].*[0123456789]`
 ##Build script for Darwin Streaming Server
 if [ `uname` = "Darwin" ] ; then
 	PLATFORM=dss
@@ -26,7 +26,7 @@ if [ "$1" = "help" ] ; then
 fi
 
 if [ $SHOW_HELP = 1 ] ; then
-	if [ $PLATFORM = dss ] ; then
+	if [ "$PLATFORM" = dss ] ; then
 		echo ""
 		echo "OS X Darwin Streaming Server ($PLATFORM v$VERSION)"
 		echo ""
