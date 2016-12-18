@@ -203,7 +203,7 @@ int main(int argc, char *argv[]) {
                 break;
             }
 
-            RTPFile->SetTrackCookies(hinttracks[trackcount], (char *)hinttracks[trackcount], 0);
+            RTPFile->SetTrackCookies(hinttracks[trackcount], (char *)(unsigned long)hinttracks[trackcount], 0);
             (void)RTPFile->GetSeekTimestamp(hinttracks[trackcount]);
             trackcount --;
         }
@@ -228,7 +228,7 @@ int main(int argc, char *argv[]) {
             }
 
             RTPFile->FindTrackEntry(atoi(*argv), &trackListEntry);
-            RTPFile->SetTrackCookies(atoi(*argv), (char *)atoi(*argv), 0);
+            RTPFile->SetTrackCookies(atoi(*argv), (char *)(unsigned long)atoi(*argv), 0);
             (void)RTPFile->GetSeekTimestamp(atoi(*argv));
             argv++;
         }
