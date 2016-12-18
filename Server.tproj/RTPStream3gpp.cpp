@@ -470,6 +470,7 @@ void RTPStream3GPP::UpdateTimeAndQuality(SInt64 curTime)
 	}
 	
 	if (bufferDelay != kUInt32_Max)
+	{
 		DEBUG_PRINTF((
 					"RTPStream3GPP::UpdateTimeAndQuality type=%s quality=%"_S32BITARG_",  qualitylimit=%"_S32BITARG_", fAdjustTime=%i bufferUsage=%"_U32BITARG_"(%.0f%%), "
 					"bufferDelay=%"_U32BITARG_"(%.0f%%)\n",
@@ -479,7 +480,9 @@ void RTPStream3GPP::UpdateTimeAndQuality(SInt64 curTime)
 					bufferUsage, bufferUsageRatio * 100,
 					bufferDelay, bufferDelayRatio * 100
 		));
+	}
 	else
+	{
 		DEBUG_PRINTF((
 					"RTPStream3GPP::UpdateTimeAndQuality type=%s quality=%"_S32BITARG_", qualitylimit=%"_S32BITARG_", fAdjustTime=%i bufferUsage=%"_U32BITARG_"(%.0f%%), "
 					"bufferDelay=?\n",
@@ -488,6 +491,7 @@ void RTPStream3GPP::UpdateTimeAndQuality(SInt64 curTime)
 					fAdjustTime,
 					bufferUsage, bufferUsageRatio * 100
 		));
+	}
 		
 		
 }
