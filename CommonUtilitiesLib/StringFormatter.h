@@ -79,11 +79,11 @@ class StringFormatter
         void        PutChar(char c)     { Put(&c, 1); }
         void        PutTerminator()     { PutChar('\0'); }
 		
-		//Writes a printf style formatted string
-		Bool16		PutFmtStr(const char *fmt,  ...);
+        //Writes a printf style formatted string
+        Bool16		PutFmtStr(const char *fmt,  ...);
 
             
-		//the number of characters in the buffer
+        //the number of characters in the buffer
         inline UInt32       GetCurrentOffset();
         inline UInt32       GetSpaceLeft();
         inline UInt32       GetTotalBufferSize();
@@ -98,20 +98,20 @@ class StringFormatter
         inline void         PutFilePath(StrPtrLen *inPath, StrPtrLen *inFileName);
         inline void         PutFilePath(char *inPath, char *inFileName);
 		
-		//Return a NEW'd copy of the buffer as a C string
-		char *GetAsCString()
-		{
-			StrPtrLen str(fStartPut, this->GetCurrentOffset());
-			return str.GetAsCString();
-		}
+        //Return a NEW'd copy of the buffer as a C string
+        char *GetAsCString()
+        {
+            StrPtrLen str(fStartPut, this->GetCurrentOffset());
+            return str.GetAsCString();
+        }
 
     protected:
 
         //If you fill up the StringFormatter buffer, this function will get called. By
         //default, the function simply returns false.  But derived objects can clear out the data,
-		//reset the buffer, and then returns true.
+        //reset the buffer, and then returns true.
         //Use the ResizeableStringFormatter if you want a buffer that will dynamically grow.
-		//Returns true if the buffer has been resized.
+        //Returns true if the buffer has been resized.
         virtual Bool16    BufferIsFull(char* /*inBuffer*/, UInt32 /*inBufferLen*/) { return false; }
 
         char*       fCurrentPut;
@@ -145,7 +145,7 @@ inline UInt32 StringFormatter::GetTotalBufferSize()
 
 inline void StringFormatter::PutFilePath(StrPtrLen *inPath, StrPtrLen *inFileName)
 {
-   if (inPath != NULL && inPath->Len > 0)
+    if (inPath != NULL && inPath->Len > 0)
     {   
         Put(inPath->Ptr, inPath->Len);
         if (kPathDelimiterChar != inPath->Ptr[inPath->Len -1] )
@@ -157,10 +157,10 @@ inline void StringFormatter::PutFilePath(StrPtrLen *inPath, StrPtrLen *inFileNam
 
 inline void StringFormatter::PutFilePath(char *inPath, char *inFileName)
 {
-   StrPtrLen pathStr(inPath);
-   StrPtrLen fileStr(inFileName);
+    StrPtrLen pathStr(inPath);
+    StrPtrLen fileStr(inFileName);
    
-   PutFilePath(&pathStr,&fileStr);
+    PutFilePath(&pathStr,&fileStr);
 }
 
 #endif // __STRINGFORMATTER_H__
