@@ -177,7 +177,7 @@ int MP3FileBroadcaster::PlaySong(char *fileName, char *currentFile, bool preflig
         
         if (!preflight)
         {
-            OS_Error err = mSocket->Send((char*)mBuffer, length - leftOver, &lengthSent);
+            err = mSocket->Send((char*)mBuffer, length - leftOver, &lengthSent);
             if (err != 0)
             {
                 mFile.Close();
