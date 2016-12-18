@@ -49,7 +49,7 @@ class OSHashTable {
 public:
     OSHashTable( UInt32 size )
     {
-        fHashTable = new ( T*[size] );
+        fHashTable = new T*[size];
         Assert( fHashTable );
         memset( fHashTable, 0, sizeof(T*) * size );
         fSize = size;
