@@ -62,7 +62,7 @@ void Task::SetTaskName(const char* name)
         return;
    
    ::strncpy(fTaskName,sTaskStateStr,sizeof(fTaskName));
-   ::strncat(fTaskName,name,sizeof(fTaskName));
+   ::strncat(fTaskName,name,sizeof(fTaskName)-strlen(fTaskName));
    fTaskName[sizeof(fTaskName) -1] = 0; //terminate in case it is longer than ftaskname.
    
 }
