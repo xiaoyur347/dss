@@ -70,7 +70,7 @@ class RTPPacket
         RTPPacket(StrPtrLen inPacket)
         :   fPacket(reinterpret_cast<RTPHeader *>(inPacket.Ptr)), fLen(inPacket.Len)
         {}
-        RTPPacket(char *inPacket = NULL, UInt32 inLen = NULL)
+        RTPPacket(char *inPacket = NULL, UInt32 inLen = 0)
         :   fPacket(reinterpret_cast<RTPHeader *>(inPacket)), fLen(inLen)
         {}
 
