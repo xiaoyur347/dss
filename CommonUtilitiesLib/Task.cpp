@@ -41,7 +41,7 @@ unsigned int    Task::sShortTaskThreadPicker = 0;
 unsigned int    Task::sBlockingTaskThreadPicker = 0;
 
 OSMutexRW       TaskThreadPool::sMutexRW;
-static char* sTaskStateStr="live_"; //Alive
+static const char* sTaskStateStr="live_"; //Alive
 
 Task::Task()
 :   fEvents(0), fUseThisThread(NULL),fDefaultThread(NULL), fWriteLock(false), fTimerHeapElem(), fTaskQueueElem(), pickerToUse(&Task::sShortTaskThreadPicker)
