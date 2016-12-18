@@ -375,9 +375,9 @@ void StrPtrLen::PrintStrEOL(char* stopStr, char *appendStr)
 
     char * theStrLine = thestr;
     char * nextLine = NULL;
-    char * theChar = NULL;
-    static char *cr="\\r";
-    static char *lf="\\n\n";
+    const char * theChar = NULL;
+    static const char *cr="\\r";
+    static const char *lf="\\n\n";
     SInt32 tempLen = i;
     for (i = 0; i < tempLen; i ++) 
     {   
