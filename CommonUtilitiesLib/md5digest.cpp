@@ -34,10 +34,10 @@
 #include <string.h>
 #include "OSMemory.h"
 
-static StrPtrLen sColon(":", 1);
-static StrPtrLen sMD5Sess("md5-sess", 8);
-static StrPtrLen sQopAuth("auth", 4);
-static StrPtrLen sQopAuthInt("auth-int", 8);
+static StrPtrLen sColon((char*)":", 1);
+static StrPtrLen sMD5Sess((char*)"md5-sess", 8);
+static StrPtrLen sQopAuth((char*)"auth", 4);
+static StrPtrLen sQopAuthInt((char*)"auth-int", 8);
 
 // allocates memory for hashStr->Ptr
 void HashToString(unsigned char aHash[kHashLen], StrPtrLen* hashStr){
@@ -259,7 +259,7 @@ void to64(register char *s, register SInt32 v, register int n)
  * Define the Magic String prefix that identifies a password as being
  * hashed using our algorithm.
  */
-static char *dufr_id = "$dufr$";
+static const char *dufr_id = "$dufr$";
 
 // Doesn't allocate any memory. The size of the result buffer should be nbytes
 void MD5Encode(char *pw, char *salt, char *result, int nbytes)
