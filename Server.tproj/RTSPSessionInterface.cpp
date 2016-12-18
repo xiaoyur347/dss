@@ -300,8 +300,9 @@ QTSS_Error RTSPSessionInterface::InterleavedWrite(void* inBuffer, UInt32 inLen, 
     
 
     // flush rules
-    if ( ( inLen > kTCPCoalesceDirectWriteSize || inLen == 0 ) && fNumInCoalesceBuffer > 0 
-        || ( inLen + fNumInCoalesceBuffer + kInteleaveHeaderSize > kTCPCoalesceBufferSize ) && fNumInCoalesceBuffer > 0
+    if ( ( inLen > kTCPCoalesceDirectWriteSize || inLen == 0 )
+        && (fNumInCoalesceBuffer > 0 || ( inLen + fNumInCoalesceBuffer + kInteleaveHeaderSize > kTCPCoalesceBufferSize ))
+	&& fNumInCoalesceBuffer > 0
         )
     {
         UInt32      buffLenWritten;
