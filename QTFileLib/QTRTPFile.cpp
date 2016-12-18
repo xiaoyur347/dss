@@ -789,7 +789,7 @@ void QTRTPFile::SetTrackCookies(UInt32 TrackID, void * Cookie1, UInt32 Cookie2)
 
 void QTRTPFile::SetTrackQualityLevel(RTPTrackListEntry* inEntry, UInt32 inNewQualityLevel)
 {
-	if (inNewQualityLevel < kAllPackets)
+	if (int(inNewQualityLevel) < kAllPackets)
 		inNewQualityLevel = kAllPackets;
 	if (inNewQualityLevel > kKeyFramesPlusOneP)
 		inNewQualityLevel = kKeyFramesPlusOneP;
