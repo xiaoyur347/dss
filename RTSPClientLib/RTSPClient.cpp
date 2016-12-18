@@ -51,9 +51,9 @@
 #define ENABLE_AUTHENTICATION 1
 
 // STRTOCHAR is used in verbose mode and for debugging
-static char temp[2048]; 
 static char * STRTOCHAR(StrPtrLen *theStr)
 {
+    static char temp[2048];
     temp[0] = 0;
     UInt32 len = theStr->Len < 2047 ? theStr->Len : 2047;
     if (theStr->Len > 0 || NULL != theStr->Ptr)
@@ -251,10 +251,11 @@ Bool16 Authenticator::GetParamValue(StringParser *valueSourcePtr, StrPtrLen *out
     StrPtrLen temp;
     outParamValuePtr->Set(NULL,0);
 
-    {   char temp[1024]; 
-        memcpy(temp,valueSourcePtr->GetCurrentPosition(),valueSourcePtr->GetDataRemaining()); 
-        temp[valueSourcePtr->GetDataRemaining()] = 0;
-    }
+    //TODO: -Wshadow, and temp here seams useless
+    //{   char temp[1024]; 
+    //    memcpy(temp,valueSourcePtr->GetCurrentPosition(),valueSourcePtr->GetDataRemaining()); 
+    //    temp[valueSourcePtr->GetDataRemaining()] = 0;
+    //}
     
     valueSourcePtr->ConsumeUntil(&temp, sNOTWhiteQuoteOrEOLorEqual);
     if ( (temp.Len > 0) &&  ( '"' == temp.Ptr[temp.Len -1] )  )// if quote read to next quote or end
