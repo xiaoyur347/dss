@@ -369,7 +369,7 @@ Float32 StringParser::ConsumeNPT()
             AdvanceMark();
         }
         
-        if (fStartGet >= fEndGet || valType == 0 && index >= 1)
+        if ((fStartGet >= fEndGet || valType == 0) && index >= 1)
             break;
             
         if (*fStartGet == '.' && valType == 0 && index == 0)
