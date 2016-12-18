@@ -1568,7 +1568,7 @@ OS_Error RTSPClient::DoTransaction()
 //This implementation cannot parse interleaved headers with entity content.
 OS_Error RTSPClient::ReceiveResponse()
 {
-	Assert(fState == kResponseReceiving | fState == kHeaderReceived);
+    Assert(fState == kResponseReceiving || fState == kHeaderReceived);
     OS_Error theErr = OS_NoErr;
 
     while (fState == kResponseReceiving)
@@ -1891,7 +1891,7 @@ void    RTSPClient::ParseInterleaveSubHeader(StrPtrLen* inSubHeader)
 //Use a trackID of kUInt32_Max to turn the Rate-Adaptation header off.
 void RTSPClient::Attach3GPPHeaders(StringFormatter &fmt, UInt32 inTrackID)
 {
-    if (fGuarenteedBitRate != 0 | fMaxBitRate != 0 | fMaxTransferDelay != 0)
+    if (fGuarenteedBitRate != 0 || fMaxBitRate != 0 || fMaxTransferDelay != 0)
     {
         fmt.PutFmtStr("3GPP-Link-Char: url=\"%s\"", fURL.Ptr);
         
@@ -1904,7 +1904,7 @@ void RTSPClient::Attach3GPPHeaders(StringFormatter &fmt, UInt32 inTrackID)
         fmt.PutFmtStr("\r\n");
     }
 	
-    if ((fBufferSpace != 0 | fDelayTime != 0) && inTrackID != kUInt32_Max)
+    if ((fBufferSpace != 0 || fDelayTime != 0) && inTrackID != kUInt32_Max)
     {
         fmt.PutFmtStr("3GPP-Adaptation: ");
 
