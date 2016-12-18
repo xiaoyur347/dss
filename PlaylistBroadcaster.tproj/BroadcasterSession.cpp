@@ -294,7 +294,7 @@ OS_Error BroadcasterSession::SendWaitingPackets()
     {   Bool16 getNext = false;
         //qtss_printf("BroadcasterSession::Run- Broadcasting SendInterleavedWrite \n");
         Assert(fPacketLen <= RTSPClient::kReqBufSize);
-        OSMutexLocker locker(fRTSPClient->GetMutex());
+        OSMutexLocker lockerClient(fRTSPClient->GetMutex());
         theErr = fRTSPClient->SendInterleavedWrite(fChannel, (UInt16) fPacketLen, fPacket, &getNext);
         if (getNext)
         {   delete [] fPacket;
