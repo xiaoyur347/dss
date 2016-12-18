@@ -48,14 +48,24 @@ class QTAtom_stts_SampleTableControlBlock;
 
 class QTHintTrackRTPHeaderData {
 
-    public:
-        UInt16      rtpHeaderBits;
-        UInt16      rtpSequenceNumber;
-        SInt32      relativePacketTransmissionTime;
-        UInt16      hintFlags;
-        UInt16      dataEntryCount;
-        UInt32      tlvSize;
-        SInt32      tlvTimestampOffset; //'rtpo' TLV which is the timestamp offset for this packet
+public:
+    QTHintTrackRTPHeaderData()
+    : rtpHeaderBits(0),
+      rtpSequenceNumber(0),
+      relativePacketTransmissionTime(0),
+      hintFlags(0),
+      dataEntryCount(0),
+      tlvSize(0),
+      tlvTimestampOffset(0)
+    {
+    }
+    UInt16      rtpHeaderBits;
+    UInt16      rtpSequenceNumber;
+    SInt32      relativePacketTransmissionTime;
+    UInt16      hintFlags;
+    UInt16      dataEntryCount;
+    UInt32      tlvSize;
+    SInt32      tlvTimestampOffset; //'rtpo' TLV which is the timestamp offset for this packet
 };
 
 //
