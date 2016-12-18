@@ -277,7 +277,7 @@ void RTSPRequestInterface::AppendContentLength(UInt32 contentLength)
 
     char dataSize[10];
     dataSize[sizeof(dataSize) -1] = 0;
-    qtss_snprintf(dataSize, sizeof(dataSize) -1, "%"_U32BITARG_"", contentLength);
+    qtss_snprintf(dataSize, sizeof(dataSize) -1, "%" _U32BITARG_ "", contentLength);
     StrPtrLen contentLengthStr(dataSize);
     this->AppendHeader(qtssContentLengthHeader, &contentLengthStr);
     
@@ -442,7 +442,7 @@ void RTSPRequestInterface::AppendTransportHeader(StrPtrLen* serverPortA,
         OSCharArrayDeleter cStrDeleter(theCString);
         
         UInt32 ssrcVal = 0;
-        ::sscanf(theCString, "%"_U32BITARG_"", &ssrcVal);
+        ::sscanf(theCString, "%" _U32BITARG_ "", &ssrcVal);
         ssrcVal = htonl(ssrcVal);
         
         StrPtrLen hexSSRC(QTSSDataConverter::ValueToString( &ssrcVal, sizeof(ssrcVal), qtssAttrDataTypeUnknown));

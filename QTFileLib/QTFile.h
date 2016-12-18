@@ -197,7 +197,7 @@ Bool16 QTFile::ValidTOC()
     UInt32 theDataLen = sizeof(UInt64);
     (void)QTSS_GetValue(fMovieFD, qtssFlObjLength, 0, (void*)&theLength, &theDataLen);
     (void)QTSS_GetValue(fMovieFD, qtssFlObjPosition, 0, (void*)&thePos, &theDataLen);
-//  qtss_printf("GenerateAtomTOC failed CurPos=%"_64BITARG_"u < Length=%"_64BITARG_"u\n", CurPos, theLength);
+//  qtss_printf("GenerateAtomTOC failed CurPos=%" _64BITARG_ "u < Length=%" _64BITARG_ "u\n", CurPos, theLength);
 #else
     theLength = fMovieFD.GetLength();
     thePos = fMovieFD.GetCurOffset();
@@ -205,7 +205,7 @@ Bool16 QTFile::ValidTOC()
 
     if (thePos < theLength) // failure pos not at end of file
     {  
-//      qtss_printf("GenerateAtomTOC failed CurPos=%"_64BITARG_"u < Length=%"_64BITARG_"u\n", CurPos, theLength);
+//      qtss_printf("GenerateAtomTOC failed CurPos=%" _64BITARG_ "u < Length=%" _64BITARG_ "u\n", CurPos, theLength);
         return false;
     }
     

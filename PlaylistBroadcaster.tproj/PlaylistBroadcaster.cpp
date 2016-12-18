@@ -452,7 +452,7 @@ Bool16 AnnounceBroadcast(PLBroadcastDef *broadcastParms,QTFileBroadcaster   *fil
         }
         
         if (200 != broadcastErr)
-        {   //qtss_printf("broadcastErr = %"_S32BITARG_" sBroadcasterSession->GetDeathState()=%"_S32BITARG_" sBroadcasterSession->GetReasonForDying()=%"_S32BITARG_"\n",broadcastErr,sBroadcasterSession->GetDeathState(),sBroadcasterSession->GetReasonForDying());
+        {   //qtss_printf("broadcastErr = %" _S32BITARG_ " sBroadcasterSession->GetDeathState()=%" _S32BITARG_ " sBroadcasterSession->GetReasonForDying()=%" _S32BITARG_ "\n",broadcastErr,sBroadcasterSession->GetDeathState(),sBroadcasterSession->GetReasonForDying());
             if (sBroadcasterSession->GetDeathState() == BroadcasterSession::kSendingAnnounce && sBroadcasterSession->GetReasonForDying() == BroadcasterSession::kConnectionFailed)
                 ::EvalBroadcasterErr(QTFileBroadcaster::eNetworkConnectionError);
             else if (sBroadcasterSession->GetDeathState() == BroadcasterSession::kSendingAnnounce && sBroadcasterSession->GetReasonForDying() == BroadcasterSession::kBadSDP)
@@ -2099,14 +2099,14 @@ struct sigaction act;
     if ( ::signal(SIGTERM, SIG_IGN) != SIG_IGN) 
     {   // from kill...
         if ( ::sigaction(SIGTERM, &act, NULL) != 0 )
-        {   qtss_printf( "- PlaylistBroadcaster: System error (%"_SPOINTERSIZEARG_").\n", (PointerSizedInt)SIG_ERR );
+        {   qtss_printf( "- PlaylistBroadcaster: System error (%" _SPOINTERSIZEARG_ ").\n", (PointerSizedInt)SIG_ERR );
         }
     }
 
     if ( ::signal(SIGINT, SIG_IGN) != SIG_IGN) 
     {   // ^C signal
         if ( ::sigaction(SIGINT, &act, NULL)  != 0 )
-        {   qtss_printf( "- PlaylistBroadcaster: System error (%"_SPOINTERSIZEARG_").\n", (PointerSizedInt)SIG_ERR );
+        {   qtss_printf( "- PlaylistBroadcaster: System error (%" _SPOINTERSIZEARG_ ").\n", (PointerSizedInt)SIG_ERR );
         }
         
     }
@@ -2114,7 +2114,7 @@ struct sigaction act;
     if ( ::signal(SIGPIPE, SIG_IGN) != SIG_IGN) 
     {   // broken pipe probably from a failed RTSP session (the server went down?)
         if ( ::sigaction(SIGPIPE, &act, NULL)   != 0 )
-        {   qtss_printf( "- PlaylistBroadcaster: System error (%"_SPOINTERSIZEARG_").\n", (PointerSizedInt)SIG_ERR );
+        {   qtss_printf( "- PlaylistBroadcaster: System error (%" _SPOINTERSIZEARG_ ").\n", (PointerSizedInt)SIG_ERR );
         }
         
     }
@@ -2122,7 +2122,7 @@ struct sigaction act;
     if ( ::signal(SIGHUP, SIG_IGN) != SIG_IGN) 
     {   // broken pipe probably from a failed RTSP session (the server went down?)
         if ( ::sigaction(SIGHUP, &act, NULL)  != 0)
-        {   qtss_printf( "- PlaylistBroadcaster: System error (%"_SPOINTERSIZEARG_").\n", (PointerSizedInt)SIG_ERR );
+        {   qtss_printf( "- PlaylistBroadcaster: System error (%" _SPOINTERSIZEARG_ ").\n", (PointerSizedInt)SIG_ERR );
         }
         
     }

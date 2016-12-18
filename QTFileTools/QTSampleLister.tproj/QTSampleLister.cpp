@@ -115,7 +115,7 @@ int main(int argc, char *argv[]) {
         char		buffer[kTimeStrSize];
         struct tm  timeResult;
         
-        qtss_printf("-- Track #%02"_S32BITARG_" ---------------------------\n", Track->GetTrackID());
+        qtss_printf("-- Track #%02" _S32BITARG_ " ---------------------------\n", Track->GetTrackID());
         qtss_printf("   Name               : %s\n", Track->GetTrackName());
         qtss_printf("   Created on         : %s", qtss_asctime(qtss_gmtime(&unixCreationTime, &timeResult),buffer, sizeof(buffer)));
         qtss_printf("   Modified on        : %s", qtss_asctime(qtss_gmtime(&unixModificationTime, &timeResult),buffer, sizeof(buffer)));
@@ -143,9 +143,9 @@ int main(int argc, char *argv[]) {
         //
         // Dump out the sample.
         if( DumpHTML ) 
-            qtss_printf("<FONT COLOR=black>%010"_64BITARG_"u: track=%02"_U32BITARG_"; size=%"_U32BITARG_"</FONT><BR>\n",Offset, Track->GetTrackID(), Size);
+            qtss_printf("<FONT COLOR=black>%010" _64BITARG_ "u: track=%02" _U32BITARG_ "; size=%" _U32BITARG_ "</FONT><BR>\n",Offset, Track->GetTrackID(), Size);
         else 
-            qtss_printf("%8"_U32BITARG_"  -  %10"_U32BITARG_"  %10"_64BITARG_"u  %10"_U32BITARG_"\n", curSample, MediaTime, Offset, Size);
+            qtss_printf("%8" _U32BITARG_ "  -  %10" _U32BITARG_ "  %10" _64BITARG_ "u  %10" _U32BITARG_ "\n", curSample, MediaTime, Offset, Size);
 
     
         // Next sample.

@@ -203,13 +203,13 @@ void  LogFloat(char *str, float num, char *str2)
 
 void LogInt(char *str, SInt32 num, char *str2)
 {
-    qtss_sprintf(gTempStr,"%"_S32BITARG_"",num);
+    qtss_sprintf(gTempStr,"%" _S32BITARG_ "",num);
     LogNum(str,gTempStr,str2);
 }
 
 void LogUInt (char *str, UInt32 num, char *str2)
 {
-    qtss_sprintf(gTempStr,"%"_U32BITARG_"",num);
+    qtss_sprintf(gTempStr,"%" _U32BITARG_ "",num);
     LogNum(str,gTempStr,str2);
 }
 

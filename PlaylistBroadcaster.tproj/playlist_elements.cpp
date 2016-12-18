@@ -60,7 +60,7 @@ UInt32 MediaStream::GetACName(char* ioCNameBuffer)
     ioCNameBuffer[0] = 1;
     
     //Unique cname is constructed from the base name and the current time
-    qtss_sprintf(&ioCNameBuffer[2], " %s%"_64BITARG_"d", "QTSS", OS::Milliseconds() / 1000);
+    qtss_sprintf(&ioCNameBuffer[2], " %s%" _64BITARG_ "d", "QTSS", OS::Milliseconds() / 1000);
     UInt32 cNameLen = ::strlen(&ioCNameBuffer[2]);
     //2nd byte of CName should be length
     ioCNameBuffer[1] = (UInt8) cNameLen ;//doesn't count indicator or length byte
@@ -153,8 +153,8 @@ void MediaStream::MapToStream(UInt32 curRTpTimeStamp, UInt16 curRTpSequenceNumbe
         outPayload |= (curPayload & 0x80);// the movie payload marker
     }
 
-//  qtss_printf("MediaStream::MapToStream outTime = %"_U32BITARG_"\n", outTime);
-//  qtss_printf("MediaStream::MapToStream calculated time = %"_U32BITARG_"\n",(UInt32) curTimeInScale); 
+//  qtss_printf("MediaStream::MapToStream outTime = %" _U32BITARG_ "\n", outTime);
+//  qtss_printf("MediaStream::MapToStream calculated time = %" _U32BITARG_ "\n",(UInt32) curTimeInScale); 
 
     if (outRTpTimeStampPtr) *outRTpTimeStampPtr = outTime;
     if (outRTpSequenceNumberPtr) *outRTpSequenceNumberPtr = outSeq;
@@ -360,7 +360,7 @@ int MediaStream::UpdateSenderReport(SInt64 theTime)
         curTimeInScale +=(Float64) fData.fRTpRandomOffset;
         curTimeInScale = (UInt32) ( (UInt64) curTimeInScale & (UInt64) 0xFFFFFFFF ); 
 
-        //qtss_printf("MediaStream::UpdateSenderReport RTCP timestamp = %"_U32BITARG_"\n",(UInt32) curTimeInScale);
+        //qtss_printf("MediaStream::UpdateSenderReport RTCP timestamp = %" _U32BITARG_ "\n",(UInt32) curTimeInScale);
         *theReport = htonl((UInt32) curTimeInScale);
         
         theReport++;        

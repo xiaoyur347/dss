@@ -279,7 +279,7 @@ void BroadcastLog::LogMediaData(	const char* path, const char* title, const char
             }
                
             // add the duration in seconds
-            qtss_sprintf(dateBuff, " %"_S32BITARG_" ", duration);
+            qtss_sprintf(dateBuff, " %" _S32BITARG_ " ", duration);
             ::strcat(strBuff,dateBuff);
             
             // add the result code

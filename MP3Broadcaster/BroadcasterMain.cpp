@@ -229,14 +229,14 @@ struct sigaction act;
     if ( ::signal(SIGTERM, SIG_IGN) != SIG_IGN) 
     {   // from kill...
         if ( ::sigaction(SIGTERM, &act, NULL) != 0 )
-        {   qtss_printf( "- PlaylistBroadcaster: System error (%"_SPOINTERSIZEARG_").\n", (PointerSizedInt)SIG_ERR );
+        {   qtss_printf( "- PlaylistBroadcaster: System error (%" _SPOINTERSIZEARG_ ").\n", (PointerSizedInt)SIG_ERR );
         }
     }
 
     if ( ::signal(SIGINT, SIG_IGN) != SIG_IGN) 
     {   // ^C signal
         if ( ::sigaction(SIGINT, &act, NULL)  != 0 )
-        {   qtss_printf( "- PlaylistBroadcaster: System error (%"_SPOINTERSIZEARG_").\n", (PointerSizedInt)SIG_ERR );
+        {   qtss_printf( "- PlaylistBroadcaster: System error (%" _SPOINTERSIZEARG_ ").\n", (PointerSizedInt)SIG_ERR );
         }
         
     }
@@ -244,7 +244,7 @@ struct sigaction act;
     if ( ::signal(SIGPIPE, SIG_IGN) != SIG_IGN) 
     {   // broken pipe probably from a failed RTSP session (the server went down?)
         if ( ::sigaction(SIGPIPE, &act, NULL)   != 0 )
-        {   qtss_printf( "- PlaylistBroadcaster: System error (%"_SPOINTERSIZEARG_").\n", (PointerSizedInt)SIG_ERR );
+        {   qtss_printf( "- PlaylistBroadcaster: System error (%" _SPOINTERSIZEARG_ ").\n", (PointerSizedInt)SIG_ERR );
         }
         
     }
@@ -252,7 +252,7 @@ struct sigaction act;
     if ( ::signal(SIGHUP, SIG_IGN) != SIG_IGN) 
     {   // catch any SIGHUP
         if ( ::sigaction(SIGHUP, &act, NULL)  != 0)
-        {   qtss_printf( "- PlaylistBroadcaster: System error (%"_SPOINTERSIZEARG_").\n", (PointerSizedInt)SIG_ERR );
+        {   qtss_printf( "- PlaylistBroadcaster: System error (%" _SPOINTERSIZEARG_ ").\n", (PointerSizedInt)SIG_ERR );
         }
         
     }
@@ -260,7 +260,7 @@ struct sigaction act;
     if ( ::signal(SIGALRM, SIG_IGN) != SIG_IGN) 
     {   // catch any SIGALRM
         if ( ::sigaction(SIGALRM, &act, NULL)  != 0)
-        {   qtss_printf( "- PlaylistBroadcaster: System error (%"_SPOINTERSIZEARG_").\n", (PointerSizedInt)SIG_ERR );
+        {   qtss_printf( "- PlaylistBroadcaster: System error (%" _SPOINTERSIZEARG_ ").\n", (PointerSizedInt)SIG_ERR );
         }
         
     }
@@ -282,7 +282,7 @@ static void SignalEventHandler( int signalID )
 
 	  {
 
-         qtss_printf( "- PlaylistBroadcaster: Unexpected signal type (%"_SPOINTERSIZEARG_").\n", signalID );
+         qtss_printf( "- PlaylistBroadcaster: Unexpected signal type (%" _SPOINTERSIZEARG_ ").\n", signalID );
 
          // just ignore it...
 

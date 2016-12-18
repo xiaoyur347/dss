@@ -224,13 +224,13 @@ Bool16 AuthenticateRequest(QTSS_StandardRTSP_Params* inParams,
     theErr = QTSS_GetValue (inParams->inRTSPRequest,qtssRTSPReqUserName,0, (void *) nameStr.Ptr, &nameStr.Len);
     if ( (QTSS_NoErr != theErr) || (nameStr.Len >= kBuffLen) ) 
     {
-        debug_printf("QTSSDSAuthModule:AuthenticateRequest() Username Error - %"_S32BITARG_"\n", theErr);
+        debug_printf("QTSSDSAuthModule:AuthenticateRequest() Username Error - %" _S32BITARG_ "\n", theErr);
         return false;    
     }           
     theErr = QTSS_GetValue (inParams->inRTSPRequest,qtssRTSPReqUserPassword,0, (void *) passwordStr.Ptr, &passwordStr.Len);
     if ( (QTSS_NoErr != theErr) || (passwordStr.Len >= kBuffLen) )
     {
-        debug_printf("QTSSDSAuthModule:AuthenticateRequest() Password Error - %"_S32BITARG_"\n", theErr);
+        debug_printf("QTSSDSAuthModule:AuthenticateRequest() Password Error - %" _S32BITARG_ "\n", theErr);
         return false;        
     }
     nameBuff[nameStr.Len] = '\0';
@@ -276,7 +276,7 @@ QTSS_Error AuthenticateRTSPRequest(QTSS_RTSPAuth_Params* inParams)
     Assert(len == sizeof(QTSS_UserProfileObject));
     if (theErr != QTSS_NoErr)
     {
-        debug_printf("QTSSDSAuthModule:AuthenticateRTSPRequest - username error is %"_S32BITARG_"\n", theErr);
+        debug_printf("QTSSDSAuthModule:AuthenticateRTSPRequest - username error is %" _S32BITARG_ "\n", theErr);
         return theErr;
     }    
     char*   nameBuff = NULL;
@@ -285,7 +285,7 @@ QTSS_Error AuthenticateRTSPRequest(QTSS_RTSPAuth_Params* inParams)
     OSCharArrayDeleter usernameBufDeleter(nameBuff);
     if (theErr != QTSS_NoErr)
     {
-        debug_printf("QTSSDSAuthModule:AuthenticateRTSPRequest - theUserProfile nameBuff error is %"_S32BITARG_"\n", theErr);
+        debug_printf("QTSSDSAuthModule:AuthenticateRTSPRequest - theUserProfile nameBuff error is %" _S32BITARG_ "\n", theErr);
     }    
 
 
@@ -342,13 +342,13 @@ QTSS_Error AuthenticateRTSPRequest(QTSS_RTSPAuth_Params* inParams)
         theErr = QTSS_GetValue (inParams->inRTSPRequest,qtssRTSPReqUserName,0, (void *) nameStr.Ptr, &nameStr.Len);
         if ( (QTSS_NoErr != theErr) || (nameStr.Len >= kBuffLen) ) 
         {
-            debug_printf("QTSSDSAuthModule:AuthenticateRequest() Username Error - %"_S32BITARG_"\n", theErr);
+            debug_printf("QTSSDSAuthModule:AuthenticateRequest() Username Error - %" _S32BITARG_ "\n", theErr);
             return false;    
         }           
         theErr = QTSS_GetValue (inParams->inRTSPRequest,qtssRTSPReqUserPassword,0, (void *) passwordStr.Ptr, &passwordStr.Len);
         if ( (QTSS_NoErr != theErr) || (passwordStr.Len >= kBuffLen) )
         {
-            debug_printf("QTSSDSAuthModule:AuthenticateRequest() Password Error - %"_S32BITARG_"\n", theErr);
+            debug_printf("QTSSDSAuthModule:AuthenticateRequest() Password Error - %" _S32BITARG_ "\n", theErr);
         }
         nameBuff[nameStr.Len] = '\0';
         passwordBuff[passwordStr.Len] = '\0';
@@ -435,7 +435,7 @@ QTSS_Error Authorize(QTSS_StandardRTSP_Params* inParams)
     QTSSCharArrayDeleter pathBuffDeleter(pathBuffStr);
     if (theErr != QTSS_NoErr)
     {
-        debug_printf("QTSSDSAuthModule - Authorize [QTSS_GetValueAsString]: Error %"_S32BITARG_"", theErr);
+        debug_printf("QTSSDSAuthModule - Authorize [QTSS_GetValueAsString]: Error %" _S32BITARG_ "", theErr);
         return QTSS_RequestFailed;  
     }
     //get the root movie directory
@@ -444,7 +444,7 @@ QTSS_Error Authorize(QTSS_StandardRTSP_Params* inParams)
     OSCharArrayDeleter movieRootDeleter(movieRootDirStr);
     if (theErr != QTSS_NoErr)
     {
-        debug_printf("QTSSDSAuthModule - Authorize[QTSS_GetValueAsString]: Error %"_S32BITARG_"", theErr);
+        debug_printf("QTSSDSAuthModule - Authorize[QTSS_GetValueAsString]: Error %" _S32BITARG_ "", theErr);
         return false;
     }
     //check if this user is allowed to see this movie

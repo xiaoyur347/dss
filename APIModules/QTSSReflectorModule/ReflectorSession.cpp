@@ -129,7 +129,7 @@ ReflectorSession::~ReflectorSession()
         UInt32 refCount = fStreamArray[x]->GetRef()->GetRefCount();
         Bool16 unregisterNow = (refCount == 1) ? true : false;
         
-        //qtss_printf("ReflectorSession::~ReflectorSession stream index=%"_U32BITARG_" refcount=%"_U32BITARG_"\n",x,refCount);
+        //qtss_printf("ReflectorSession::~ReflectorSession stream index=%" _U32BITARG_ " refcount=%" _U32BITARG_ "\n",x,refCount);
         //decrement the ref count
         
         if (refCount > 0) // Refcount may be 0 if there was some error setting up the stream
@@ -140,7 +140,7 @@ ReflectorSession::~ReflectorSession()
         {   // Delete this stream if the refcount has dropped to 0
             if (unregisterNow)
                 sStreamMap->UnRegister(fStreamArray[x]->GetRef()); // Refcount may be 0 if there was some error setting up the stream
-            //qtss_printf("delete stream index=%"_U32BITARG_" refcount=%"_U32BITARG_"\n",x,refCount);
+            //qtss_printf("delete stream index=%" _U32BITARG_ " refcount=%" _U32BITARG_ "\n",x,refCount);
             delete fStreamArray[x];
             fStreamArray[x] = NULL;
         }   
@@ -201,7 +201,7 @@ QTSS_Error ReflectorSession::SetupReflectorSession(SourceInfo* inInfo, QTSS_Stan
             {
                 ReflectorStream* theRef = (ReflectorStream*)theStreamRef->GetObject();
                 UInt32 refCount = theRef->GetRef()->GetRefCount();
-                qtss_printf("stream has port stream index=%"_U32BITARG_" refcount=%"_U32BITARG_"\n",x,refCount);
+                qtss_printf("stream has port stream index=%" _U32BITARG_ " refcount=%" _U32BITARG_ "\n",x,refCount);
             }
             #endif
         }
@@ -236,7 +236,7 @@ QTSS_Error ReflectorSession::SetupReflectorSession(SourceInfo* inInfo, QTSS_Stan
             Assert(debug == fStreamArray[x]->GetRef());
 
             //UInt32 refCount = fStreamArray[x]->GetRef()->GetRefCount();
-            //qtss_printf("stream index=%"_U32BITARG_" refcount=%"_U32BITARG_"\n",x,refCount);
+            //qtss_printf("stream index=%" _U32BITARG_ " refcount=%" _U32BITARG_ "\n",x,refCount);
         
         }
         else    
@@ -259,7 +259,7 @@ void ReflectorSession::AddBroadcasterClientSession(QTSS_StandardRTSP_Params* inP
     for (UInt32 x = 0; x < fSourceInfo->GetNumStreams(); x++)
     {
         if (fStreamArray[x] != NULL)
-        {   //qtss_printf("AddBroadcasterSession=%"_U32BITARG_"\n",inParams->inClientSession);
+        {   //qtss_printf("AddBroadcasterSession=%" _U32BITARG_ "\n",inParams->inClientSession);
             ((ReflectorSocket*)fStreamArray[x]->GetSocketPair()->GetSocketA())->AddBroadcasterSession(inParams->inClientSession);
             ((ReflectorSocket*)fStreamArray[x]->GetSocketPair()->GetSocketB())->AddBroadcasterSession(inParams->inClientSession);
         }

@@ -139,7 +139,7 @@ class ElementNode
         void    GetMyAccess(StrPtrLen* str)     { Assert(str); if (str != NULL) str->Set(fSelfPtr->fAccessData,fSelfPtr->fAccessLen);};
         QTSS_Object GetMySource()               {   
                                                     Assert(fSelfPtr != NULL); 
-                                                    //qtss_printf("GetMySource fSelfPtr->fAPISource = %"_U32BITARG_" \n", fSelfPtr->fAPISource); 
+                                                    //qtss_printf("GetMySource fSelfPtr->fAPISource = %" _U32BITARG_ " \n", fSelfPtr->fAPISource); 
                                                     return fSelfPtr->fAPISource;        
                                                 };
 
@@ -206,7 +206,7 @@ class ElementNode
                                                         if (source != NULL) 
                                                             return source; 
                                                         else 
-                                                        {   //qtss_printf("GetSource return fDataSource = %"_U32BITARG_" \n",fDataSource);
+                                                        {   //qtss_printf("GetSource return fDataSource = %" _U32BITARG_ " \n",fDataSource);
                                                             return fDataSource;
                                                         }
                                                     };

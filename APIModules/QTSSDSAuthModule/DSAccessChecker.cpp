@@ -174,7 +174,7 @@ static SInt32 _GetRecordList(
 	if (status != eDSNoErr)
 	{	
 		// Bail if we cannot open the node.
-		debug_printf("QTSSODAuthModule: Could not open node - error: %"_S32BITARG_"\n",  status);
+		debug_printf("QTSSODAuthModule: Could not open node - error: %" _S32BITARG_ "\n",  status);
 	}
 	else
 	{
@@ -201,7 +201,7 @@ static SInt32 _GetRecordList(
 		}
 		else if ( status != eDSNoErr )
 		{
-			debug_printf("QTSSODAuthModule: No records found - error: %"_S32BITARG_"\n",  status);
+			debug_printf("QTSSODAuthModule: No records found - error: %" _S32BITARG_ "\n",  status);
 		}
 	}
 	
@@ -522,7 +522,7 @@ Bool16 DSAccessChecker::CheckPassword(const char* inUsername, const char* inPass
 	{	
 		// Some DS error, tell the admin what the error is and bail.
 		// Error can be found in DirectoryService man page.
-		debug_printf("QTSSODAuthModule: Could not open Directory Services - error: %"_S32BITARG_"", status);
+		debug_printf("QTSSODAuthModule: Could not open Directory Services - error: %" _S32BITARG_ "", status);
 		return false;
 	}
 
@@ -594,7 +594,7 @@ Bool16 DSAccessChecker::CheckPassword(const char* inUsername, const char* inPass
 	}
 
 	// For admins running QTSS in debug
-	debug_printf("QTSSODAuthModule: OD returned %"_S32BITARG_" status.\n", status);
+	debug_printf("QTSSODAuthModule: OD returned %" _S32BITARG_ " status.\n", status);
 	debug_printf("QTSSODAuthModule: Authentication failed.\n");
 	// If the Authentication failed then return false, which boots the user...
 	return false;

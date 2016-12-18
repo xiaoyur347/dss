@@ -414,7 +414,7 @@ int PopulatePickerFromDir( PlaylistPicker* picker, char* dirPath, int weight )
     findResultHandle = ::FindFirstFile( expandedFileName, &findData);
     if ( NULL == findResultHandle || INVALID_HANDLE_VALUE == findResultHandle )
     {
-        //qtss_printf( "FindFirstFile( \"%s\" ): gle = %"_U32BITARG_"\n", searchPath, GetLastError() );
+        //qtss_printf( "FindFirstFile( \"%s\" ): gle = %" _U32BITARG_ "\n", searchPath, GetLastError() );
         return 0;
     }
 

@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
         
         //
         // Dump some info.
-        qtss_printf("-- Track #%02"_S32BITARG_" ---------------------------\n", Track->GetTrackID());
+        qtss_printf("-- Track #%02" _S32BITARG_ " ---------------------------\n", Track->GetTrackID());
         qtss_printf("   Name               : %s\n", Track->GetTrackName());
         qtss_printf("   Created on         : %s", qtss_asctime(qtss_gmtime(&unixCreationTime, &timeResult), buffer, sizeof(buffer) ));
         qtss_printf("   Modified on        : %s", qtss_asctime(qtss_gmtime(&unixModificationTime, &timeResult), buffer, sizeof(buffer) ));
@@ -113,10 +113,10 @@ int main(int argc, char *argv[]) {
         if( file.IsHintTrack(Track) ) {
             HintTrack = (QTHintTrack *)Track;
 
-            qtss_printf("   Total RTP bytes    : %"_64BITARG_"u\n", HintTrack->GetTotalRTPBytes());
-            qtss_printf("   Total RTP packets  : %"_64BITARG_"u\n", HintTrack->GetTotalRTPPackets());
+            qtss_printf("   Total RTP bytes    : %" _64BITARG_ "u\n", HintTrack->GetTotalRTPBytes());
+            qtss_printf("   Total RTP packets  : %" _64BITARG_ "u\n", HintTrack->GetTotalRTPPackets());
             qtss_printf("   Average bitrate    : %.2f Kbps\n", file.GetDurationInSeconds() == 0 ? 0.0 : ((HintTrack->GetTotalRTPBytes() << 3) / file.GetDurationInSeconds()) / 1024);
-            qtss_printf("   Average packet size: %"_64BITARG_"u\n", HintTrack->GetTotalRTPPackets() == 0 ? 0 : HintTrack->GetTotalRTPBytes() / HintTrack->GetTotalRTPPackets());
+            qtss_printf("   Average packet size: %" _64BITARG_ "u\n", HintTrack->GetTotalRTPPackets() == 0 ? 0 : HintTrack->GetTotalRTPBytes() / HintTrack->GetTotalRTPPackets());
 
             UInt32 UDPIPHeaderSize = (56 * HintTrack->GetTotalRTPPackets());
             UInt32 RTPUDPIPHeaderSize = ((56+12) * HintTrack->GetTotalRTPPackets());

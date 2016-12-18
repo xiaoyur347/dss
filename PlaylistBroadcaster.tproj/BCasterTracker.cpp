@@ -440,7 +440,7 @@ BCasterTracker::BCasterTracker( const char* name )
     // the second to obtain an exclusive lock on the file.
     
     // the app should probably fail if this cannot be done within the alloted time
-    //qtss_printf("time=%"_S32BITARG_"\n",calendarTime);
+    //qtss_printf("time=%" _S32BITARG_ "\n",calendarTime);
     
     
     while ( mTrackerFile == NULL && calendarTime > ::time(NULL) ) 

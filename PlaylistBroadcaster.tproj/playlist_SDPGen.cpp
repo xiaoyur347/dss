@@ -140,7 +140,7 @@ char *SDPGen::Process(  char *sdpFileName,
 
             Assert(SocketUtils::GetIPAddrStr(0) != NULL);
             Assert(SocketUtils::GetIPAddrStr(0)->Ptr != NULL);
-            qtss_sprintf(ownerLine, "o=%s %"_U32BITARG_" %"_U32BITARG_" IN IP4 %s\r\n",userName ,sessIDAsRandomTime,versAsRandomTime,SocketUtils::GetIPAddrStr(0)->Ptr);
+            qtss_sprintf(ownerLine, "o=%s %" _U32BITARG_ " %" _U32BITARG_ " IN IP4 %s\r\n",userName ,sessIDAsRandomTime,versAsRandomTime,SocketUtils::GetIPAddrStr(0)->Ptr);
             currentPos = AddToBuff(fSDPFileContentsBuf, currentPos, ownerLine);
             if (currentPos < 0) break;
         }
@@ -185,7 +185,7 @@ char *SDPGen::Process(  char *sdpFileName,
             char  timeLine[255];
             UInt32 startTimeNTPSecs = strtoul(startTime, NULL, 10);
             UInt32 endTimeNTPSecs = strtoul(endTime, NULL, 10);
-            qtss_sprintf(timeLine, "t=%"_U32BITARG_" %"_U32BITARG_"\r\n", startTimeNTPSecs, endTimeNTPSecs);           
+            qtss_sprintf(timeLine, "t=%" _U32BITARG_ " %" _U32BITARG_ "\r\n", startTimeNTPSecs, endTimeNTPSecs);           
             currentPos = AddToBuff(fSDPFileContentsBuf, currentPos, timeLine);
             if (currentPos < 0) break;
         }

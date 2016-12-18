@@ -316,7 +316,7 @@ UInt8* WriteTempFile(QTRTPFile* inQTRTPFile, int inTempFile, UInt32* outNumBlock
         offsetInBlock += thePacketLength + sizeof(thePacketHeader);
     }
     
-    qtss_printf("Finished writing packets. Wrote %"_U32BITARG_" packets to temp file.\n", theNumPackets);
+    qtss_printf("Finished writing packets. Wrote %" _U32BITARG_ " packets to temp file.\n", theNumPackets);
     *outNumBlocks = curBlockMapIndex-1;
     return theBlockMap;
 }

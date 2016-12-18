@@ -239,7 +239,7 @@ int main(int argc, char *argv[]) {
     // Display some stats about the movie.
     
     if (!hintOnly)
-        qtss_printf("Total RTP bytes of all added tracks: %"_64BITARG_"u\n", RTPFile->GetAddedTracksRTPBytes());
+        qtss_printf("Total RTP bytes of all added tracks: %" _64BITARG_ "u\n", RTPFile->GetAddedTracksRTPBytes());
 
     //
     // Seek to the beginning of the movie.
@@ -299,7 +299,7 @@ int main(int argc, char *argv[]) {
         
         if (!hintOnly)
             if (!silent)
-                qtss_printf("TransmitTime = %.2f; SEQ = %u; TS = %"_U32BITARG_"\n", TransmitTime, RTPSequenceNumber, RTPTimestamp);
+                qtss_printf("TransmitTime = %.2f; SEQ = %u; TS = %" _U32BITARG_ "\n", TransmitTime, RTPSequenceNumber, RTPTimestamp);
         
         if (trackCache)
         {
@@ -330,8 +330,8 @@ int main(int argc, char *argv[]) {
     // Compute and display the Inter-packet delay.
     if( (!hintOnly) && NumberOfPackets > 0 )
     {
-        qtss_printf("QTRTPFileTest: Total GetNextPacket durationTime = %"_U32BITARG_"ms packetCount= %"_U32BITARG_"\n",(UInt32)durationTime,(UInt32)packetCount);      
-        qtss_printf("QTRTPFileTest: Average Inter-packet delay: %"_64BITARG_"uus\n", (UInt64)((TotalInterpacketDelay / NumberOfPackets) * 1000 * 1000));
+        qtss_printf("QTRTPFileTest: Total GetNextPacket durationTime = %" _U32BITARG_ "ms packetCount= %" _U32BITARG_ "\n",(UInt32)durationTime,(UInt32)packetCount);      
+        qtss_printf("QTRTPFileTest: Average Inter-packet delay: %" _64BITARG_ "uus\n", (UInt64)((TotalInterpacketDelay / NumberOfPackets) * 1000 * 1000));
     }   
     
     SInt32 hintType = RTPFile->GetMovieHintType(); // this can only be reliably called after playing all the packets. 

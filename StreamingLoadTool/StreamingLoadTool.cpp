@@ -373,17 +373,17 @@ int main(int argc, char *argv[])
                 }
                 else if (::strcmp("concurrentclients", theKey) == 0 && !sNumClientsIsSpecified)
                 {
-                    ::sscanf(theValue, "%"_U32BITARG_"", &sNumClients);
+                    ::sscanf(theValue, "%" _U32BITARG_ "", &sNumClients);
                 }
                 else if (::strcmp("port", theKey) == 0 && !thePortIsSpecified)
                 {
                     UInt32 tempPort = 0;
-                    ::sscanf(theValue, "%"_U32BITARG_"", &tempPort);
+                    ::sscanf(theValue, "%" _U32BITARG_ "", &tempPort);
                     thePort = (UInt16)tempPort;
                 }
                 else if (::strcmp("movielength", theKey) == 0 && !theMovieLengthIsSpecified)
                 {
-                    ::sscanf(theValue, "%"_U32BITARG_"", &theMovieLength);
+                    ::sscanf(theValue, "%" _U32BITARG_ "", &theMovieLength);
                 }
                 else if (::strcmp("runforever", theKey) == 0)
                 {
@@ -410,20 +410,20 @@ int main(int argc, char *argv[])
                 }
                 else if (::strcmp("clientwindow", theKey) == 0)
                 {
-                    ::sscanf(theValue, "%"_U32BITARG_"", &sockRcvBuf);
+                    ::sscanf(theValue, "%" _U32BITARG_ "", &sockRcvBuf);
                 }
                 else if (::strcmp("httpcookie", theKey) == 0)
                 {
                     if (theHTTPCookie == 1)
                     {
                         // Ignore if set by command line
-                        ::sscanf(theValue, "%"_U32BITARG_"", &theHTTPCookie);
+                        ::sscanf(theValue, "%" _U32BITARG_ "", &theHTTPCookie);
                         theHTTPCookie *= 1000000;
                     }
                 }
                 else if (::strcmp("readinterval", theKey) == 0)
                 {
-                    ::sscanf(theValue, "%"_U32BITARG_"", &theReadInterval);
+                    ::sscanf(theValue, "%" _U32BITARG_ "", &theReadInterval);
                 }
                 else if (::strcmp("latetolerance", theKey) == 0)
                 {
@@ -445,7 +445,7 @@ int main(int argc, char *argv[])
                 }
                 else if (::strcmp("overbufferwindowsize", theKey) == 0)
                 {
-                    ::sscanf(theValue, "%"_U32BITARG_"", &overbufferwindowInK);
+                    ::sscanf(theValue, "%" _U32BITARG_ "", &overbufferwindowInK);
                 }
                 else if (::strcmp("randomthumb", theKey) == 0)
                 {
@@ -465,11 +465,11 @@ int main(int argc, char *argv[])
                 }
                 else if (::strcmp("randomdatasize", theKey) == 0)
                 {
-                    ::sscanf(theValue, "%"_S32BITARG_"", &randomDataSize);
+                    ::sscanf(theValue, "%" _S32BITARG_ "", &randomDataSize);
                 }
 				else if (::strcmp("rtcpinterval", theKey) == 0)
                 {
-                    ::sscanf(theValue, "%"_S32BITARG_"", &rtcpInterval);
+                    ::sscanf(theValue, "%" _S32BITARG_ "", &rtcpInterval);
                 }
                 else if (::strcmp("url", theKey) == 0)
                 {
@@ -491,7 +491,7 @@ int main(int argc, char *argv[])
                 }
                 else if (::strcmp("bandwidth", theKey) == 0)
                 {
-                    ::sscanf(theValue, "%"_U32BITARG_, &bandwidth);
+                    ::sscanf(theValue, "%" _U32BITARG_ , &bandwidth);
                 }
                 else if (::strcmp("enable3GPP", theKey) == 0)
                 {
@@ -500,15 +500,15 @@ int main(int argc, char *argv[])
                 }
                 else if (::strcmp("GBW", theKey) == 0)
                 {
-                    ::sscanf(theValue, "%"_U32BITARG_, &guarenteedBitRate);
+                    ::sscanf(theValue, "%" _U32BITARG_ , &guarenteedBitRate);
                 }
                 else if (::strcmp("MBW", theKey) == 0)
                 {
-                    ::sscanf(theValue, "%"_U32BITARG_, &maxBitRate);
+                    ::sscanf(theValue, "%" _U32BITARG_ , &maxBitRate);
                 }
                 else if (::strcmp("MTD", theKey) == 0)
                 {
-                    ::sscanf(theValue, "%"_U32BITARG_, &maxTransferDelay);
+                    ::sscanf(theValue, "%" _U32BITARG_ , &maxTransferDelay);
                 }
                 else if (::strcmp("enableForcePlayoutDelay", theKey) == 0)
 				{
@@ -517,15 +517,15 @@ int main(int argc, char *argv[])
 				}
 				else if (::strcmp("playoutDelay", theKey) == 0)
 				{
-					::sscanf(theValue, "%"_U32BITARG_, &playoutDelay);
+					::sscanf(theValue, "%" _U32BITARG_ , &playoutDelay);
 				}
                 else if (::strcmp("buffer", theKey) == 0)
                 {
-                    ::sscanf(theValue, "%"_U32BITARG_"", &bufferSpace);
+                    ::sscanf(theValue, "%" _U32BITARG_ "", &bufferSpace);
                 }
                 else if (::strcmp("delay", theKey) == 0)
                 {
-                    ::sscanf(theValue, "%"_U32BITARG_"", &delayTime);
+                    ::sscanf(theValue, "%" _U32BITARG_ "", &delayTime);
                 }
                 else if (::strcmp("startdelay", theKey) == 0)
                 {
@@ -729,9 +729,9 @@ int main(int argc, char *argv[])
 			{
 				// Occassionally give the user lots of info
 				printf("StreamingLoadTool test in progress.\n");
-				printf("Config file: %s. Client type: %s. Num clients: %"_U32BITARG_".\n",
+				printf("Config file: %s. Client type: %s. Num clients: %" _U32BITARG_ ".\n",
 								configFilePath, GetClientTypeDescription(theClientType), sNumClients);
-				printf("Movie length: %"_U32BITARG_". Run forever: %d. HTTP cookie: %"_U32BITARG_". Port: %d\n",
+				printf("Movie length: %" _U32BITARG_ ". Run forever: %d. HTTP cookie: %" _U32BITARG_ ". Port: %d\n",
 								theMovieLength, runForever, theHTTPCookie, thePort);
 				if (shouldLog)
 					printf("Writing StreamingLoadTool log at: %s\n", logPath);
@@ -821,14 +821,14 @@ int main(int argc, char *argv[])
 		0.0// depends on 8 second update for bits per second
 	);
 		
-	printf("StreamingLoadTool test complete. Total number of connections: %"_U32BITARG_".\n", ClientSession:: GetConnectionAttempts ());
+	printf("StreamingLoadTool test complete. Total number of connections: %" _U32BITARG_ ".\n", ClientSession:: GetConnectionAttempts ());
     printf(
-            "Total bytes received: %"_U64BITARG_
-            ". Total packets received: %"_U64BITARG_
-            ". Total out of order packets: %"_U64BITARG_
-            ". Total out of bound packets: %"_U64BITARG_
-            ". Total ACKs sent: %"_U64BITARG_
-            ". Total malformed packets: %"_U64BITARG_,
+            "Total bytes received: %" _U64BITARG_ 
+            ". Total packets received: %" _U64BITARG_ 
+            ". Total out of order packets: %" _U64BITARG_ 
+            ". Total out of bound packets: %" _U64BITARG_ 
+            ". Total ACKs sent: %" _U64BITARG_ 
+            ". Total malformed packets: %" _U64BITARG_ ,
             sTotalBytesReceived,
             sTotalPacketsReceived,
             sTotalOutOfOrder,
@@ -839,10 +839,10 @@ int main(int argc, char *argv[])
     if (sEnable3GPP)
     {
         printf(
-            ". Total 3g packets lost: %"_U64BITARG_
-            ". Total 3g duplicate packets: %"_U64BITARG_
-            ". Total 3g late packets: %"_U64BITARG_
-            ". Total 3g buffer-overflowed packets: %"_U64BITARG_,
+            ". Total 3g packets lost: %" _U64BITARG_ 
+            ". Total 3g duplicate packets: %" _U64BITARG_ 
+            ". Total 3g late packets: %" _U64BITARG_ 
+            ". Total 3g buffer-overflowed packets: %" _U64BITARG_ ,
             sTotalPacketsLost,
             sTotalDuplicates,
             sTotalLatePackets,
@@ -1000,7 +1000,7 @@ void	DoDNSLookup(SVector<char *> &theURLlist, SVector<UInt32> &ioIPAddrs)
         if (theDNSNamePtr.Len > eDNSNameSize)
         {
             theDNSNamePtr.PrintStr("DSN Name Failed Lookup.\n", "\n");
-            printf("The DNS name is %"_U32BITARG_" in length and is longer than the allowed %d.\n",theDNSNamePtr.Len, eDNSNameSize);
+            printf("The DNS name is %" _U32BITARG_ " in length and is longer than the allowed %d.\n",theDNSNamePtr.Len, eDNSNameSize);
             return;
         }
 
@@ -1129,7 +1129,7 @@ void RecordClientInfoBeforeDeath(ClientSession* inSession)
 						::GetDeathReasonDescription(theReason));
 						
 		if (theReason == ClientSession::kRequestFailed)
-			if (sLog != NULL) ::fprintf(sLog, "Failed request status: %"_U32BITARG_"", inSession->GetRequestStatus());
+			if (sLog != NULL) ::fprintf(sLog, "Failed request status: %" _U32BITARG_ "", inSession->GetRequestStatus());
 		
 		if (sLog != NULL) ::fprintf(sLog, "\n");
 		
@@ -1142,11 +1142,11 @@ void RecordClientInfoBeforeDeath(ClientSession* inSession)
 			for (UInt32 trackCount = 0; trackCount < inSession->GetSDPInfo()->GetNumStreams(); trackCount++)
 			{
 				if (sLog != NULL) ::fprintf(sLog,
-					"Track type: %s. Total packets received: %"_U32BITARG_
-					". Total out of order packets: %"_U32BITARG_
-					". Total out of bound packets: %"_U32BITARG_
-					". Total ACKs sent: %"_U32BITARG_
-					". Total malformed packets: %"_U32BITARG_,
+					"Track type: %s. Total packets received: %" _U32BITARG_ 
+					". Total out of order packets: %" _U32BITARG_ 
+					". Total out of bound packets: %" _U32BITARG_ 
+					". Total ACKs sent: %" _U32BITARG_ 
+					". Total malformed packets: %" _U32BITARG_ ,
 					::GetPayloadDescription(inSession->GetTrackType(trackCount)),
 					inSession->GetNumPacketsReceived(trackCount),
 					inSession->GetNumPacketsOutOfOrder(trackCount),
@@ -1159,10 +1159,10 @@ void RecordClientInfoBeforeDeath(ClientSession* inSession)
                 if (sEnable3GPP)
                 {
                     if (sLog != NULL) ::fprintf(sLog,
-                        ". Total 3g packets lost: %"_U32BITARG_
-                        ". Total 3g duplicate packets: %"_U32BITARG_
-                        ". Total 3g late packets: %"_U32BITARG_
-                        ". Total 3g rate adapt buffer-overflowed packets: %"_U32BITARG_,
+                        ". Total 3g packets lost: %" _U32BITARG_ 
+                        ". Total 3g duplicate packets: %" _U32BITARG_ 
+                        ". Total 3g late packets: %" _U32BITARG_ 
+                        ". Total 3g rate adapt buffer-overflowed packets: %" _U32BITARG_ ,
                         inSession->Get3gNumPacketsLost(trackCount),
                         inSession->Get3gNumDuplicates(trackCount),
                         inSession->Get3gNumLatePackets(trackCount),
@@ -1191,7 +1191,7 @@ void RecordClientInfoBeforeDeath(ClientSession* inSession)
 			Float32 bitRate = (((Float32)bytesReceived) / ((Float32)duration) * 8) / 1024;
 						
 
-			if (sLog != NULL) ::fprintf(sLog, "Play duration in sec: %"_U32BITARG_". Total stream bit rate in Kbits / sec: %f.\n", duration, bitRate);
+			if (sLog != NULL) ::fprintf(sLog, "Play duration in sec: %" _U32BITARG_ ". Total stream bit rate in Kbits / sec: %f.\n", duration, bitRate);
 		}
 		
 		if (sLog != NULL) ::fprintf(sLog, "\n");		

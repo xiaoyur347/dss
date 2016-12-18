@@ -237,7 +237,7 @@ void MP3BroadcasterLog::LogMediaData( const char* song, const char* title, const
             }
             
             // add the duration in seconds
-            qtss_sprintf(dateBuff, " %"_S32BITARG_" ", duration);
+            qtss_sprintf(dateBuff, " %" _S32BITARG_ " ", duration);
             ::strcat(strBuff,dateBuff);
             
             // add the result code

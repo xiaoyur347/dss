@@ -973,7 +973,7 @@ void MP3Broadcaster::ShowSetupParams()
     qtss_printf( "broadcast_genre \"%s\"\n", mGenre);
     qtss_printf( "broadcast_mount_point \"%s\"\n", mMountPoint);
     qtss_printf( "broadcast_password \"XXXXX\"\n");
-    qtss_printf( "max_err_file_k_size %"_U32BITARG_"\n", qtss_getmaxprintfcharsinK());
+    qtss_printf( "max_err_file_k_size %" _U32BITARG_ "\n", qtss_getmaxprintfcharsinK());
     qtss_printf( "\n" );
 }
 
@@ -1025,13 +1025,13 @@ void MP3Broadcaster::Cleanup(bool signalHandler)
         
         if (mPreflight)
     {
-        qtss_printf("Warnings: %"_S32BITARG_"\n", mNumWarnings);
-        qtss_printf("Errors: %"_S32BITARG_"\n", mNumErrors);
+        qtss_printf("Warnings: %" _S32BITARG_ "\n", mNumWarnings);
+        qtss_printf("Errors: %" _S32BITARG_ "\n", mNumErrors);
     }
         else
         {
-            qtss_printf("Broadcast Warnings: %"_S32BITARG_"\n", mNumWarnings);
-            qtss_printf("Broadcast Errors: %"_S32BITARG_"\n", mNumErrors);
+            qtss_printf("Broadcast Warnings: %" _S32BITARG_ "\n", mNumWarnings);
+            qtss_printf("Broadcast Errors: %" _S32BITARG_ "\n", mNumErrors);
         }
     
     RemoveFiles();

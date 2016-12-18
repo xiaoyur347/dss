@@ -160,7 +160,7 @@ Bool16 PLBroadcastDef::ConfigSetter( const char* paramName, const char* paramVal
 	    {    
 	        UInt32 startTime =  time(NULL) + 2208988800LU + (time_t) ::strtol(&theValue[1], NULL, 10);
 	        char startTimeStr[20] = "";
-	        qtss_sprintf(startTimeStr,"%"_U32BITARG_"", startTime); // current time
+	        qtss_sprintf(startTimeStr,"%" _U32BITARG_ "", startTime); // current time
 		    return broadcastParms->SetValue( &broadcastParms->mStartTime, startTimeStr );            
         }
           
@@ -179,7 +179,7 @@ Bool16 PLBroadcastDef::ConfigSetter( const char* paramName, const char* paramVal
             return true;
                 
         char endTimeStr[20] = "";
-        qtss_sprintf(endTimeStr,"%"_U32BITARG_"", endTime); // current time + offset time
+        qtss_sprintf(endTimeStr,"%" _U32BITARG_ "", endTime); // current time + offset time
         return broadcastParms->SetValue( &broadcastParms->mEndTime, endTimeStr ); 
              
     }
@@ -543,7 +543,7 @@ void PLBroadcastDef::ShowSettings()
         qtss_printf( "broadcast_start_time %s (NTP seconds)\n",mStartTime);
 
         startTime -= 2208988800LU; //1970 - 1900 secs      
-        qtss_printf( "-->broadcast_start_time = %"_U32BITARG_" (unix seconds)\n",startTime);
+        qtss_printf( "-->broadcast_start_time = %" _U32BITARG_ " (unix seconds)\n",startTime);
         
         time_t tmpTime;
         tmpTime = (time_t) startTime;
@@ -573,7 +573,7 @@ void PLBroadcastDef::ShowSettings()
         qtss_printf( "broadcast_end_time   %s (NTP seconds)\n",mEndTime);
         
         endTime -= 2208988800LU;//convert to 1970 secs
-        qtss_printf( "-->broadcast_end_time   = %"_U32BITARG_" (unix seconds)\n",endTime);
+        qtss_printf( "-->broadcast_end_time   = %" _U32BITARG_ " (unix seconds)\n",endTime);
         
         time_t tmpTime = (time_t) endTime;
         struct tm  timeResult;
@@ -596,7 +596,7 @@ void PLBroadcastDef::ShowSettings()
     else
         qtss_printf( "broadcast_end_time   1900 + %s seconds (looks invalid)\n", mEndTime);
         
-	qtss_printf( "max_err_file_k_size %"_U32BITARG_"\n", qtss_getmaxprintfcharsinK());
+	qtss_printf( "max_err_file_k_size %" _U32BITARG_ "\n", qtss_getmaxprintfcharsinK());
 
     
     qtss_printf( "============================\n" );

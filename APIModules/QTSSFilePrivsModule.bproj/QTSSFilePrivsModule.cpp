@@ -551,7 +551,7 @@ Bool16 QTSSAuthorize(QTSS_StandardRTSP_Params* inParams, char* pathBuff)
     {
 
         theErr = QTSS_GetValue (inParams->inRTSPRequest,qtssRTSPReqUserName,0, (void *) nameStr.Ptr, &nameStr.Len);
-        //qtss_printf("GetValue qtssRTSPReqUserName err =%"_S32BITARG_" \n",theErr);
+        //qtss_printf("GetValue qtssRTSPReqUserName err =%" _S32BITARG_ " \n",theErr);
         
         if ( (theErr != QTSS_NoErr) || (nameStr.Len == 0) || (nameStr.Ptr == NULL) || (*nameStr.Ptr == '\0'))
         {
@@ -559,16 +559,16 @@ Bool16 QTSSAuthorize(QTSS_StandardRTSP_Params* inParams, char* pathBuff)
             noUserName = true;
         }
             
-        //qtss_printf("RTSPRequest dictionary name =%s  len = %"_S32BITARG_"\n",nameStr.Ptr, nameStr.Len);
+        //qtss_printf("RTSPRequest dictionary name =%s  len = %" _S32BITARG_ "\n",nameStr.Ptr, nameStr.Len);
 
         theErr = QTSS_GetValue (inParams->inRTSPRequest,qtssRTSPReqUserPassword,0, (void *) passwordStr.Ptr, &passwordStr.Len);
-        //qtss_printf("GetValue qtssRTSPReqUserName err =%"_S32BITARG_" \n",theErr);
+        //qtss_printf("GetValue qtssRTSPReqUserName err =%" _S32BITARG_ " \n",theErr);
         if ( (theErr != QTSS_NoErr) || (passwordStr.Len == 0) || (passwordStr.Ptr == NULL) || (*passwordStr.Ptr == '\0'))
         {
             //qtss_printf ("no Password\n");
             noPassword = true;
         }
-        //qtss_printf("RTSPRequest dictionary password =%s len = %"_S32BITARG_" \n",passwordStr.Ptr, passwordStr.Len);
+        //qtss_printf("RTSPRequest dictionary password =%s len = %" _S32BITARG_ " \n",passwordStr.Ptr, passwordStr.Len);
 
         if (noUserName && noPassword) isSpecialGuest = true;
         

@@ -273,7 +273,7 @@ QTSS_Error Preprocess(QTSS_StandardRTSP_Params* inParams)
                 theReadOffset += theRecvLen;
                 theOffset += theRecvLen;
 #if RAW_FILE_DEBUGGING
-                qtss_printf("Got %"_U32BITARG_" bytes back from file read. Now at: %"_64BITARG_"u\n", theRecvLen, theOffset);
+                qtss_printf("Got %" _U32BITARG_ " bytes back from file read. Now at: %" _64BITARG_ "u\n", theRecvLen, theOffset);
 #endif
                 if (theReadOffset < theBufferSize)
                 {
@@ -314,7 +314,7 @@ QTSS_Error Preprocess(QTSS_StandardRTSP_Params* inParams)
                                     &theWrittenLen);
                 theWriteOffset += theWrittenLen;
 #if RAW_FILE_DEBUGGING
-                qtss_printf("Got %"_U32BITARG_" bytes back from socket write.\n", theWrittenLen);
+                qtss_printf("Got %" _U32BITARG_ " bytes back from socket write.\n", theWrittenLen);
 #endif
                 if (theWriteOffset < theBufferSize)
                 {

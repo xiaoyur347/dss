@@ -123,15 +123,15 @@ int main(int argc, char *argv[]) {
         char        buffer[kTimeStrSize];
         struct tm  timeResult;
         
-        qtss_printf("-- Track #%02"_S32BITARG_" ---------------------------\n", HintTrack->GetTrackID());
+        qtss_printf("-- Track #%02" _S32BITARG_ " ---------------------------\n", HintTrack->GetTrackID());
         qtss_printf("   Name               : %s\n", HintTrack->GetTrackName());
         qtss_printf("   Created on         : %s", qtss_asctime(qtss_gmtime(&unixCreationTime, &timeResult),buffer, sizeof(buffer)));
         qtss_printf("   Modified on        : %s", qtss_asctime(qtss_gmtime(&unixModificationTime, &timeResult),buffer, sizeof(buffer)));
 
-        qtss_printf("   Total RTP bytes    : %"_64BITARG_"u\n", HintTrack->GetTotalRTPBytes());
-        qtss_printf("   Total RTP packets  : %"_64BITARG_"u\n", HintTrack->GetTotalRTPPackets());
+        qtss_printf("   Total RTP bytes    : %" _64BITARG_ "u\n", HintTrack->GetTotalRTPBytes());
+        qtss_printf("   Total RTP packets  : %" _64BITARG_ "u\n", HintTrack->GetTotalRTPPackets());
         qtss_printf("   Average bitrate    : %.2f Kbps\n",(float) ((HintTrack->GetTotalRTPBytes() << 3) / file.GetDurationInSeconds()) / 1024);
-        qtss_printf("   Average packet size: %"_64BITARG_"u\n", HintTrack->GetTotalRTPBytes() / HintTrack->GetTotalRTPPackets());
+        qtss_printf("   Average packet size: %" _64BITARG_ "u\n", HintTrack->GetTotalRTPBytes() / HintTrack->GetTotalRTPPackets());
 
         UInt32 UDPIPHeaderSize = (56 * HintTrack->GetTotalRTPPackets());
         UInt32 RTPUDPIPHeaderSize = ((56+12) * HintTrack->GetTotalRTPPackets());
@@ -176,7 +176,7 @@ int main(int argc, char *argv[]) {
     while( HintTrack->GetNumPackets(curSample, &NumPackets) == QTTrack::errNoError ) {
         //
         // Generate all of the packets.
-        qtss_printf("Generating %u packet(s) in sample #%"_U32BITARG_"..\n", NumPackets, curSample);
+        qtss_printf("Generating %u packet(s) in sample #%" _U32BITARG_ "..\n", NumPackets, curSample);
         for( UInt16 curPacket = 1; curPacket <= NumPackets; curPacket++ ) {
             // General vars
             #define MAX_PACKET_LEN 2048

@@ -642,9 +642,9 @@ int QTFileBroadcaster::Play(char *mTimeFile)
             time_t endTime = (time_t) end.tv_sec;
             char buffer[kTimeStrSize];
             char *timestringStart = qtss_ctime(&startTime, buffer, sizeof(buffer));
-            qtss_fprintf(fTimeFile,"b=%02d:%02d:%02d:%06d %"_S32BITARG_" %s", (int) tm_start.tm_hour, (int) tm_start.tm_min, (int) tm_start.tm_sec, (int)start.tv_usec, (SInt32) startTime, timestringStart);
+            qtss_fprintf(fTimeFile,"b=%02d:%02d:%02d:%06d %" _S32BITARG_ " %s", (int) tm_start.tm_hour, (int) tm_start.tm_min, (int) tm_start.tm_sec, (int)start.tv_usec, (SInt32) startTime, timestringStart);
             char *timestringEnd = qtss_ctime(&endTime, buffer, sizeof(buffer));
-            qtss_fprintf(fTimeFile,"e=%02d:%02d:%02d:%06d %"_S32BITARG_" %s", (int)tm_end.tm_hour, (int) tm_end.tm_min,(int)  tm_end.tm_sec, (int) end.tv_usec,(SInt32) endTime, timestringEnd);
+            qtss_fprintf(fTimeFile,"e=%02d:%02d:%02d:%06d %" _S32BITARG_ " %s", (int)tm_end.tm_hour, (int) tm_end.tm_min,(int)  tm_end.tm_sec, (int) end.tv_usec,(SInt32) endTime, timestringEnd);
             qtss_fprintf(fTimeFile,"d=%02d:%02d:%02d:%06d %d \n", (int) tm_dur.tm_hour, (int) tm_dur.tm_min,(int)  tm_dur.tm_sec, (int) dur.tv_usec, (int)dur.tv_sec);
 
             fclose(fTimeFile);
@@ -660,13 +660,13 @@ int QTFileBroadcaster::Play(char *mTimeFile)
             thePacketQLen = fBroadcastDefPtr->mTheSession->GetPacketQLen();
             SInt64 maxSleep = PlayListUtils::Milliseconds() + 1000; 
             if (thePacketQLen > eMaxPacketQLen)
-            {   //qtss_printf("PacketQ too big = %"_U32BITARG_" \n", (UInt32) thePacketQLen);
+            {   //qtss_printf("PacketQ too big = %" _U32BITARG_ " \n", (UInt32) thePacketQLen);
                 while ( (eMaxPacketQLen/2) < fBroadcastDefPtr->mTheSession->GetPacketQLen())
                 {   this->SleepInterval(100.0);
                     if (maxSleep < PlayListUtils::Milliseconds())
                         break;
                 }
-                //qtss_printf("PacketQ after sleep = %"_U32BITARG_" \n", (UInt32) fBroadcastDefPtr->mTheSession->GetPacketQLen());
+                //qtss_printf("PacketQ after sleep = %" _U32BITARG_ " \n", (UInt32) fBroadcastDefPtr->mTheSession->GetPacketQLen());
                 continue;
             }
         }

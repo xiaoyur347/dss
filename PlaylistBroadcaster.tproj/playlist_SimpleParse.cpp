@@ -87,7 +87,7 @@ void SimpleString::Print()
     char* buff = new char[fLen +1];
     memcpy (buff, fTheString,fLen);
     buff[fLen] = 0;
-    printf("SimpleString( len=%"_S32BITARG_" str=>%s< )\n",fLen,buff);
+    printf("SimpleString( len=%" _S32BITARG_ " str=>%s< )\n",fLen,buff);
     delete [] buff;
 }
 

@@ -292,7 +292,7 @@ class ReflectorSender : public UDPDemuxerTask
     //sender needs to run so it doesn't run unnecessarily
 
    inline void SetNextTimeToRun(SInt64 nextTime) { fNextTimeToRun = nextTime;
-                                                    //qtss_printf("SetNextTimeToRun =%"_64BITARG_"d\n", fNextTimeToRun);
+                                                    //qtss_printf("SetNextTimeToRun =%" _64BITARG_ "d\n", fNextTimeToRun);
                                                   }
 
     Bool16      fHasNewPackets;
