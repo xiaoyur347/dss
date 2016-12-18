@@ -178,7 +178,7 @@ void    QTSSModuleUtils::LogError(  QTSS_ErrorVerbosity inVerbosity,
                         NULL, inVerbosity);
 }
 
-void QTSSModuleUtils::LogErrorStr( QTSS_ErrorVerbosity inVerbosity, char* inMessage) 
+void QTSSModuleUtils::LogErrorStr( QTSS_ErrorVerbosity inVerbosity, const char* inMessage) 
 {  	
 	if (inMessage == NULL) return;  
 	(void)QTSS_Write(sErrorLog, inMessage, ::strlen(inMessage), NULL, inVerbosity);

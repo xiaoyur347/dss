@@ -79,7 +79,7 @@ class QTSSModuleUtils
                                     char* inArgument = NULL,
                                     char* inArg2 = NULL);
                                     
-        static void   LogErrorStr( QTSS_ErrorVerbosity inVerbosity, char* inMessage);
+        static void   LogErrorStr( QTSS_ErrorVerbosity inVerbosity, const char* inMessage);
         static void   LogPrefErrorStr( QTSS_ErrorVerbosity inVerbosity, char*  preference, char* inMessage);
      
         // This function constructs a C-string of the full path to the file being requested.
