@@ -327,10 +327,8 @@ void RTPStream3GPP::UpdateTimeAndQuality(SInt64 curTime)
 	}
 
     if (fStartDoingAdaptation)
-    {
-          SInt32 currentQualityLevel = fRTPStream.GetQualityLevel();
- 
- // new code works good for Nokia N93 on wifi and ok for slow links (needs some more comparison testing against non rate adapt code and against build 520 or earlier) 
+    { 
+        // new code works good for Nokia N93 on wifi and ok for slow links (needs some more comparison testing against non rate adapt code and against build 520 or earlier) 
 
         if (bufferDelay != kUInt32_Max) //not supported
         {
