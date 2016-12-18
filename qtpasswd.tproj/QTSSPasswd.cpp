@@ -444,7 +444,7 @@ static void AddOrDeleteUserFromGroup(int add, char *userName, char *groupName, c
     bool foundGroup = false;
 	char userInGroup[MAX_STRING_LEN + 1];
 	bool addedUserToGroup = false;
-	FILE *groupsFilePtr, *tempGroupsFilePtr;
+	FILE *tempGroupsFilePtr;
 
 #if __Win32__
 	char groupBackupPath[1024] = "";
@@ -572,7 +572,7 @@ static void AddOrDeleteGroup(int add, char *groupName, char *inGroupsFilePath, c
     char lineFromFile[MAX_LINE_LEN];
     char groupNameFromFile[MAX_STRING_LEN + 1];
     bool foundGroup = false;
-	FILE *groupsFilePtr, *tempGroupsFilePtr;
+	FILE *tempGroupsFilePtr;
 	bool addedGroup = false;
 	
 #if __Win32__
@@ -956,8 +956,6 @@ int main(int argc, char *argv[])
 		
     if (realmString  == NULL)
     {
-        char* kDefaultRealmString = "Streaming Server";
-
         realmString = new char[strlen(kDefaultRealmString)+1];
         strcpy(realmString, kDefaultRealmString);
     }
@@ -1054,8 +1052,7 @@ int main(int argc, char *argv[])
 				
 		//create new file
         if ( (groupsFilePtr = fopen(qtgroupsFilePath, "w")) == NULL)
-        {   
-			char buffer[kErrorStrSize];
+        {
             qtss_fprintf(stderr, "Could not create a new groups file %s either. (err=%d %s)\n", qtgroupsFilePath, errno, qtss_strerror(errno, buffer, sizeof(buffer)));
 			CleanupAndExit();
         }
