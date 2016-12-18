@@ -98,7 +98,7 @@ class Task
         void                    GlobalUnlock();     
         Bool16                  Valid(); // for debugging
 		char            fTaskName[48];
-		void            SetTaskName(char* name);
+		void            SetTaskName(const char* name);
 		
         void            SetDefaultThread(TaskThread* defaultThread) { fDefaultThread = defaultThread; }
         void            SetThreadPicker(unsigned int* picker);

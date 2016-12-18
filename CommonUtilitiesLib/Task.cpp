@@ -56,7 +56,7 @@ Task::Task()
 
 }
 
-void Task::SetTaskName(char* name) 
+void Task::SetTaskName(const char* name) 
 {
     if (name == NULL) 
         return;
