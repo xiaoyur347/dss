@@ -101,8 +101,8 @@ QTSS_Error QTSSModuleUtils::ReadEntireFile(char* inPath, StrPtrLen* outData, QTS
         if (theParamLen != sizeof(UInt64))
             break;
         
-		if (*theLength > kSInt32_Max)
-			break;
+        if (*theLength > (UInt64)kSInt32_Max)
+            break;
 
         // Allocate memory for the file data
         outData->Ptr = NEW char[ (SInt32) (*theLength + 1) ];
