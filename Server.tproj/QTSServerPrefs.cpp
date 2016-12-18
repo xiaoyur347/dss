@@ -343,6 +343,7 @@ QTSServerPrefs::QTSServerPrefs(XMLPrefsParser* inPrefsSource, Bool16 inWriteMiss
     fEnableRTSPServerInfo(true),
     fNumThreads(0),
     fNumRTSPThreads(0),
+    f3GPPRateAdaptTargetTime(0),
 #if __MacOSX__
     fEnableMonitorStatsFile(false),
 #else
@@ -363,8 +364,7 @@ QTSServerPrefs::QTSServerPrefs(XMLPrefsParser* inPrefsSource, Bool16 inWriteMiss
     fUDPMonitorEnabled(false),
     fUDPMonitorVideoPort(0),
     fUDPMonitorAudioPort(0),
-    fAllowGuestAuthorizeDefault(true),
-    f3GPPRateAdaptTargetTime(0)
+    fAllowGuestAuthorizeDefault(true)
 {
     SetupAttributes();
     RereadServerPreferences(inWriteMissingPrefs);
