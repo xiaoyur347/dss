@@ -133,6 +133,7 @@ public:
     OSHashTableIter( OSHashTable<T,K>* table )
     {
         fHashTable = table;
+	fCurrent = NULL; //fixed uninitialized when table is empty
         First();
     }
     void First()
