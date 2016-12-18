@@ -138,7 +138,7 @@ QTSS_Error Preprocess(QTSS_StandardRTSP_Params* inParams)
         
         // Only operate if this is a DESCRIBE
         QTSS_RTSPMethod* theMethod = NULL;
-        UInt32 theLen = 0;
+        theLen = 0;
         if ((QTSS_GetValuePtr(inParams->inRTSPRequest, qtssRTSPReqMethod, 0,
                 (void**)&theMethod, &theLen) != QTSS_NoErr) || (theLen != sizeof(QTSS_RTSPMethod)))
         {
