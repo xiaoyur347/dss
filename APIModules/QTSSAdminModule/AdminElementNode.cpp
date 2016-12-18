@@ -931,10 +931,13 @@ OSRef* ElementNode::GetOSRef(SInt32 index)
 //      Assert(resultPtr != NULL);
     if (resultPtr == NULL)
     {   
-        fFieldOSRefPtrs[index] = NEW OSRef(); Assert(fFieldOSRefPtrs[index] != NULL); ElementNode_InsertPtr(fFieldOSRefPtrs[index],"ElementNode::GetOSRef NEW OSRef() fFieldOSRefPtrs ");   
-        GetNameSPL(index,&theName); Assert(theName.Len != 0);
+        fFieldOSRefPtrs[index] = NEW OSRef();
+        Assert(fFieldOSRefPtrs[index] != NULL);
+        ElementNode_InsertPtr(fFieldOSRefPtrs[index],"ElementNode::GetOSRef NEW OSRef() fFieldOSRefPtrs ");   
+        GetNameSPL(index,&theName);
+        Assert(theName.Len != 0);
         //qtss_printf("ElementNode::GetOSRef index = %"_S32BITARG_" name = %s \n", index, theName.Ptr);
-        fFieldOSRefPtrs[index]->Set(theName,(void *) index);
+        fFieldOSRefPtrs[index]->Set(theName,(void *)(unsigned long)index);
         if (0 != theName.Len && NULL != theName.Ptr) //return the ptr else NULL
             resultPtr = fFieldOSRefPtrs[index];
     }
