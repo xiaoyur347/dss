@@ -37,7 +37,7 @@
 #include "StringFormatter.h"
 #include "MyAssert.h"
 
-char*   StringFormatter::sEOL = "\r\n";
+const char*   StringFormatter::sEOL = "\r\n";
 UInt32  StringFormatter::sEOLLen = 2;
 
 void StringFormatter::Put(const SInt32 num)
@@ -47,7 +47,7 @@ void StringFormatter::Put(const SInt32 num)
     Put(buff);
 }
 
-void StringFormatter::Put(char* buffer, UInt32 bufferSize)
+void StringFormatter::Put(const char* buffer, UInt32 bufferSize)
 {
 	//optimization for writing 1 character
     if((bufferSize == 1) && (fCurrentPut != fEndPut)) {

@@ -71,8 +71,8 @@ class StringFormatter
         //Object does no bounds checking on the buffer. That is your responsibility!
         //Put truncates to the buffer size
         void        Put(const SInt32 num);
-        void        Put(char* buffer, UInt32 bufferSize);
-        void        Put(char* str)      { Put(str, strlen(str)); }
+        void        Put(const char* buffer, UInt32 bufferSize);
+        void        Put(const char* str)      { Put(str, strlen(str)); }
         void        Put(const StrPtrLen &str) { Put(str.Ptr, str.Len); }
         void        PutSpace()          { PutChar(' '); }
         void        PutEOL()            {  Put(sEOL, sEOLLen); }
@@ -121,7 +121,7 @@ class StringFormatter
         // A way of keeping count of how many bytes have been written total
         UInt32 fBytesWritten;
 
-        static char*    sEOL;
+        static const char*    sEOL;
         static UInt32   sEOLLen;
 };
 
