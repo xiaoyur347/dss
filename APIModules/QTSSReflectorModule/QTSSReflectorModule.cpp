@@ -1121,7 +1121,9 @@ void DoDescribeAddRequiredSDPLines(QTSS_StandardRTSP_Params* inParams, Reflector
             editedSDP->Put("o=broadcast_sdp ");
             char tempBuff[256]= "";               
             tempBuff[255] = 0;
-            qtss_snprintf(tempBuff,sizeof(tempBuff) - 1, "%"_U32BITARG_"", *(UInt32 *) &theSession);
+            UInt32 val;
+            memcpy(&val, &theSession, sizeof(val));
+            qtss_snprintf(tempBuff,sizeof(tempBuff) - 1, "%"_U32BITARG_"", val);
             editedSDP->Put(tempBuff);
 
             editedSDP->Put(" ");
