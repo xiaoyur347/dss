@@ -409,8 +409,9 @@ again:
             goto again;
         }
         else if (ret < 0) {
-            if (errno != 11)
+            if (errno != 11) {
                 DEBUGPRINT(("recv_udp returns errno %d\n", errno));
+	    }
             // what to do about termination, etc.
         }
         cur = cur->next;
