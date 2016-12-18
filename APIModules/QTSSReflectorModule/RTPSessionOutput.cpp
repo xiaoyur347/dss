@@ -514,7 +514,6 @@ QTSS_Error  RTPSessionOutput::TrackRTPPackets(QTSS_RTPStreamObject *theStreamPtr
     }
     else
     {
-        UInt32* packetCountPtr = NULL;
         UInt32* byteCountPtr = NULL;
         UInt32 theLen = 0;
                 
