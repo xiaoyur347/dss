@@ -862,7 +862,7 @@ static int is_command(char *inp, char *cmd, int cmdLen, char *server, int server
     }
     *cmd = '\0';
     if (gVerbose)
-        printf("%x\ncommand str=%s\ncommand count with term=%d\n",*cmd, firstCmdChar, (cmd - firstCmdChar) + 1);
+        printf("%x\ncommand str=%s\ncommand count with term=%ld\n",*cmd, firstCmdChar, (cmd - firstCmdChar) + 1);
      
     if (strn_casecmp(p, " rtsp://", 8) != 0)
         return 0;
@@ -877,7 +877,7 @@ static int is_command(char *inp, char *cmd, int cmdLen, char *server, int server
     }
     *server = '\0';
      if (gVerbose)
-        printf("%x\nserver str=%s\nserver count with term=%d\n",*server, firstServerChar, (server - firstServerChar) + 1);
+        printf("%x\nserver str=%s\nserver count with term=%ld\n",*server, firstServerChar, (server - firstServerChar) + 1);
 
     return 1;
 }
