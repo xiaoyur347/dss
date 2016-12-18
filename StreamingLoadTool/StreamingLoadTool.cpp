@@ -743,7 +743,7 @@ int main(int argc, char *argv[])
             
             bitsReceived += .5;
             
- 			printf("%5lu %6lu %8lu %6lu %6lu %6lu %9.0fk\n",
+ 			printf("%5u %6u %8u %6u %6u %6u %9.0fk\n",
 				ClientSession:: GetActiveConnections (),
 				ClientSession:: GetPlayingConnections (),
 				ClientSession:: GetConnectionAttempts (),
@@ -811,7 +811,7 @@ int main(int argc, char *argv[])
 	if (sLog != NULL)
 		::fclose(sLog);
 		
-	printf("%5lu %6lu %8lu %6lu %6lu %6lu %9.0fk\n",
+	printf("%5u %6u %8u %6u %6u %6u %9.0fk\n",
 		ClientSession:: GetActiveConnections (),
 		ClientSession:: GetPlayingConnections (),
 		ClientSession:: GetConnectionAttempts (),
