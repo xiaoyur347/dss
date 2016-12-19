@@ -1161,14 +1161,15 @@ QTSS_Error DoDescribe(QTSS_StandardRTSP_Params* inParams)
     // destroy it. 
     if (theErr == QTSS_NoErr && theOutput != NULL)
     {   RemoveOutput(*theOutput, (*theOutput)->GetReflectorSession(), false);
-        RTPSessionOutput* theOutput = NULL;
-        (void)QTSS_SetValue(inParams->inClientSession, sOutputAttr, 0, &theOutput, sizeof(theOutput));
+        RTPSessionOutput* theOutputP = NULL;
+        (void)QTSS_SetValue(inParams->inClientSession, sOutputAttr, 0, &theOutputP, sizeof(theOutputP));
         
     }
     // send the DESCRIBE response
     
     //above function has signalled that this request belongs to us, so let's respond
-    iovec theDescribeVec[3] = { {0 }};
+    iovec theDescribeVec[3];
+    memset(theDescribeVec, 0, sizeof(theDescribeVec));
     
     Assert(theSession->GetLocalSDP()->Ptr != NULL);
     
@@ -1973,7 +1974,7 @@ QTSS_Error DoPlay(QTSS_StandardRTSP_Params* inParams, ReflectorSession* inSessio
             if (haveBufferedStreams) // send the cached rtp time and seq number in the response.
             {    
  
-                QTSS_Error theErr = QTSS_Play(inParams->inClientSession, inParams->inRTSPRequest, qtssPlayRespWriteTrackInfo);
+                theErr = QTSS_Play(inParams->inClientSession, inParams->inRTSPRequest, qtssPlayRespWriteTrackInfo);
                 if (theErr != QTSS_NoErr)
                     return theErr;
             
@@ -2006,7 +2007,7 @@ QTSS_Error DoPlay(QTSS_StandardRTSP_Params* inParams, ReflectorSession* inSessio
         }
         else
         {
-            QTSS_Error theErr = QTSS_Play(inParams->inClientSession, inParams->inRTSPRequest, qtssPlayFlagsAppendServerInfo);
+            theErr = QTSS_Play(inParams->inClientSession, inParams->inRTSPRequest, qtssPlayFlagsAppendServerInfo);
             if (theErr != QTSS_NoErr)
                 return theErr;
                 
@@ -2094,7 +2095,7 @@ QTSS_Error DestroySession(QTSS_ClientSessionClosing_Params* inParams)
         }
 
         Bool16 killClients = false; // the pref as the default
-        UInt32 theLen = sizeof(killClients);
+        theLen = sizeof(killClients);
         (void) QTSS_GetValue(inParams->inClientSession, sKillClientsEnabledAttr, 0, &killClients, &theLen);
 
 
@@ -2116,8 +2117,8 @@ QTSS_Error DestroySession(QTSS_ClientSessionClosing_Params* inParams)
         if (outputPtr != NULL)
         {    
             RemoveOutput(outputPtr, theSession, false);
-            RTPSessionOutput* theOutput = NULL;
-            (void)QTSS_SetValue(inParams->inClientSession, sOutputAttr, 0, &theOutput, sizeof(theOutput));
+            RTPSessionOutput* theOutputP = NULL;
+            (void)QTSS_SetValue(inParams->inClientSession, sOutputAttr, 0, &theOutputP, sizeof(theOutputP));
             
         }
                 
@@ -2305,7 +2306,7 @@ Bool16 InBroadcastDirList(QTSS_RTSPRequestObject inRTSPRequest)
 	
 	char* theLocalPathStr;
 	(void)QTSS_GetValueAsString(inRTSPRequest, qtssRTSPReqLocalPath, 0, &theLocalPathStr);
-	StrPtrLenDel requestPath(theLocalPathStr);
+	StrPtrLenDel localPath(theLocalPathStr);
 	
 	char* theRequestPathStr = NULL;
     char* theBroadcastDirStr = NULL;
