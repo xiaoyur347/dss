@@ -143,7 +143,7 @@ class ElementNode
                                                     return fSelfPtr->fAPISource;        
                                                 };
 
-        Bool16  IsNodeElement()                 { Assert(this); return (this->GetMyFieldType() == eNode || this->GetMyFieldType()  == eArrayNode); } 
+        Bool16  IsNodeElement()                 { return (this->GetMyFieldType() == eNode || this->GetMyFieldType()  == eArrayNode); } 
 
         
         Bool16  IsStopItem(SInt32 index)                    { return index == GetMyStopItem();          };
