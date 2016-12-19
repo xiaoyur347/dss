@@ -1324,7 +1324,7 @@ ReflectorSession* FindOrCreateSession(StrPtrLen* inPath, QTSS_StandardRTSP_Param
             return NULL;
             
         SDPSourceInfo* theInfo = NEW SDPSourceInfo(theFileData.Ptr, theFileData.Len); // will make a copy
-        for (int x = 0; x < theInfo->GetNumStreams(); x++) {
+        for (UInt32 x = 0; x < theInfo->GetNumStreams(); x++) {
             SDPSourceInfo::StreamInfo* info = theInfo->GetStreamInfo(x);
             if (!SocketUtils::IsMulticastIPAddr(info->fDestIPAddr) && !SocketUtils::IsLocalIPAddr(info->fDestIPAddr)) {
                 UInt32 addr;
