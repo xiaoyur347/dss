@@ -212,22 +212,22 @@ UInt32 AccessChecker::UpdateUserProfiles() {
         resultErr |= kGroupsFileNotFoundErr;
     else if(err != QTSS_NoErr)
         resultErr |= kGroupsFileUnknownErr;
-        else
-                groupFileErrors = false;
+    else
+        groupFileErrors = false;
         
-        if(groupFileErrors)
-                fGroupsFileModDate = -1;
+    if(groupFileErrors)
+        fGroupsFileModDate = -1;
     else if(groupData.Len != 0)
         fGroupsFileModDate = newModDate;
 
-        if(userFileErrors)
-        {
-            // delete user profiles and exit
-            DeleteProfilesAndRealm();
-            return resultErr;
-        }
+    if(userFileErrors)
+    {
+        // delete user profiles and exit
+        DeleteProfilesAndRealm();
+        return resultErr;
+    }
         
-        if((fUsersFileModDate == oldUsersFileModDate) && (fGroupsFileModDate == oldGroupsFileModDate))
+    if((fUsersFileModDate == oldUsersFileModDate) && (fGroupsFileModDate == oldGroupsFileModDate))
         return resultErr;
     
     // If either the users or groups file has changed

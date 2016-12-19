@@ -1799,9 +1799,9 @@ void RTSPSession::SetupRequest()
     if (headerBits != 0)
         (void)fRTPSession->SetValue(qtssCliSessLastRTSPBandwidth, 0,&headerBits,sizeof(headerBits), QTSSDictionary::kDontObeyReadOnly );
 
-	// If it's a play request and the late tolerance is sent in the request use this value
-	if ((fRequest->GetMethod() == qtssPlayMethod) && (fRequest->GetLateToleranceInSec() != -1))
-		fRTPSession->SetStreamThinningParams(fRequest->GetLateToleranceInSec());
+    // If it's a play request and the late tolerance is sent in the request use this value
+    if ((fRequest->GetMethod() == qtssPlayMethod) && (fRequest->GetLateToleranceInSec() != -1))
+        fRTPSession->SetStreamThinningParams(fRequest->GetLateToleranceInSec());
 	
     //
     // Check to see if this is a "ping" PLAY request (a PLAY request while already

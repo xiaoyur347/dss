@@ -191,18 +191,16 @@ int ParseConfigFile(
                                 else
                                     next = GetWord( wordBuff, next, wordBuffSize );
                             
-                                    char* value = NEW char[strlen( wordBuff ) + 1 ];
-                                    
-                                    Assert( value );
-                                    
-                                    if ( value )
-                                    {
-                                        strcpy( value, wordBuff );
-                                        
-                                        values[maxValues++] = value;
-                                        values[maxValues] = 0;
-                                    }
-                                            
+                                char* value = NEW char[strlen( wordBuff ) + 1 ];
+
+                                Assert( value );
+
+                                if ( value )
+                                {
+                                    strcpy( value, wordBuff );
+                                    values[maxValues++] = value;
+                                    values[maxValues] = 0;
+                                }   
                             }
                         
                         }

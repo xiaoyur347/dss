@@ -307,44 +307,44 @@ void RewriteRootDir(QTSS_StandardRTSP_Params* inParams, StrPtrLen* inHomeDir)
 QTSS_Error AuthorizeRequest(QTSS_StandardRTSP_Params* inParams)
 {
     // Only do anything if this is the first request	
-	Bool16 *isFirstRequest	= NULL;
-	UInt32 theLen = sizeof(isFirstRequest);
+    Bool16 *isFirstRequest	= NULL;
+    UInt32 theLen = sizeof(isFirstRequest);
     (void)QTSS_GetValuePtr(inParams->inRTSPSession, sIsFirstRequestAttr, 0, (void**)&isFirstRequest, &theLen);
     if (isFirstRequest != NULL)
         return QTSS_NoErr;
 	
-	OSRef *theDirectoryInfoRef = NULL;
-	DirectoryInfo *theDirInfo = NULL;
-	StrPtrLen theHomeDir;
+    OSRef *theDirectoryInfoRef = NULL;
+    DirectoryInfo *theDirInfo = NULL;
+    StrPtrLen theHomeDir;
 	
-	// if no limits are imposed, do nothing
-	if ((sMaxNumConnsPerHomeDir == 0) && (sMaxBWInKbpsPerHomeDir == 0))
-		goto end_authorize;
+    // if no limits are imposed, do nothing
+    if ((sMaxNumConnsPerHomeDir == 0) && (sMaxBWInKbpsPerHomeDir == 0))
+        goto end_authorize;
 		
-	// Get this client session's home dir
-	(void)QTSS_GetValuePtr(inParams->inClientSession, sSessionHomeDirAttr, 0, (void**)&theHomeDir.Ptr, &theHomeDir.Len);
-	if ((theHomeDir.Ptr == NULL) || (theHomeDir.Len == 0)) // If it's NULL it's not served out of the home dir
-		goto end_authorize;
+    // Get this client session's home dir
+    (void)QTSS_GetValuePtr(inParams->inClientSession, sSessionHomeDirAttr, 0, (void**)&theHomeDir.Ptr, &theHomeDir.Len);
+    if ((theHomeDir.Ptr == NULL) || (theHomeDir.Len == 0)) // If it's NULL it's not served out of the home dir
+        goto end_authorize;
 	
-	// Get the sessions for this home dir
-	theDirectoryInfoRef = sDirectoryInfoMap->Resolve(&theHomeDir); 
-	if (theDirectoryInfoRef == NULL) // No sessions exist yet for this homeDir
-		goto end_authorize;
+    // Get the sessions for this home dir
+    theDirectoryInfoRef = sDirectoryInfoMap->Resolve(&theHomeDir); 
+    if (theDirectoryInfoRef == NULL) // No sessions exist yet for this homeDir
+        goto end_authorize;
 	
-	theDirInfo = (DirectoryInfo *)(theDirectoryInfoRef->GetObject());
+    theDirInfo = (DirectoryInfo *)(theDirectoryInfoRef->GetObject());
 
-	if ((sMaxNumConnsPerHomeDir != 0) && ((theDirInfo->NumSessions()) >= sMaxNumConnsPerHomeDir))
-		QTSSModuleUtils::SendErrorResponse(inParams->inRTSPRequest, qtssClientNotEnoughBandwidth, qtssMsgTooManyClients);
-	else if((sMaxBWInKbpsPerHomeDir != 0) && ((theDirInfo->CurrentTotalBandwidthInKbps()) >= sMaxBWInKbpsPerHomeDir))
-		QTSSModuleUtils::SendErrorResponse(inParams->inRTSPRequest, qtssClientNotEnoughBandwidth, qtssMsgTooMuchThruput);
+    if ((sMaxNumConnsPerHomeDir != 0) && ((theDirInfo->NumSessions()) >= sMaxNumConnsPerHomeDir))
+        QTSSModuleUtils::SendErrorResponse(inParams->inRTSPRequest, qtssClientNotEnoughBandwidth, qtssMsgTooManyClients);
+    else if((sMaxBWInKbpsPerHomeDir != 0) && ((theDirInfo->CurrentTotalBandwidthInKbps()) >= sMaxBWInKbpsPerHomeDir))
+        QTSSModuleUtils::SendErrorResponse(inParams->inRTSPRequest, qtssClientNotEnoughBandwidth, qtssMsgTooMuchThruput);
 		
-	sDirectoryInfoMap->Release(theDirectoryInfoRef);
+    sDirectoryInfoMap->Release(theDirectoryInfoRef);
 	
 end_authorize:	
-	// Mark the request so we'll know subsequent ones aren't the first.
+    // Mark the request so we'll know subsequent ones aren't the first.
     (void)QTSS_SetValue(inParams->inRTSPSession, sIsFirstRequestAttr, 0, &sTrue, sizeof(sTrue));
 	
-	return QTSS_NoErr;
+    return QTSS_NoErr;
 }
 
 QTSS_Error RemoveClientSessionFromMap(QTSS_ClientSessionClosing_Params* inParams)

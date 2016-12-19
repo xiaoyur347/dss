@@ -1330,8 +1330,8 @@ QTSS_Error DoPlay(QTSS_StandardRTSP_Params* inParamBlock)
     if ( true == QTSSModuleUtils::HavePlayerProfile( sServerPrefs, inParamBlock,QTSSModuleUtils::kDisablePauseAdjustedRTPTime) )
     	adjustPauseTime = kDontAddPauseTimeToRTPTime;
     
-	if (sPlayerCompatibility )  // don't change adjust setting if compatibility is off. 
-		(**theFile).fAdjustPauseTime = adjustPauseTime;
+    if (sPlayerCompatibility )  // don't change adjust setting if compatibility is off. 
+        (**theFile).fAdjustPauseTime = adjustPauseTime;
 	
     if ( (**theFile).fLastPauseTime > 0 )
         (**theFile).fTotalPauseTime += OS::Milliseconds() - (**theFile).fLastPauseTime;

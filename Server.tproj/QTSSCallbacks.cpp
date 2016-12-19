@@ -111,7 +111,7 @@ QTSS_Error QTSSCallbacks::QTSS_UnlockObject(QTSS_Object inDictionary)
     if (inDictionary == NULL)
         return QTSS_BadArgument;
 	
-	((QTSSDictionary*)inDictionary)->SetLocked(false);    
+    ((QTSSDictionary*)inDictionary)->SetLocked(false);    
     ((QTSSDictionary*)inDictionary)->GetMutex()->Unlock();
     
     return QTSS_NoErr;

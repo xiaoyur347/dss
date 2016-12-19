@@ -2143,15 +2143,15 @@ void RemoveOutput(ReflectorOutput* inOutput, ReflectorSession* inSession, Bool16
 
 Bool16 AcceptSession(QTSS_StandardRTSP_Params* inParams)
 {   
-	QTSS_RTSPSessionObject inRTSPSession = inParams->inRTSPSession;
+    QTSS_RTSPSessionObject inRTSPSession = inParams->inRTSPSession;
     QTSS_RTSPRequestObject theRTSPRequest = inParams->inRTSPRequest;
 
     QTSS_ActionFlags action = QTSSModuleUtils::GetRequestActions(theRTSPRequest);
     if(action != qtssActionFlagsWrite)
         return false;
 
- 	if (QTSSModuleUtils::UserInGroup(QTSSModuleUtils::GetUserProfileObject(theRTSPRequest), sBroadcasterGroup.Ptr, sBroadcasterGroup.Len))
-   		return true; // ok we are allowing this broadcaster user
+    if (QTSSModuleUtils::UserInGroup(QTSSModuleUtils::GetUserProfileObject(theRTSPRequest), sBroadcasterGroup.Ptr, sBroadcasterGroup.Len))
+        return true; // ok we are allowing this broadcaster user
  
     char remoteAddress[20] = {0};
     StrPtrLen theClientIPAddressStr(remoteAddress,sizeof(remoteAddress));

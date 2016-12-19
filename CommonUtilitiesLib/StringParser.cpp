@@ -429,23 +429,23 @@ void StringParser::ConsumeEOL(StrPtrLen* outString)
     if (this->ParserIsEmpty(outString))
         return;
 
-	//This function processes all legal forms of HTTP / RTSP eols.
-	//They are: \r (alone), \n (alone), \r\n
-	char *originalStartGet = fStartGet;
+    //This function processes all legal forms of HTTP / RTSP eols.
+    //They are: \r (alone), \n (alone), \r\n
+    char *originalStartGet = fStartGet;
 	
-	if ((fStartGet < fEndGet) && ((*fStartGet == '\r') || (*fStartGet == '\n')))
-	{
-		AdvanceMark();
-		//check for a \r\n, which is the most common EOL sequence.
-		if ((fStartGet < fEndGet) && ((*(fStartGet - 1) == '\r') && (*fStartGet == '\n')))
-			AdvanceMark();
-	}
+    if ((fStartGet < fEndGet) && ((*fStartGet == '\r') || (*fStartGet == '\n')))
+    {
+        AdvanceMark();
+        //check for a \r\n, which is the most common EOL sequence.
+        if ((fStartGet < fEndGet) && ((*(fStartGet - 1) == '\r') && (*fStartGet == '\n')))
+            AdvanceMark();
+    }
 
-	if (outString != NULL)
-	{
-		outString->Ptr = originalStartGet;
-		outString->Len = fStartGet - originalStartGet;
-	}
+    if (outString != NULL)
+    {
+        outString->Ptr = originalStartGet;
+        outString->Len = fStartGet - originalStartGet;
+    }
 }
 
 void StringParser::UnQuote(StrPtrLen* outString)

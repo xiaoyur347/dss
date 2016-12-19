@@ -287,8 +287,8 @@ RelayOutput::~RelayOutput()
     if (fAnnounceTask != NULL)
         fAnnounceTask->fOutput = NULL;
         
-        if (fRTSPOutputInfo != NULL)
-            delete fRTSPOutputInfo;
+    if (fRTSPOutputInfo != NULL)
+        delete fRTSPOutputInfo;
             
     QTSS_Object outputObject;
     UInt32 len = sizeof(QTSS_Object);

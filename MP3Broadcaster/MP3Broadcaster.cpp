@@ -791,7 +791,7 @@ bail:
     if (metaInfoUpdater)
         delete metaInfoUpdater;
         
-        Cleanup();
+    Cleanup();
 
 #ifndef __Win32__
 /*

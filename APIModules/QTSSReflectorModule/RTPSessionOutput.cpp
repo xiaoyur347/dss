@@ -188,7 +188,7 @@ Bool16 RTPSessionOutput::IsPlaying()
     if (!fClientSession)
         return false;
         
-	(void)QTSS_GetValuePtr(fClientSession, qtssCliSesState, 0, (void**)&theState, &theLen);
+    (void)QTSS_GetValuePtr(fClientSession, qtssCliSesState, 0, (void**)&theState, &theLen);
     if (theLen == 0 || theState == NULL || *theState != qtssPlayingState)
        return false;
 

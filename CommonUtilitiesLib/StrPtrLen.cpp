@@ -107,7 +107,7 @@ Bool16 StrPtrLen::Equal(const StrPtrLen &compare) const
     if (NULL == compare.Ptr && NULL == Ptr )
         return true;
         
-        if ((NULL == compare.Ptr) || (NULL == Ptr))
+    if ((NULL == compare.Ptr) || (NULL == Ptr))
         return false;
 
     if ((compare.Len == Len) && (memcmp(compare.Ptr, Ptr, Len) == 0))

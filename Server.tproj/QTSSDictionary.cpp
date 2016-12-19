@@ -50,11 +50,11 @@ QTSSDictionary::QTSSDictionary(QTSSDictionaryMap* inMap, OSMutex* inMutex)
 {
     if (fMap != NULL)
         fAttributes = NEW DictValueElement[inMap->GetNumAttrs()];
-	if (fMutexP == NULL)
-	{
-		fMyMutex = true;
-		fMutexP = NEW OSMutex();
-	}
+    if (fMutexP == NULL)
+    {
+        fMyMutex = true;
+        fMutexP = NEW OSMutex();
+    }
 }
 
 QTSSDictionary::~QTSSDictionary()

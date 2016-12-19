@@ -85,11 +85,11 @@ void    RTSPSessionInterface::Initialize()
         QTSSDictionaryMap::GetMap(QTSSDictionaryMap::kRTSPSessionDictIndex)->
             SetAttribute(x, sAttributes[x].fAttrName, sAttributes[x].fFuncPtr, sAttributes[x].fAttrDataType, sAttributes[x].fAttrPermission);
 	
-	// DJM PROTOTYPE
-	::srand((unsigned int) OS::Microseconds());
-	for (unsigned int i = 0; i < kMaxRandomDataSize / sizeof(UInt32); i++)
-		RTSPSessionInterface::sOptionsRequestBody[i] = ::rand();
-	((char *)RTSPSessionInterface::sOptionsRequestBody)[0] = 0; //always set first byte so it doesn't hit any client parser bugs for \r or \n.
+    // DJM PROTOTYPE
+    ::srand((unsigned int) OS::Microseconds());
+    for (unsigned int i = 0; i < kMaxRandomDataSize / sizeof(UInt32); i++)
+        RTSPSessionInterface::sOptionsRequestBody[i] = ::rand();
+    ((char *)RTSPSessionInterface::sOptionsRequestBody)[0] = 0; //always set first byte so it doesn't hit any client parser bugs for \r or \n.
 	
 }
 

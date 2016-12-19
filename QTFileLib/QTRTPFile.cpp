@@ -1175,7 +1175,7 @@ UInt32 QTRTPFile::GetSeekTimestamp(UInt32 trackID)
     if( !FindTrackEntry(trackID, &trackEntry) )
         return 0;
 	
-	if (trackEntry->CurPacket) //  we have the packet
+    if (trackEntry->CurPacket) //  we have the packet
     {
 		timeStampP = (UInt32 *)((char *)trackEntry->CurPacket + 4);
 		rtpTimestamp = ntohl(*timeStampP);

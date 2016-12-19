@@ -910,8 +910,8 @@ void RTSPClient::SetControlID(char* controlID)
     if (fControlID != RTSPClient::sControlID)
         delete [] fControlID;
 
-	fControlID = NEW char[::strlen(controlID) + 1]; 
-	::strcpy(fControlID, controlID);
+    fControlID = NEW char[::strlen(controlID) + 1]; 
+    ::strcpy(fControlID, controlID);
 
 }
 

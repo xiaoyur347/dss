@@ -396,14 +396,14 @@ void RTPStream::SetQualityLevel(SInt32 level)
    if (fDisableThinning)
         return;
 		
-	SInt32 minLevel = MAX(0, (SInt32) fNumQualityLevels - 1);
-	level = MIN(MAX(level, fMaxQualityLevel), minLevel);
+    SInt32 minLevel = MAX(0, (SInt32) fNumQualityLevels - 1);
+    level = MIN(MAX(level, fMaxQualityLevel), minLevel);
 	
-	if (level == minLevel) //Instead of going down to key-frames only, go down to key-frames plus 1 P frame instead.
-		level++;
+    if (level == minLevel) //Instead of going down to key-frames only, go down to key-frames plus 1 P frame instead.
+        level++;
               
-   if (level == fQualityLevel)
-          return;
+    if (level == fQualityLevel)
+        return;
     
     if (fTransportType == qtssRTPTransportTypeUDP)
         fQualityLevel = level;
@@ -478,19 +478,19 @@ QTSS_Error RTPStream::Setup(RTSPRequestInterface* request, QTSS_AddStreamFlags i
     if ((fTransportType == qtssRTPTransportTypeReliableUDP) && (!QTSServerInterface::GetServer()->GetPrefs()->IsReliableUDPEnabled()))
         fTransportType = qtssRTPTransportTypeUDP;
 
-        //
-        // Check to see if we are inside a valid reliable UDP directory
-        if ((fTransportType == qtssRTPTransportTypeReliableUDP) && (!QTSServerInterface::GetServer()->GetPrefs()->IsPathInsideReliableUDPDir(request->GetValue(qtssRTSPReqFilePath))))
-            fTransportType = qtssRTPTransportTypeUDP;
+    //
+    // Check to see if we are inside a valid reliable UDP directory
+    if ((fTransportType == qtssRTPTransportTypeReliableUDP) && (!QTSServerInterface::GetServer()->GetPrefs()->IsPathInsideReliableUDPDir(request->GetValue(qtssRTSPReqFilePath))))
+        fTransportType = qtssRTPTransportTypeUDP;
 
     //
     // Check to see if caller is forcing raw UDP transport
     if ((fTransportType == qtssRTPTransportTypeReliableUDP) && (inFlags & qtssASFlagsForceUDPTransport))
         fTransportType = qtssRTPTransportTypeUDP;
         
-	//
-	// decide whether to overbuffer
-	this->SetOverBufferState(request);
+    //
+    // decide whether to overbuffer
+    this->SetOverBufferState(request);
         
     // Check to see if this RTP stream should be sent over TCP.
     if (fTransportType == qtssRTPTransportTypeTCP)
@@ -646,17 +646,17 @@ void RTPStream::SendSetupResponse( RTSPRequestInterface* inRequest )
     if ((theRetrHdr->Len > 0) && (fTransportType == qtssRTPTransportTypeReliableUDP))
         inRequest->AppendHeader(qtssXRetransmitHeader, theRetrHdr);
 
-	// Append the dynamic rate header if the client sent it
-	SInt32 theRequestedRate =inRequest->GetDynamicRateState();
-	static StrPtrLen sHeaderOn("1",1);
-	static StrPtrLen sHeaderOff("0",1);
-	if (theRequestedRate > 0)	// the client sent the header and wants a dynamic rate
-	{	
-		if(*(fSession->GetOverbufferWindow()->OverbufferingEnabledPtr()))
-			inRequest->AppendHeader(qtssXDynamicRateHeader, &sHeaderOn); // send 1 if overbuffering is turned on
-		else
-			inRequest->AppendHeader(qtssXDynamicRateHeader, &sHeaderOff); // send 0 if overbuffering is turned off
-	}
+    // Append the dynamic rate header if the client sent it
+    SInt32 theRequestedRate =inRequest->GetDynamicRateState();
+    static StrPtrLen sHeaderOn("1",1);
+    static StrPtrLen sHeaderOff("0",1);
+    if (theRequestedRate > 0)	// the client sent the header and wants a dynamic rate
+    {	
+        if(*(fSession->GetOverbufferWindow()->OverbufferingEnabledPtr()))
+            inRequest->AppendHeader(qtssXDynamicRateHeader, &sHeaderOn); // send 1 if overbuffering is turned on
+        else
+            inRequest->AppendHeader(qtssXDynamicRateHeader, &sHeaderOff); // send 0 if overbuffering is turned off
+    }
     else if (theRequestedRate == 0) // the client sent the header but doesn't want a dynamic rate
         inRequest->AppendHeader(qtssXDynamicRateHeader, &sHeaderOff);        
     //else the client didn't send a header so do nothing 
@@ -1005,38 +1005,38 @@ Bool16 RTPStream::UpdateQualityLevel(const SInt64& inTransmitTime, const SInt64&
     if (fTransportType == qtssRTPTransportTypeUDP)
         return true;
   
-	if (fSession->fLastQualityCheckTime == 0)
-	{
-		// Reset the interval for checking quality levels
-		fSession->fLastQualityCheckTime = inCurrentTime;
-		fSession->fLastQualityCheckMediaTime = inTransmitTime;
-		fLastCurrentPacketDelay = inCurrentPacketDelay;
-		return true;
-	}
+    if (fSession->fLastQualityCheckTime == 0)
+    {
+        // Reset the interval for checking quality levels
+        fSession->fLastQualityCheckTime = inCurrentTime;
+        fSession->fLastQualityCheckMediaTime = inTransmitTime;
+        fLastCurrentPacketDelay = inCurrentPacketDelay;
+        return true;
+    }
 	
-	if (!fSession->fStartedThinning)
-	{
-		// if we're still behind but not falling further behind, then don't thin
-		if ((inCurrentPacketDelay > fStartThinningDelay) && (inCurrentPacketDelay - fLastCurrentPacketDelay < 250))
-		{
-			if (inCurrentPacketDelay < fLastCurrentPacketDelay)
-				fLastCurrentPacketDelay = inCurrentPacketDelay;
-			return true;
-		}
-		else
-		{	fSession->fStartedThinning = true;
-		}
-	}
+    if (!fSession->fStartedThinning)
+    {
+        // if we're still behind but not falling further behind, then don't thin
+        if ((inCurrentPacketDelay > fStartThinningDelay) && (inCurrentPacketDelay - fLastCurrentPacketDelay < 250))
+        {
+            if (inCurrentPacketDelay < fLastCurrentPacketDelay)
+                fLastCurrentPacketDelay = inCurrentPacketDelay;
+            return true;
+        }
+        else
+        {	fSession->fStartedThinning = true;
+        }
+    }
 	
-	if ((fSession->fLastQualityCheckTime == 0) || (inCurrentPacketDelay > fThinAllTheWayDelay))
-	{
-		//
-		// Reset the interval for checking quality levels
-		fSession->fLastQualityCheckTime = inCurrentTime;
-		fSession->fLastQualityCheckMediaTime = inTransmitTime;
-		fLastCurrentPacketDelay = inCurrentPacketDelay;
+    if ((fSession->fLastQualityCheckTime == 0) || (inCurrentPacketDelay > fThinAllTheWayDelay))
+    {
+        //
+        // Reset the interval for checking quality levels
+        fSession->fLastQualityCheckTime = inCurrentTime;
+        fSession->fLastQualityCheckMediaTime = inTransmitTime;
+        fLastCurrentPacketDelay = inCurrentPacketDelay;
 
-		if (inCurrentPacketDelay > fThinAllTheWayDelay ) 
+        if (inCurrentPacketDelay > fThinAllTheWayDelay ) 
         {
             //
             // If we have fallen behind enough such that we risk trasmitting
@@ -1393,7 +1393,7 @@ Bool16 RTPStream::ProcessNADUPacket(RTCPPacket &rtcpPacket, SInt64 &curTime, Str
     if (!naduPacket.ParseAPPData((UInt8*)currentPtr.Ptr, currentPtr.Len))
         return false;//abort if we discover a malformed app packet
 
-	fStream3GPP->AddNadu((UInt8*)currentPtr.Ptr, currentPtr.Len, highestSeqNum);
+    fStream3GPP->AddNadu((UInt8*)currentPtr.Ptr, currentPtr.Len, highestSeqNum);
         
     if (RTCP_TESTING) // testing
     {   fStream3GPP->fNaduList.DumpList();

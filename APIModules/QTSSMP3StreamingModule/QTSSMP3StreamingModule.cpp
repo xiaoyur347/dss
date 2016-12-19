@@ -2192,12 +2192,12 @@ Bool16 IsRTSP(StrPtrLen& theRequest)
 // request.
 Bool16 IsHTTPGet(StrPtrLen& theRequest)
 {
-	StrPtrLen token = theRequest;
-	token.Len = 3;
+    StrPtrLen token = theRequest;
+    token.Len = 3;
     Bool16 found = false;
     if (token.EqualIgnoreCase(StrPtrLen("GET")) && IsHTTP(theRequest) )
         found = true;
-	return found;
+    return found;
 }
 
 // Is this URL a *.m3u file request.
@@ -2728,40 +2728,40 @@ QTSS_Error ReEnterFilterRequest(QTSS_Filter_Params* inParams, MP3Session* mp3Ses
 // FilterRequest - filter the incoming HTTP/Broadcast request.
 QTSS_Error FilterRequest(QTSS_Filter_Params* inParams)
 {
-	QTSS_Error err = QTSS_NoErr;
-	QTSS_RTSPRequestObject theRequest = inParams->inRTSPRequest;
+    QTSS_Error err = QTSS_NoErr;
+    QTSS_RTSPRequestObject theRequest = inParams->inRTSPRequest;
 		
-	// Pull the actual request data from this RTSP session's attributes.
+    // Pull the actual request data from this RTSP session's attributes.
 
-	StrPtrLen theFullRequest;
-	err = QTSS_GetValuePtr(theRequest, qtssRTSPReqFullRequest, 0, (void**)&theFullRequest.Ptr, &theFullRequest.Len);
-	if (err != QTSS_NoErr) 
-	{
-            return QTSS_NoErr;
-	}
+    StrPtrLen theFullRequest;
+    err = QTSS_GetValuePtr(theRequest, qtssRTSPReqFullRequest, 0, (void**)&theFullRequest.Ptr, &theFullRequest.Len);
+    if (err != QTSS_NoErr) 
+    {
+        return QTSS_NoErr;
+    }
 
     if (IsRTSP(theFullRequest)) // don't process rtsp requests
         return  QTSS_NoErr;
 
-	if (!sMP3StreamingEnabled || sServerIdle)
-	{
-            // This allows MP3 streaming to be disabled through a pref setting
-            // or ignore requests when the server is in the idle state.
+    if (!sMP3StreamingEnabled || sServerIdle)
+    {
+        // This allows MP3 streaming to be disabled through a pref setting
+        // or ignore requests when the server is in the idle state.
 
-            if (NeedsMetaData(theFullRequest)) // this is an HTTP icy request
-                return QTSSModuleUtils::SendHTTPErrorResponse(theRequest,qtssServerUnavailable,true, NULL);
+        if (NeedsMetaData(theFullRequest)) // this is an HTTP icy request
+            return QTSSModuleUtils::SendHTTPErrorResponse(theRequest,qtssServerUnavailable,true, NULL);
         
-            return QTSS_NoErr;
-	}
+        return QTSS_NoErr;
+    }
 	
-	// See if this RTSP session is an existing MP3 Session.
-	// If it is then we have re-entered FilterRequest() from a previous 
-	// invokation and we will call ReEnterFilterRequest() to do its thing.
-	MP3Session* mp3Session = sMP3SessionTable.Resolve(inParams->inRTSPSession);
-	if (mp3Session != NULL)
-	{
-            err = ReEnterFilterRequest(inParams, mp3Session);
-            return err;
+    // See if this RTSP session is an existing MP3 Session.
+    // If it is then we have re-entered FilterRequest() from a previous 
+    // invokation and we will call ReEnterFilterRequest() to do its thing.
+    MP3Session* mp3Session = sMP3SessionTable.Resolve(inParams->inRTSPSession);
+    if (mp3Session != NULL)
+    {
+        err = ReEnterFilterRequest(inParams, mp3Session);
+        return err;
     }
     
     // Check and see if this request is a broadcaster sending it's password or
