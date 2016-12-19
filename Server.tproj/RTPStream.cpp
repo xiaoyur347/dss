@@ -1890,12 +1890,12 @@ void RTPStream::PrintPacket(char *inBuffer, UInt32 inLen, SInt32 inType)
         case RTPStream::rtcpRR:
            if (QTSServerInterface::GetServer()->GetPrefs()->PrintRRHeaders())
            {   
-                RTCPReceiverPacket rtcpRR;
-                if (rtcpRR.ParseReport( (UInt8*) inBuffer, inLen))
+                RTCPReceiverPacket rtcpRP;
+                if (rtcpRP.ParseReport( (UInt8*) inBuffer, inLen))
                 {
                     qtss_printf("\n");
                     qtss_printf(">recv sess=%" _U32BITARG_ ": RTCP %s recv_sec=%.3f %s size=%" _U32BITARG_ " ",this->fSession->GetUniqueID(), rr, this->GetStreamStartTimeSecs(), theType, inLen);
-                    rtcpRR.Dump();
+                    rtcpRP.Dump();
                 }
            }
         break;
