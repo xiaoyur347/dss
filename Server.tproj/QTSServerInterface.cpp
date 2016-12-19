@@ -490,7 +490,7 @@ SInt64 RTPStatsUpdaterTask::Run()
         if ((maxKBits > -1) && (theServer->fAvgRTPBandwidthInBits > ((UInt32)maxKBits * 1024)))
         {
             //we need to make sure that all of this happens atomically wrt the session map
-            OSMutexLocker locker(theServer->GetRTPSessionMap()->GetMutex());
+            OSMutexLocker lockerMap(theServer->GetRTPSessionMap()->GetMutex());
             RTPSessionInterface* theSession = this->GetNewestSession(theServer->fRTPMap);
             if (theSession != NULL)
                 if ((curTime - theSession->GetSessionCreateTime()) <
