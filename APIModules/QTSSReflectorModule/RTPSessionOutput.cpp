@@ -515,7 +515,7 @@ QTSS_Error  RTPSessionOutput::TrackRTPPackets(QTSS_RTPStreamObject *theStreamPtr
     else
     {
         UInt32* byteCountPtr = NULL;
-        UInt32 theLen = 0;
+        theLen = 0;
                 
         writeErr = QTSS_GetValuePtr(*theStreamPtr, sStreamByteCountAttr, 0, (void**) &byteCountPtr,&theLen);
         if (writeErr == QTSS_NoErr && theLen > 0)
@@ -641,7 +641,7 @@ QTSS_Error  RTPSessionOutput::WritePacket(StrPtrLen* inPacket, void* inStreamCoo
                        
                { // increment packet counts
                     UInt32* packetCountPtr = NULL;
-                    UInt32 theLen = 0;
+                    theLen = 0;
                     
                     (void) QTSS_GetValuePtr(*theStreamPtr, sStreamPacketCountAttr, 0,(void**) &packetCountPtr,&theLen);
                     if (theLen > 0)
