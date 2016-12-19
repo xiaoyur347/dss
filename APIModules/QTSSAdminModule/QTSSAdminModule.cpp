@@ -1012,9 +1012,9 @@ QTSS_Error FilterRequest(QTSS_Filter_Params* inParams)
         sAdminPtr = NULL;
         
         if (sQueryPtr && !sQueryPtr->QueryHasReponse())
-        {   UInt32 err = 404;
-            (void) sQueryPtr->EvalQuery(&err,NULL);
-            ReportErr(inParams, err);
+        {   UInt32 errNum = 404;
+            (void) sQueryPtr->EvalQuery(&errNum,NULL);
+            ReportErr(inParams, errNum);
             break;
         }
 
