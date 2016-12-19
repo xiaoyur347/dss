@@ -315,7 +315,7 @@ void QTSServerInterface::SetValueComplete(UInt32 inAttrIndex, QTSSDictionaryMap*
         QTSS_RoleParams theParams;
         theParams.stateChangeParams.inNewState = *(QTSS_ServerState*)inNewValue;
         
-        static QTSS_ModuleState sStateChangeState = { NULL, 0, NULL, false };
+        static QTSS_ModuleState sStateChangeState = { NULL, 0, NULL, false, false, false, 0 };
         if (OSThread::GetCurrent() == NULL)
             OSThread::SetMainThreadData(&sStateChangeState);
         else
