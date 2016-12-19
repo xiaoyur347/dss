@@ -1206,7 +1206,7 @@ QTSS_Error QTSServer::RereadPrefsService(QTSS_ServiceFunctionArgsPtr /*inArgs*/)
     {
         //
         // Update listeners, ports, and IP addrs.
-        OSMutexLocker locker(theServer->GetServerObjectMutex());
+        OSMutexLocker lockerServer(theServer->GetServerObjectMutex());
         (void)((QTSServer*)theServer)->SetDefaultIPAddr();
         (void)((QTSServer*)theServer)->CreateListeners(true, thePrefs, 0);
     }
@@ -1236,8 +1236,8 @@ QTSS_Error QTSServer::RereadPrefsService(QTSS_ServiceFunctionArgsPtr /*inArgs*/)
     // role so they can update their internal prefs caches.
     for (UInt32 x = 0; x < QTSServerInterface::GetNumModulesInRole(QTSSModule::kRereadPrefsRole); x++)
     {
-        QTSSModule* theModule = QTSServerInterface::GetModule(QTSSModule::kRereadPrefsRole, x);
-        (void)theModule->CallDispatch(QTSS_RereadPrefs_Role, NULL);
+        QTSSModule* theModuleP = QTSServerInterface::GetModule(QTSSModule::kRereadPrefsRole, x);
+        (void)theModuleP->CallDispatch(QTSS_RereadPrefs_Role, NULL);
     }
     return QTSS_NoErr;
 }
