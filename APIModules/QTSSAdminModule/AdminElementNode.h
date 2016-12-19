@@ -249,7 +249,7 @@ class ElementNode
         
         ElementDataFields*  GetFields() {return fFieldIDs;};
         void                SetFields(ElementDataFields *fieldsPtr) {fFieldIDs = fieldsPtr;};
-        void                SetFieldsType(DataFieldsType fDataFieldsType){fDataFieldsType = fDataFieldsType;};
+        void                SetFieldsType(DataFieldsType val){fDataFieldsType = val;};
 
         static void GetFilteredAttributeName(ElementDataFields* fieldPtr, QTSS_AttributeID theID);
         static Bool16 GetFilteredAttributeID(char *parentName, char *nodeName, QTSS_AttributeID* foundID);
