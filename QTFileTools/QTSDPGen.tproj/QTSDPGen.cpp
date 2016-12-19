@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     const char      *MovieFilename;
     const char      *OutputFilename = NULL;
     QTRTPFile       *RTPFile;
-    bool            Debug = false, DeepDebug = false;
+    //bool            Debug = false, DeepDebug = false;
     extern char* optarg;
     extern int optind;
 
@@ -53,12 +53,12 @@ int main(int argc, char *argv[]) {
     while( (ch = getopt(argc, argv, "dD")) != -1 ) {
         switch( ch ) {
             case 'd':
-                Debug = true;
+                //Debug = true;
             break;
 
             case 'D':
-                Debug = true;
-                DeepDebug = true;
+                //Debug = true;
+                //DeepDebug = true;
             break;
 
             case 'f':

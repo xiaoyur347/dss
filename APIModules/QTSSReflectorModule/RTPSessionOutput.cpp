@@ -397,6 +397,8 @@ QTSS_Error  RTPSessionOutput::TrackRTCPBaseTime(QTSS_RTPStreamObject *theStreamP
         }
     }
 
+    (void)haveBaseTime;
+
     return writeErr;
 
 }

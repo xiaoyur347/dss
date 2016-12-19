@@ -1388,6 +1388,7 @@ QTSS_Error MP3BroadcasterQueue::RemoveBroadcaster(QTSS_RTSPSessionObject sess)
         {
             elem->Remove();
             uSessID = current->GetSessionID();
+            (void)uSessID;  
             DTRACE1("MP3BroadcasterQueue::RemoveBroadcaster() Session(%" _S32BITARG_ ") broadcaster removed!\n", uSessID);
             delete elem;
             delete current;
@@ -1634,6 +1635,7 @@ QTSS_Error MP3ClientQueue::RemoveClient(QTSS_RTSPSessionObject sess)
         {
             elem->Remove();
             uSessID = curClient->GetSessionID();
+            (void)uSessID; 
             DTRACE1("MP3ClientQueue::RemoveClient() Session(%" _S32BITARG_ ") client removed!\n", uSessID);
             delete elem;
             delete curClient;
@@ -1708,7 +1710,8 @@ void MP3ClientQueue::PreflightClients(char* sn)
         {
             if (curClient->WasBlocked())
             {
-                theErr = curClient->RetrySendData();            
+                theErr = curClient->RetrySendData();
+                (void)theErr;
             }   
             curClient->SetSongName(sn);
         }

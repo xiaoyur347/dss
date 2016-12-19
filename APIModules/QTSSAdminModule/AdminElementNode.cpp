@@ -995,7 +995,7 @@ void ElementNode::GetFullPath(StrPtrLen *resultPtr)
 void ElementNode::RespondWithSelfAdd(QTSS_StreamRef inStream, QueryURI *queryPtr)
 {
     static char *nullErr = "(null)";
-    Bool16 nullData = false;
+    //Bool16 nullData = false;
     QTSS_Error err = QTSS_NoErr;
     char messageBuffer[1024] = "";
     StrPtrLen bufferSPL(messageBuffer);
@@ -1020,7 +1020,7 @@ void ElementNode::RespondWithSelfAdd(QTSS_StreamRef inStream, QueryURI *queryPtr
     if (NULL == dataPtr) 
     {   //qtss_printf("ElementNode::RespondWithSelfAdd NULL == dataPtr EXIT\n");
         dataPtr = nullErr;
-        nullData = true;
+        //nullData = true;
     }
     
     queryPtr->SetQueryHasResponse();    
@@ -1311,7 +1311,7 @@ void    ElementNode::RespondToAdd(QTSS_StreamRef inStream, SInt32 index,QueryURI
     }
         
     static char *nullErr = "(null)";
-    Bool16 nullData = false;
+    //Bool16 nullData = false;
     QTSS_Error err = QTSS_NoErr;
     StrPtrLen bufferSPL(messageBuffer);
     
@@ -1335,7 +1335,7 @@ void    ElementNode::RespondToAdd(QTSS_StreamRef inStream, SInt32 index,QueryURI
     {   //qtss_printf("ElementNode::RespondToAdd NULL == dataPtr EXIT\n");
         //  return;
         dataPtr = nullErr;
-        nullData = true;
+        //nullData = true;
     }
     
     queryPtr->SetQueryHasResponse();    
@@ -1347,7 +1347,7 @@ void    ElementNode::RespondToAdd(QTSS_StreamRef inStream, SInt32 index,QueryURI
         accessFlags = queryPtr->GetAccessFlags();
     else
         accessFlags = GetAccessPermissions(index);
-    
+    (void)accessFlags;
     
     
     StrPtrLen* valuePtr = queryPtr->GetValue();
@@ -1424,7 +1424,7 @@ void    ElementNode::RespondToAdd(QTSS_StreamRef inStream, SInt32 index,QueryURI
 void    ElementNode::RespondToSet(QTSS_StreamRef inStream, SInt32 index,QueryURI *queryPtr)
 {
     static char *nullErr = "(null)";
-    Bool16 nullData = false;
+    //Bool16 nullData = false;
     QTSS_Error err = QTSS_NoErr;
     char messageBuffer[1024] = "";
     StrPtrLen bufferSPL(messageBuffer);
@@ -1450,7 +1450,7 @@ void    ElementNode::RespondToSet(QTSS_StreamRef inStream, SInt32 index,QueryURI
     {   //qtss_printf("ElementNode::RespondToSet NULL == dataPtr EXIT\n");
         //  return;
         dataPtr = nullErr;
-        nullData = true;
+        //nullData = true;
     }
     
     queryPtr->SetQueryHasResponse();    
@@ -1523,7 +1523,7 @@ void    ElementNode::RespondToSet(QTSS_StreamRef inStream, SInt32 index,QueryURI
 void    ElementNode::RespondToDel(QTSS_StreamRef inStream, SInt32 index,QueryURI *queryPtr,Bool16 delAttribute)
 {
     static char *nullErr = "(null)";
-    Bool16 nullData = false;
+    //Bool16 nullData = false;
     QTSS_Error err = QTSS_NoErr;
     char messageBuffer[1024] = "";
     StrPtrLen bufferSPL(messageBuffer);
@@ -1562,7 +1562,7 @@ void    ElementNode::RespondToDel(QTSS_StreamRef inStream, SInt32 index,QueryURI
     {   //qtss_printf("ElementNode::RespondToDel NULL == dataPtr EXIT\n");
         //  return;
         dataPtr = nullErr;
-        nullData = true;
+        //nullData = true;
     }
     
     queryPtr->SetQueryHasResponse();    

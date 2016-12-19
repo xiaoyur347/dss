@@ -467,6 +467,7 @@ int get_interface_addr(int skt)
     memset(&localAddr, 0, sizeof(localAddr));
     
     err = getsockname(skt, (struct sockaddr*)&localAddr, &len);
+    (void)err;
     return ntohl(localAddr.sin_addr.s_addr);
 }
 

@@ -871,13 +871,13 @@ QTSS_Error	QTSSCallbacks::QTSS_Authorize(QTSS_RTSPRequestObject inAuthRequestObj
             
     // Because this is a role being executed from inside a callback, we need to
     // make sure that QTSS_RequestEvent will not work.
-    Task* curTask = NULL;
-    QTSS_ModuleState* theState = (QTSS_ModuleState*)OSThread::GetMainThreadData();
-    if (OSThread::GetCurrent() != NULL)
-        theState = (QTSS_ModuleState*)OSThread::GetCurrent()->GetThreadData();
+    //Task* curTask = NULL;
+    //QTSS_ModuleState* theState = (QTSS_ModuleState*)OSThread::GetMainThreadData();
+    //if (OSThread::GetCurrent() != NULL)
+    //    theState = (QTSS_ModuleState*)OSThread::GetCurrent()->GetThreadData();
         
-    if (theState != NULL)
-        curTask = theState->curTask;
+    //if (theState != NULL)
+    //    curTask = theState->curTask;
         
     QTSS_RoleParams theParams;
     theParams.rtspRequestParams.inRTSPSession = NULL;

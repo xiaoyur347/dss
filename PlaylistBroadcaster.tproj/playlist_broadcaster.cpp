@@ -551,7 +551,7 @@ int QTFileBroadcaster::Play(char *mTimeFile)
     Float64 transmitTime = 0;
     MediaStream *theStreamPtr = NULL;   
     RTpPacket   rtpPacket;
-    unsigned int sleptTime;
+    //unsigned int sleptTime;
     SInt32 movieStartOffset = 0; //z
     Bool16      negativeTime = false;
     fMovieDuration = fRTPFilePtr->GetMovieDuration();
@@ -685,7 +685,7 @@ int QTFileBroadcaster::Play(char *mTimeFile)
         {   movieStartOffset += (SInt32) (transmitTime / 15.0);
             negativeTime = true;
         }
-        sleptTime = (unsigned int) Sleep(transmitTime);
+        /*sleptTime = (unsigned int) */Sleep(transmitTime);
         
         err = theStreamPtr->Send(&rtpPacket);
             

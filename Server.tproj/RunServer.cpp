@@ -74,7 +74,7 @@ QTSS_ServerState StartServer(XMLPrefsParser* inPrefsSource, PrefsSource* inMessa
     //Mark when we are done starting up. If auto-restart is enabled, we want to make sure
     //to always exit with a status of 0 if we encountered a problem WHILE STARTING UP. This
     //will prevent infinite-auto-restart-loop type problems
-    Bool16 doneStartingUp = false;
+    //Bool16 doneStartingUp = false;
     QTSS_ServerState theServerState = qtssStartingUpState;
     
     sStatusUpdateInterval = statsUpdateInterval;
@@ -193,7 +193,7 @@ QTSS_ServerState StartServer(XMLPrefsParser* inPrefsSource, PrefsSource* inMessa
         CleanPid(true);
         WritePid(!inDontFork);
 
-        doneStartingUp = true;
+        //doneStartingUp = true;
         qtss_printf("Streaming Server done starting up\n");
         OSMemory::SetMemoryError(ENOMEM);
     }

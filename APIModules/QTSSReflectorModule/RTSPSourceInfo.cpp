@@ -163,7 +163,7 @@ void RTSPSourceInfo::SetClientInfo(UInt32 inAddr, UInt16 inPort, char* inURL, UI
 QTSS_Error RTSPSourceInfo::ParsePrefs(XMLTag* relayTag, Bool16 inAnnounce)
 {
     XMLTag* prefTag;
-    UInt32 localAddr = 0;
+    //UInt32 localAddr = 0;
     UInt32 theHostAddr = 0;
     UInt16 theHostPort = 554;
     char* userName = NULL;
@@ -176,13 +176,13 @@ QTSS_Error RTSPSourceInfo::ParsePrefs(XMLTag* relayTag, Bool16 inAnnounce)
     if (sourceTag == NULL)
         return QTSS_ValueNotFound;
     
-    prefTag = sourceTag->GetEmbeddedTagByNameAndAttr("PREF", "NAME", "in_addr");
-    if (prefTag != NULL)
-    {
-        char* inAddrStr = prefTag->GetValue();
-        if (inAddrStr  != NULL)
-            localAddr = SocketUtils::ConvertStringToAddr(inAddrStr);
-    }
+    //prefTag = sourceTag->GetEmbeddedTagByNameAndAttr("PREF", "NAME", "in_addr");
+    //if (prefTag != NULL)
+    //{
+    //    char* inAddrStr = prefTag->GetValue();
+    //    if (inAddrStr  != NULL)
+    //        localAddr = SocketUtils::ConvertStringToAddr(inAddrStr);
+    //}
     prefTag = sourceTag->GetEmbeddedTagByNameAndAttr("PREF", "NAME", "source_addr");
     if (prefTag != NULL)
     {

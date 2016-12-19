@@ -597,7 +597,7 @@ Bool16  QTSServer::SwitchPersonality()
     OSCharArrayDeleter runGroupName(fSrvrPrefs->GetRunGroupName());
     OSCharArrayDeleter runUserName(fSrvrPrefs->GetRunUserName());
 
-	int groupID = 0;
+    //int groupID = 0;
 	
     if (::strlen(runGroupName.GetObject()) > 0)
     {
@@ -610,7 +610,7 @@ Bool16  QTSServer::SwitchPersonality()
                     runGroupName.GetObject(), qtss_strerror(OSThread::GetErrno(), buffer, sizeof(buffer)));
             return false;
         }
-        groupID = gr->gr_gid;
+        //groupID = gr->gr_gid;
     }
 
     if (::strlen(runUserName.GetObject()) > 0)

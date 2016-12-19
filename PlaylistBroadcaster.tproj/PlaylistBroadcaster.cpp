@@ -192,8 +192,8 @@ int main(int argc, char *argv[]) {
     bool    showMovieList = false;
     bool    writeCurrentMovieFile = false;
     int displayedOptions = 0; // count number of command line options we displayed
-    bool    needsTracker = false;   // set to true when PLB needs tracker access
-    bool    needsLogfile = false;   // set to true when PLB needs tracker access
+    //bool    needsTracker = false;   // set to true when PLB needs tracker access
+    //bool    needsLogfile = false;   // set to true when PLB needs tracker access
     char*   destinationIP = NULL;
     bool    writeNewSDP = false;
     char*   errorlog = NULL;    
@@ -269,8 +269,8 @@ int main(int argc, char *argv[]) {
             case 'p':
                 preflight = true;
                 daemonize = false;
-                needsTracker = true;
-                needsLogfile = true;
+                //needsTracker = true;
+                //needsLogfile = true;
                 break;
                 
             case 'D':
@@ -682,7 +682,7 @@ static void PreFlightOrBroadcast( const char *bcastSetupFilePath, bool preflight
     char*   thePick = NULL;
     int     numMovieErrors;
 	bool	didAtLeastOneMoviePlay = false;
-    bool    sdpFileCreated = false;
+    //bool    sdpFileCreated = false;
     char    *allocatedIPStr = NULL;
     bool    generateNewSDP = false;
     int     numErrorsBeforeSDPGen = 0;
@@ -813,7 +813,7 @@ static void PreFlightOrBroadcast( const char *bcastSetupFilePath, bool preflight
     }
     
     numErrorsBeforeSDPGen = sNumErrors;
-    sdpFileCreated = DoSDPGen( broadcastParms, preflight, writeNewSDP,generateNewSDP, &sNumErrors, picker->GetFirstFile());
+    /*sdpFileCreated = */DoSDPGen( broadcastParms, preflight, writeNewSDP,generateNewSDP, &sNumErrors, picker->GetFirstFile());
     if( sNumErrors > numErrorsBeforeSDPGen )
         goto bail;
             

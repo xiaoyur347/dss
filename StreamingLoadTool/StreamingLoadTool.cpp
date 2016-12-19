@@ -174,7 +174,7 @@ int main(int argc, char *argv[])
 #else
 	char* configFilePath = "streamingloadtool.conf";
 #endif
-    Bool16 configFilePathIsSpecified = false;
+    //Bool16 configFilePathIsSpecified = false;
 	Bool16 dropPost = false;
 	ClientSession::ClientType theClientType = ClientSession::kRTSPUDPClientType;
     Bool16 theClientTypeIsSpecified = false;
@@ -247,7 +247,7 @@ int main(int argc, char *argv[])
 				exit(0);
 				break;
 			case 'f':
-                configFilePathIsSpecified = true;
+                //configFilePathIsSpecified = true;
 				configFilePath = optarg;
 				break;
 		    case 'i':

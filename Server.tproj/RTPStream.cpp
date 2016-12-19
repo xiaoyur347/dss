@@ -584,9 +584,9 @@ QTSS_Error RTPStream::Setup(RTSPRequestInterface* request, QTSS_AddStreamFlags i
     {
         //
         // FIXME - we probably want to get rid of this slow start flag in the API
-        Bool16 useSlowStart = !(inFlags & qtssASFlagsDontUseSlowStart);
-        if (!QTSServerInterface::GetServer()->GetPrefs()->IsSlowStartEnabled())
-            useSlowStart = false;
+        //Bool16 useSlowStart = !(inFlags & qtssASFlagsDontUseSlowStart);
+        //if (!QTSServerInterface::GetServer()->GetPrefs()->IsSlowStartEnabled())
+        //    useSlowStart = false;
         
         fTracker = fSession->GetBandwidthTracker();
             

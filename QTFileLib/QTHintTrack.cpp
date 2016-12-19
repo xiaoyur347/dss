@@ -1154,7 +1154,7 @@ QTTrack::ErrorCode QTHintTrack::GetPacket(UInt32 sampleNumber, UInt16 packetNumb
     UInt32      bufLen;
     
     char*       pSampleBuffer;
-    char        *pDataTableStart;
+    //char        *pDataTableStart;
 
     UInt16      entryCount;
     UInt32      rtpTimestamp;
@@ -1240,7 +1240,7 @@ QTTrack::ErrorCode QTHintTrack::GetPacket(UInt32 sampleNumber, UInt16 packetNumb
 
     //
     // We found this packet and the start of our data table.
-    pDataTableStart = pSampleBuffer;
+    //pDataTableStart = pSampleBuffer;
     
     //
     // Our first pass through the data table is done to compute the size of the

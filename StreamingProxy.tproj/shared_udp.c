@@ -424,13 +424,13 @@ int transfer_data(void *refCon, char *buf, int bufSize)
 {
     trans_pb    *tpb = (trans_pb*)refCon;
     int     ret;
-    int             isRTCP = 0;
+    //int isRTCP = 0;
     if (!tpb)
         return -1;
         
     if (strstr(tpb->socketName,"RTCP"))
     {   //printf("shared_udp.c transfer_data %s\n",tpb->socketName);
-        isRTCP = 1;
+        //isRTCP = 1;
     }
     tpb->packetCount++;
     if (gDropPercent > 0.0 )

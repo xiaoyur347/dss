@@ -169,7 +169,7 @@ int main(int argc, char *argv[]) {
         int trackcount = 0;
         int hinttracks[20];
         memset(&hinttracks,0,sizeof(hinttracks));
-        bool found = false;
+        //bool found = false;
         char *trackPtr = SDPFile;
         while (true) 
         {   
@@ -178,7 +178,7 @@ int main(int argc, char *argv[]) {
             {   trackPtr+= ::strlen("trackID=");
                 sscanf(trackPtr, "%d",&hinttracks[trackcount]);
                 trackcount++;
-                found = true;
+                //found = true;
             }
             else 
                 break;

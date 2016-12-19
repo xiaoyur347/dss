@@ -805,6 +805,8 @@ Authenticator *AuthParser::ParseChallenge(StrPtrLen *challengePtr)
             result =  authenticator->ParseParams(&authParams);
     }
 
+    (void)result;
+
     return  authenticator;  
 }
 

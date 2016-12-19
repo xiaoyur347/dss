@@ -806,12 +806,12 @@ static int track_id_to_idx(rtsp_session *s, int id)
 static int has_two_crlfs(char *s)
 {
     int     l, n;
-    char    *p;
+    //char    *p;
     l = strlen(s);
     if (l < 4)
         return 0;
     n = 3;
-    p = s + n;
+    //p = s + n;
     while (n < l) {
         if (s[n] != '\n')
             n += 1;
@@ -1064,7 +1064,7 @@ void service_session(rtsp_session *s)
     track_info  *t;
     char        cmd[MAX_CMD_BUFF], *w;
     int         responseHeaderLen = 0;
-    char        *startBuff;
+    //char        *startBuff;
     
     /* see if we have any commands coming in */
     pBuf = s->cinbuf + s->amtInClientInBuffer;
@@ -1164,7 +1164,7 @@ void service_session(rtsp_session *s)
         case stParseClientCommand:
             if (gDebug)
                 DebugStringS("service_session stParseClientCommand start=%s", s->cinbuf);
-            startBuff = s->soutbuf;
+            //startBuff = s->soutbuf;
             //
             // see what the command and server address is
             //

@@ -332,7 +332,6 @@ UInt32 QTAtom_stsc::GetChunkFirstSample(UInt32 chunkNumber)
     UInt32      totalSamples = 1;
     UInt32      numChunks = 0;
     UInt32      numSamplesInChunks = 0;
-    UInt32      thisChunk = 0;
     UInt32      prevSamplesPerChunk = 0;
     UInt32      samplesPerChunk = 0;
     
@@ -353,7 +352,6 @@ UInt32 QTAtom_stsc::GetChunkFirstSample(UInt32 chunkNumber)
         memcpy(&sampleDescription, fSampleToChunkTable + (STCB->fCurEntry * 12) + 8, 4);
         sampleDescription = ntohl(sampleDescription);
         
-        thisChunk = thisFirstChunk;
         numChunks = thisFirstChunk - prevFirstChunk;
         
         if ( chunkNumber <= thisFirstChunk ) // found chunk in group

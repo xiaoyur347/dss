@@ -374,6 +374,7 @@ int select_waitevent(struct eventreq *req, void* /*onlyForMacOSX*/)
         else
             tv.tv_usec = 5000;
     #else
+        (void)yieldDur;
         tv.tv_sec = 15;
     #endif
 
