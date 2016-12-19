@@ -95,18 +95,18 @@ class RTPBandwidthTracker
         
         //
         // ACCESSORS
-        const Bool16 ReadyForAckProcessing()    { return (fClientWindow > 0 && fCongestionWindow > 0); } // see RTPBandwidthTracker::EmptyWindow for requirements
-        const Bool16 IsFlowControlled()         { return ( (SInt32)fBytesInList >= fCongestionWindow ); }
-        const SInt32 ClientWindowSize()         { return fClientWindow; }
-        const UInt32 BytesInList()              { return fBytesInList; }
-        const SInt32 CongestionWindow()         { return fCongestionWindow; }
-        const SInt32 SlowStartThreshold()       { return fSlowStartThreshold; }
-        const SInt32 RunningAverageMSecs()      { return fRunningAverageMSecs / 8; }  // fRunningAverageMSecs is stored scaled up 8x
-        const SInt32 RunningMeanDevationMSecs() { return fRunningMeanDevationMSecs/ 4; } // fRunningMeanDevationMSecs is stored scaled up 4x
-        const SInt32 CurRetransmitTimeout()     { return fCurRetransmitTimeout; }
-        const SInt32 GetCurrentBandwidthInBps()
+        Bool16 ReadyForAckProcessing()    { return (fClientWindow > 0 && fCongestionWindow > 0); } // see RTPBandwidthTracker::EmptyWindow for requirements
+        Bool16 IsFlowControlled()         { return ( (SInt32)fBytesInList >= fCongestionWindow ); }
+        SInt32 ClientWindowSize()         { return fClientWindow; }
+        UInt32 BytesInList()              { return fBytesInList; }
+        SInt32 CongestionWindow()         { return fCongestionWindow; }
+        SInt32 SlowStartThreshold()       { return fSlowStartThreshold; }
+        SInt32 RunningAverageMSecs()      { return fRunningAverageMSecs / 8; }  // fRunningAverageMSecs is stored scaled up 8x
+        SInt32 RunningMeanDevationMSecs() { return fRunningMeanDevationMSecs/ 4; } // fRunningMeanDevationMSecs is stored scaled up 4x
+        SInt32 CurRetransmitTimeout()     { return fCurRetransmitTimeout; }
+        SInt32 GetCurrentBandwidthInBps()
             { return (fUnadjustedRTO > 0) ? (fCongestionWindow * 1000) / fUnadjustedRTO : 0; }
-        inline const UInt32 RecommendedClientAckTimeout() { return fAckTimeout; }
+        inline UInt32 RecommendedClientAckTimeout() { return fAckTimeout; }
         void UpdateAckTimeout(UInt32 bitsSentInInterval, SInt64 intervalLengthInMsec);
         void UpdateStats();
 
