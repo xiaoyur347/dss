@@ -2816,8 +2816,6 @@ QTSS_Error FilterRequest(QTSS_Filter_Params* inParams)
     else if ( IsHTTPGet(theFullRequest) )
     {
         char theURL[kURLBufferSize];
-        
-        MP3BroadcasterSession* xs = NULL;
         if (!ParseURL(theFullRequest, theURL, kURLBufferSize))
         {
             return QTSS_NoErr;
