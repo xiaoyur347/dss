@@ -428,7 +428,6 @@ SInt64 RTPStatsUpdaterTask::Run()
         UInt32 theTime = delta / 1000;
  
         packetsPerSecond /= theTime;
-        Assert(packetsPerSecond >= 0);
         theServer->fRTPPacketsPerSecond = packetsPerSecond;
         UInt32 additionalBytes = 28 * packetsPerSecond; // IP headers = 20 + UDP headers = 8
         UInt32 headerBits = 8 * additionalBytes;
