@@ -620,7 +620,6 @@ QTSS_Error DoDescribe(QTSS_StandardRTSP_Params* inParamBlock)
     FileSession*    theFile = NULL;
     QTSS_Error      theErr = QTSS_NoErr;
     Bool16          pathEndsWithSDP = false;
-    static StrPtrLen sSDPSuffix(".sdp");
     SInt16 vectorIndex = 1;
     ResizeableStringFormatter theFullSDPBuffer(NULL,0);
     StrPtrLen bufferDelayStr;
