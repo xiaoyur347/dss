@@ -149,7 +149,7 @@ char *RTPStream::UDP = "UDP";
 char *RTPStream::RUDP = "RUDP";
 char *RTPStream::TCP = "TCP";
 
-QTSS_ModuleState RTPStream::sRTCPProcessModuleState = { NULL, 0, NULL, false };
+QTSS_ModuleState RTPStream::sRTCPProcessModuleState = { NULL, 0, NULL, false, false, false, 0 };
 
 void    RTPStream::Initialize()
 {
