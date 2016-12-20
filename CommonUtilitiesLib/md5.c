@@ -143,10 +143,10 @@ void MD5_Init (MD5_CTX *context)
                     /* context      input block         length of input block*/
 void MD5_Update (MD5_CTX *context, unsigned char *input, unsigned int inputLen)
 {
-  unsigned int i, index, partLen;
+  unsigned int i, nindex, partLen;
 
   /* Compute number of bytes mod 64 */
-  index = (unsigned int)((context->count[0] >> 3) & 0x3F);
+  nindex = (unsigned int)((context->count[0] >> 3) & 0x3F);
 
   /* Update number of bits */
   if ((context->count[0] += ((UInt32)inputLen << 3))
@@ -154,26 +154,26 @@ void MD5_Update (MD5_CTX *context, unsigned char *input, unsigned int inputLen)
  context->count[1]++;
   context->count[1] += ((UInt32)inputLen >> 29);
 
-  partLen = 64 - index;
+  partLen = 64 - nindex;
 
   /* Transform as many times as possible.
 */
   if (inputLen >= partLen) {
  MD5_memcpy
-   ((UInt8 *)&context->buffer[index], (UInt8 *)input, (size_t) partLen);
+   ((UInt8 *)&context->buffer[nindex], (UInt8 *)input, (size_t) partLen);
  MD5Transform (context->state, context->buffer);
 
  for (i = partLen; i + 63 < inputLen; i += 64)
    MD5Transform (context->state, &input[i]);
 
- index = 0;
+ nindex = 0;
   }
   else
  i = 0;
 
   /* Buffer remaining input */
   MD5_memcpy
- ((UInt8 *)&context->buffer[index], (UInt8 *)&input[i],
+ ((UInt8 *)&context->buffer[nindex], (UInt8 *)&input[i],
    (size_t) (inputLen-i) );
 }
 
@@ -184,15 +184,15 @@ void MD5_Update (MD5_CTX *context, unsigned char *input, unsigned int inputLen)
 void MD5_Final (unsigned char digest[16], MD5_CTX *context)
 {
   unsigned char bits[8];
-  unsigned int index, padLen;
+  unsigned int nindex, padLen;
 
   /* Save number of bits */
   Encode (bits, context->count, 8);
 
   /* Pad out to 56 mod 64.
 */
-  index = (unsigned int)((context->count[0] >> 3) & 0x3f);
-  padLen = (index < 56) ? (56 - index) : (120 - index);
+  nindex = (unsigned int)((context->count[0] >> 3) & 0x3f);
+  padLen = (nindex < 56) ? (56 - nindex) : (120 - nindex);
   MD5_Update (context, PADDING, padLen);
 
   /* Append length (before padding) */

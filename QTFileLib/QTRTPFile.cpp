@@ -1534,9 +1534,11 @@ Bool16 QTRTPFile::PrefetchNextPacket(RTPTrackListEntry * trackEntry, Bool16 doSe
     
     if( doSeek || (trackEntry->QualityLevel > kAllPackets) )
         trackEntry->SequenceNumberAdditive += (trackEntry->LastSequenceNumber + 1) - ntohs(*pSequenceNumber);
-    
-    *pSequenceNumber = htons( (SInt16)  (((SInt32) ntohs(*pSequenceNumber)) + trackEntry->BaseSequenceNumberRandomOffset + trackEntry->FileSequenceNumberRandomOffset + trackEntry->SequenceNumberAdditive));
-    *pTimestamp = htonl(ntohl(*pTimestamp) + trackEntry->BaseTimestampRandomOffset + trackEntry->FileTimestampRandomOffset);
+
+    UInt16 valShort = ntohs(*pSequenceNumber);
+    UInt32 valLong = ntohl(*pTimestamp);    
+    *pSequenceNumber = htons( (SInt16)  (((SInt32)valShort) + trackEntry->BaseSequenceNumberRandomOffset + trackEntry->FileSequenceNumberRandomOffset + trackEntry->SequenceNumberAdditive));
+    *pTimestamp = htonl(valLong + trackEntry->BaseTimestampRandomOffset + trackEntry->FileTimestampRandomOffset);
     
     //
     // Return the packet.

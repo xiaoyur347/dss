@@ -450,12 +450,14 @@ QTSS_Error  RTPSessionOutput::RewriteRTCP(QTSS_RTPStreamObject *theStreamPtr, St
     UInt32 packetCount = 0;
     (void) QTSS_GetValue(*theStreamPtr, sStreamPacketCountAttr, 0, &packetCount,&theLen);
     theReport += 1; // point to the rtp packets sent
-    *theReport = htonl(ntohl(*theReport) * 2); 
+    UInt32 valLong = ntohl(*theReport); 
+    *theReport = htonl(valLong * 2); 
         
     UInt32 byteCount = 0;
     (void) QTSS_GetValue(*theStreamPtr, sStreamByteCountAttr, 0, &byteCount,&theLen);
     theReport += 1; // point to the rtp payload bytes sent
-    *theReport = htonl(ntohl(*theReport) * 2); 
+    valLong = ntohl(*theReport); 
+    *theReport = htonl(valLong * 2); 
         
     return QTSS_NoErr;
 }

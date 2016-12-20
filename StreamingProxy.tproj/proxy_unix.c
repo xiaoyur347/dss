@@ -76,8 +76,8 @@ int init_network()
 #define kKILL_THREAD -3
 int term_network() 
 {
-    int send = kKILL_THREAD;
-    name_to_ip_num("", &send, true);
+    int nsend = kKILL_THREAD;
+    name_to_ip_num("", &nsend, true);
     return 0;
 }
 
@@ -248,11 +248,11 @@ again:
 }
 
 /**********************************************/
-void make_socket_nonblocking(int socket)
+void make_socket_nonblocking(int nsocket)
 {
     int flag;
-    flag = fcntl(socket, F_GETFL, 0);
-    fcntl(socket, F_SETFL, flag | O_NONBLOCK);
+    flag = fcntl(nsocket, F_GETFL, 0);
+    fcntl(nsocket, F_SETFL, flag | O_NONBLOCK);
 }
 
 /**********************************************/
@@ -472,7 +472,7 @@ int get_interface_addr(int skt)
 }
 
 /**********************************************/
-int recv_udp(int socket, char *buf, int amt, int *fromip, int *fromport)
+int recv_udp(int nsocket, char *buf, int amt, int *fromip, int *fromport)
 {
     struct sockaddr_in  sin;
     int ret;
@@ -480,7 +480,7 @@ int recv_udp(int socket, char *buf, int amt, int *fromip, int *fromport)
 
     len = sizeof(sin);
     memset(&sin, 0, sizeof(sin));
-    ret = recvfrom(socket, buf, (size_t) amt, 0, (struct sockaddr*)&sin, &len);
+    ret = recvfrom(nsocket, buf, (size_t) amt, 0, (struct sockaddr*)&sin, &len);
     if (ret != -1) {
         if (fromip)
             *fromip = ntohl(sin.sin_addr.s_addr);
@@ -503,15 +503,15 @@ int send_udp(int skt, char *buf, int amt, int address, int port)
 }
 
 /**********************************************/
-int recv_tcp(int socket, char *buf, int amt)
+int recv_tcp(int nsocket, char *buf, int amt)
 {
-    return read(socket, buf, (size_t) amt);
+    return read(nsocket, buf, (size_t) amt);
 }
 
 /**********************************************/
-int send_tcp(int socket, char *buf, int amt)
+int send_tcp(int nsocket, char *buf, int amt)
 {
-    return write(socket, buf, (size_t) amt);
+    return write(nsocket, buf, (size_t) amt);
 }
 
 /**********************************************/

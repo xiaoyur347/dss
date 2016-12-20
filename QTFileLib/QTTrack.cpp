@@ -321,7 +321,7 @@ Bool16 QTTrack::GetSampleInfo(UInt32 SampleNumber, UInt32 * const Length, UInt64
     // General vars
     UInt32      ChunkNumber, SampleOffsetInChunk;
     UInt64      sampleFileStartOffset = 0;
-    UInt64      ChunkOffset = 0;
+    UInt64      chunkOffset = 0;
             
 
     // Locate this sample, compute its offset, and get its size.
@@ -341,7 +341,7 @@ Bool16 QTTrack::GetSampleInfo(UInt32 SampleNumber, UInt32 * const Length, UInt64
     }
     else
     {
-        if( !fChunkOffsetAtom->ChunkOffset(ChunkNumber, &ChunkOffset) )
+        if( !fChunkOffsetAtom->ChunkOffset(ChunkNumber, &chunkOffset) )
             return false;
     
         // Walk through all of the samples previous to this one, adding up
@@ -350,7 +350,7 @@ Bool16 QTTrack::GetSampleInfo(UInt32 SampleNumber, UInt32 * const Length, UInt64
 
 
         UInt32  tempSampleLength = fSampleSizeAtom->GetCommonSampleSize();  
-        sampleFileStartOffset = ChunkOffset;
+        sampleFileStartOffset = chunkOffset;
 
         if (tempSampleLength > 0) // samples are the same size so just multiply to get size
         {   sampleFileStartOffset +=  ( tempSampleLength * SampleOffsetInChunk );
@@ -368,7 +368,7 @@ Bool16 QTTrack::GetSampleInfo(UInt32 SampleNumber, UInt32 * const Length, UInt64
 
         
         STCB->fGetSampleInfo_LastChunk = ChunkNumber;
-        STCB->fGetSampleInfo_LastChunkOffset = (UInt32) ChunkOffset;
+        STCB->fGetSampleInfo_LastChunkOffset = (UInt32) chunkOffset;
         STCB->fGetSampleInfo_SampleDescriptionIndex = sampleDescriptionIndex;
     }
 
