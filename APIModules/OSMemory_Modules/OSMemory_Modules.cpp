@@ -67,6 +67,15 @@ void operator delete[](void* mem)
     QTSS_Delete(mem);
 }
 
+void operator delete(void* mem, size_t)
+{
+    QTSS_Delete(mem);
+}
+
+void operator delete [](void* mem, size_t)
+{
+    QTSS_Delete(mem);
+}
 
 #endif //__OS_MEMORY_H__
 
