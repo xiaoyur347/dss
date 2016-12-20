@@ -94,7 +94,7 @@ case $PLAT in
 		LINKER='gcc'
 		MAKE=make
 
-		COMPILER_FLAGS="-D_REENTRANT -D__USE_POSIX -D__linux__ -pipe"
+		COMPILER_FLAGS="-D_REENTRANT -D__USE_POSIX -D__linux__ -pipe -Werror -Wextra -Wshadow -Wno-unused-result -Wno-unused-parameter"
 		INCLUDE_FLAG="-include"
 
 		if [ "$HARDWARENAME" = "x86_64" ]; then
