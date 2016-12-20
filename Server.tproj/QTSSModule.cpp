@@ -54,7 +54,7 @@ QTSSAttrInfoDict::AttrInfo  QTSSModule::sAttributes[] =
     /* 5 */ { "qtssModAttributes",      NULL,                   qtssAttrDataTypeQTSS_Object, qtssAttrModeRead | qtssAttrModePreempSafe | qtssAttrModeInstanceAttrAllowed }
 };
 
-char*    QTSSModule::sRoleNames[] = 
+const char*    QTSSModule::sRoleNames[] = 
 {   
            "InitializeRole"           , 
            "ShutdownRole"             , 
@@ -93,7 +93,7 @@ void QTSSModule::Initialize()
                             sAttributes[x].fAttrDataType, sAttributes[x].fAttrPermission);
 }
 
-QTSSModule::QTSSModule(char* inName, char* inPath)
+QTSSModule::QTSSModule(const char* inName, char* inPath)
 :   QTSSDictionary(QTSSDictionaryMap::GetMap(QTSSDictionaryMap::kModuleDictIndex)),
     fQueueElem(NULL),
     fPath(NULL),

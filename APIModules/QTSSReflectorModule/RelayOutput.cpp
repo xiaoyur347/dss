@@ -58,18 +58,18 @@ QTSS_AttributeID            RelayOutput::sOutputCurBitsPerSec       =   qtssIlle
 QTSS_AttributeID            RelayOutput::sOutputTotalPacketsSent        =   qtssIllegalAttrID;
 QTSS_AttributeID            RelayOutput::sOutputTotalBytesSent      =   qtssIllegalAttrID;
 
-static char*                    sOutputTypeName     = "output_type";
-static char*                    sOutputDestAddrName     = "output_dest_addr";
-static char*                    sOutputLocalAddrName    = "output_local_addr";
-static char*                    sOutputUDPPortsName = "output_udp_ports";
-static char*                    sOutputRTSPPortName = "output_rtsp_port";
-static char*                    sOutputURLName          = "output_url";
-static char*                    sOutputTTLName          = "output_ttl";
+static const char* sOutputTypeName         = "output_type";
+static const char* sOutputDestAddrName     = "output_dest_addr";
+static const char* sOutputLocalAddrName    = "output_local_addr";
+static const char* sOutputUDPPortsName     = "output_udp_ports";
+static const char* sOutputRTSPPortName     = "output_rtsp_port";
+static const char* sOutputURLName          = "output_url";
+static const char* sOutputTTLName          = "output_ttl";
 
-static char*                    sOutputCurPacketsPerSecName = "output_cur_packetspersec";
-static char*                    sOutputCurBitsPerSecName    = "output_cur_bitspersec";
-static char*                    sOutputTotalPacketsSentName = "output_total_packets_sent";
-static char*                    sOutputTotalBytesSentName   = "output_total_bytes_sent";
+static const char* sOutputCurPacketsPerSecName = "output_cur_packetspersec";
+static const char* sOutputCurBitsPerSecName    = "output_cur_bitspersec";
+static const char* sOutputTotalPacketsSentName = "output_total_packets_sent";
+static const char* sOutputTotalBytesSentName   = "output_total_bytes_sent";
 
 void RelayOutput::Register()
 {

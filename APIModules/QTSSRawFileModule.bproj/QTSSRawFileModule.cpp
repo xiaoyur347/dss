@@ -89,11 +89,11 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
 {
     (void)QTSS_AddRole(QTSS_RTSPPreProcessor_Role);
 
-    static char*        sStateName          =   "QTSSRawFileModuleState";
-    static char*        sFileName           =   "QTSSRawFileModuleFile";
-    static char*        sFileBufferName     =   "QTSSRawFileModuleFileBuffer";
-    static char*        sReadOffsetName     =   "QTSSRawFileModuleReadOffset";
-    static char*        sWriteOffsetName    =   "QTSSRawFileModuleWriteOffset";
+    const char*        sStateName          =   "QTSSRawFileModuleState";
+    const char*        sFileName           =   "QTSSRawFileModuleFile";
+    const char*        sFileBufferName     =   "QTSSRawFileModuleFileBuffer";
+    const char*        sReadOffsetName     =   "QTSSRawFileModuleReadOffset";
+    const char*        sWriteOffsetName    =   "QTSSRawFileModuleWriteOffset";
 
     (void)QTSS_AddStaticAttribute(qtssRTSPSessionObjectType, sStateName, NULL, qtssAttrDataTypeUInt32);
     (void)QTSS_IDForAttr(qtssRTSPSessionObjectType, sStateName, &sStateAttr);
@@ -111,7 +111,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_IDForAttr(qtssRTSPSessionObjectType, sWriteOffsetName, &sWriteOffsetAttr);
 
     // Tell the server our name!
-    static char* sModuleName = "QTSSRawFileModule";
+    const char* sModuleName = "QTSSRawFileModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;

@@ -317,8 +317,8 @@ class QTSServerPrefs : public QTSSPrefs
         struct PrefInfo
         {
             UInt32  fAllowMultipleValues;
-            char*   fDefaultValue;
-            char**  fAdditionalDefVals; // For prefs with multiple default values
+            const char*   fDefaultValue;
+            const char**  fAdditionalDefVals; // For prefs with multiple default values
         };
             
         void SetupAttributes();
@@ -334,17 +334,17 @@ class QTSServerPrefs : public QTSSPrefs
         
         // Prefs that have multiple default values (rtsp_ports) have
         // to be dealt with specially
-        static char*    sAdditionalDefaultPorts[];
+        static const char*    sAdditionalDefaultPorts[];
         
         // Player prefs
-        static char*    sRTP_Header_Players[];
-        static char*    sAdjust_Bandwidth_Players[];
-        static char*    sNo_Adjust_Pause_Time_Players[];
-        static char*    sNo_Pause_Time_Adjustment_Players[];
-        static char*    sRTP_Start_Time_Players[];
-        static char*    sDisable_Rate_Adapt_Players[];
-        static char*    sFixed_Target_Time_Players[];
-        static char*    sDisable_Thinning_Players[];
+        static const char*    sRTP_Header_Players[];
+        static const char*    sAdjust_Bandwidth_Players[];
+        static const char*    sNo_Adjust_Pause_Time_Players[];
+        static const char*    sNo_Pause_Time_Adjustment_Players[];
+        static const char*    sRTP_Start_Time_Players[];
+        static const char*    sDisable_Rate_Adapt_Players[];
+        static const char*    sFixed_Target_Time_Players[];
+        static const char*    sDisable_Thinning_Players[];
        
 };
 #endif //__QTSSPREFS_H__

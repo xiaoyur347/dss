@@ -184,7 +184,7 @@ Bool16 RunInForeground()
 }
 
 
-Bool16 RestartServer(char* theXMLFilePath)
+Bool16 RestartServer(const char* theXMLFilePath)
 {
 	Bool16 autoRestart = true;
 	XMLPrefsParser theXMLParser(theXMLFilePath);
@@ -300,11 +300,11 @@ int main(int argc, char * argv[])
     Bool16 theXMLPrefsExist = true;
     UInt32 debugLevel = 0;
     UInt32 debugOptions = kRunServerDebug_Off;
-	static char* sDefaultConfigFilePath = DEFAULTPATHS_ETC_DIR_OLD "streamingserver.conf";
-	static char* sDefaultXMLFilePath = DEFAULTPATHS_ETC_DIR "streamingserver.xml";
+    const char* sDefaultConfigFilePath = DEFAULTPATHS_ETC_DIR_OLD "streamingserver.conf";
+    const char* sDefaultXMLFilePath = DEFAULTPATHS_ETC_DIR "streamingserver.xml";
 
-    char* theConfigFilePath = sDefaultConfigFilePath;
-    char* theXMLFilePath = sDefaultXMLFilePath;
+    const char* theConfigFilePath = sDefaultConfigFilePath;
+    const char* theXMLFilePath = sDefaultXMLFilePath;
     while ((ch = getopt(argc,argv, "vdfxp:DZ:c:o:S:Ih")) != EOF) // opt: means requires option arg
     {
         switch(ch)

@@ -95,12 +95,12 @@ static const UInt32 kWritingBufferState = 1;
 // Default values for preferences
 static Bool16   sDefaultHTTPFileXferEnabled = false; // This module is not enabled by default.
 static Bool16   sDefaultLogEnabled      = false;
-static char*    sDefaultLogName         = "StreamingServerHttp";
+static const char* sDefaultLogName      = "StreamingServerHttp";
 static char*    sDefaultLogDir = NULL;
 
 static UInt32   sDefaultMaxLogBytes     = 50000000;
 static UInt32   sDefaultRollInterval    = 7;
-static char*    sVoidField              = "-";
+static const char* sVoidField           = "-";
 // Current values for preferences
 static Bool16   sHTTPFileXferEnabled    = false;
 static Bool16   sLogEnabled             = false;
@@ -184,18 +184,18 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     sLogMutex = new OSMutex();
     
     // Add attributes for processing the requests
-    static char*    sTransferTypeName   = "QTSSHttpFileModuleTransferType";
-    static char*    sEventContextName   = "QTSSHttpFileModuleContext";
-    static char*    sFileName           = "QTSSHttpFileModuleFile";
-    static char*    sStateName          = "QTSSHttpFileModuleState";
-    static char*    sFileBufferName     = "QTSSHttpFileModuleFileBuffer";
-    static char*    sFileBufferLenName  = "QTSSHttpFileModuleFileBufferLen";
-    static char*    sReadOffsetName     = "QTSSHttpFileModuleReadOffset";
-    static char*    sWriteOffsetName    = "QTSSHttpFileModuleWriteOffset";
+    const char* sTransferTypeName   = "QTSSHttpFileModuleTransferType";
+    const char* sEventContextName   = "QTSSHttpFileModuleContext";
+    const char* sFileName           = "QTSSHttpFileModuleFile";
+    const char* sStateName          = "QTSSHttpFileModuleState";
+    const char* sFileBufferName     = "QTSSHttpFileModuleFileBuffer";
+    const char* sFileBufferLenName  = "QTSSHttpFileModuleFileBufferLen";
+    const char* sReadOffsetName     = "QTSSHttpFileModuleReadOffset";
+    const char* sWriteOffsetName    = "QTSSHttpFileModuleWriteOffset";
     
     // Add attributes for logging the requests
-    static char*    sRequestName        = "QTSSHttpFileModuleRequestName";
-    static char*    sContentLengthName  = "QTSSHttpFileModuleContentLengthName";
+    const char* sRequestName        = "QTSSHttpFileModuleRequestName";
+    const char* sContentLengthName  = "QTSSHttpFileModuleContentLengthName";
 
     
     // Do role & attribute setup
@@ -236,7 +236,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_IDForAttr(qtssRTSPSessionObjectType, sContentLengthName, &sContentLengthAttr);
     
     // Tell the server our name!
-    static char* sModuleName = "QTSSHttpFileModule";
+    const char* sModuleName = "QTSSHttpFileModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;
@@ -1187,7 +1187,7 @@ StrPtrLen* GetMimeType(StrPtrLen* fileName)
 void LogRequest(QTSS_RTSPSessionObject inRTSPSession)
 {
     static StrPtrLen sUnknownStr(sVoidField);
-    static char* sStatus = "200";
+    const char* sStatus = "200";
     UInt32 theLen = 0;
     
     OSMutexLocker locker(sLogMutex);

@@ -44,7 +44,7 @@ class XMLPrefsParser : public XMLParser
 {
     public:
     
-        XMLPrefsParser(char* inPath);
+        XMLPrefsParser(const char* inPath);
         ~XMLPrefsParser();
     
         //
@@ -60,7 +60,7 @@ class XMLPrefsParser : public XMLParser
         //
         // ACCESSORS
 
-        ContainerRef    GetRefForModule( char* inModuleName, Bool16 create = true);
+        ContainerRef    GetRefForModule( const char* inModuleName, Bool16 create = true);
         
         ContainerRef    GetRefForServer();
         
@@ -75,10 +75,10 @@ class XMLPrefsParser : public XMLParser
         //
         // Returns the pref value at the specfied location
         char*   GetPrefValueByIndex(ContainerRef container, const UInt32 inPrefsIndex, const UInt32 inValueIndex,
-                                            char** outPrefName, char** outDataType);
+                                            char** outPrefName, const char** outDataType);
                                         
         char*   GetPrefValueByRef(ContainerRef pref, const UInt32 inValueIndex,
-                                            char** outPrefName, char** outDataType);
+                                            char** outPrefName, const char** outDataType);
                                         
         ContainerRef    GetObjectValue(ContainerRef pref, const UInt32 inValueIndex);
 
@@ -94,19 +94,19 @@ class XMLPrefsParser : public XMLParser
         //
         // Creates a new pref. Returns the index of that pref. If pref already
         // exists, returns existing index.
-        ContainerRef    AddPref( ContainerRef container, char* inPrefName, char* inPrefDataType );
+        ContainerRef    AddPref( ContainerRef container, const char* inPrefName, const char* inPrefDataType );
 
-        void    ChangePrefType( ContainerRef pref, char* inNewPrefDataType);
+        void    ChangePrefType( ContainerRef pref, const char* inNewPrefDataType);
                             
         void    AddNewObject( ContainerRef pref );
 
-        void    AddPrefValue(   ContainerRef pref, char* inNewValue);
+        void    AddPrefValue(   ContainerRef pref, const char* inNewValue);
         
         //
         // If this value index does not exist yet, and it is one higher than
         // the highest one, this function implictly adds the new value.
         void    SetPrefValue(   ContainerRef pref, const UInt32 inValueIndex,
-                                char* inNewValue);
+                                const char* inNewValue);
         
         //
         // Removes the pref entirely if # of values drops to 0

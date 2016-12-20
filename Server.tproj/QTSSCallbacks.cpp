@@ -230,7 +230,7 @@ QTSS_Error  QTSSCallbacks::QTSS_GetValueAsString (QTSS_Object inDictionary, QTSS
     return ((QTSSDictionary*)inDictionary)->GetValueAsString(inID, inIndex, outString);
 }
 
-QTSS_Error  QTSSCallbacks::QTSS_TypeToTypeString(const QTSS_AttrDataType inType, char** outTypeString)
+QTSS_Error  QTSSCallbacks::QTSS_TypeToTypeString(const QTSS_AttrDataType inType, const char** outTypeString)
 {
     if (outTypeString == NULL)
         return QTSS_BadArgument;
@@ -239,7 +239,7 @@ QTSS_Error  QTSSCallbacks::QTSS_TypeToTypeString(const QTSS_AttrDataType inType,
     return QTSS_NoErr;
 }
 
-QTSS_Error  QTSSCallbacks::QTSS_TypeStringToType(char* inTypeString, QTSS_AttrDataType* outType)
+QTSS_Error  QTSSCallbacks::QTSS_TypeStringToType(const char* inTypeString, QTSS_AttrDataType* outType)
 {
     if ((inTypeString == NULL) || (outType == NULL))
         return QTSS_BadArgument;

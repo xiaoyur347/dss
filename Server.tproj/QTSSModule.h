@@ -63,7 +63,7 @@ class QTSSModule : public QTSSDictionary, public Task
         // name of the module will be its file name. Otherwise, the
         // inName parameter will set it.
 
-        QTSSModule(char* inName, char* inPath = NULL);
+        QTSSModule(const char* inName, char* inPath = NULL);
 
         // This function does all the module setup. If the module is being
         // loaded from disk, you need not pass in a main entrypoint (as
@@ -178,7 +178,7 @@ class QTSSModule : public QTSSDictionary, public Task
         static Bool16       sHasRTSPAuthenticateModule;
     
         static QTSSAttrInfoDict::AttrInfo   sAttributes[];
-        static char* sRoleNames[];
+        static const char* sRoleNames[];
         
         QTSS_ModuleState    fModuleState;
 

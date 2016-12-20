@@ -1350,7 +1350,7 @@ QTSS_Error QTSS_CreateObjectType(QTSS_ObjectType* outType);
 //              QTSS_BadArgument:   Adding an attribute to a nonexistent object type, attribute
 //                      name too long, or NULL arguments.
 //              QTSS_AttrNameExists: The name must be unique.
-QTSS_Error QTSS_AddStaticAttribute( QTSS_ObjectType inObjectType, char* inAttrName,
+QTSS_Error QTSS_AddStaticAttribute( QTSS_ObjectType inObjectType, const char* inAttrName,
                 void* inUnused, QTSS_AttrDataType inAttrDataType);
                 
 /********************************************************************/
@@ -1367,7 +1367,7 @@ QTSS_Error QTSS_AddStaticAttribute( QTSS_ObjectType inObjectType, char* inAttrNa
 //              QTSS_BadArgument:   Adding an attribute to a nonexistent object type, attribute
 //                      name too long, or NULL arguments.
 //              QTSS_AttrNameExists: The name must be unique.
-QTSS_Error QTSS_AddInstanceAttribute(   QTSS_Object inObject, char* inAttrName,
+QTSS_Error QTSS_AddInstanceAttribute(QTSS_Object inObject, const char* inAttrName,
         void* inUnused, QTSS_AttrDataType inAttrDataType);
                                         
 /********************************************************************/
@@ -1421,7 +1421,7 @@ QTSS_Error QTSS_GetAttrInfoByID(QTSS_Object inObject, QTSS_AttributeID inAttrID,
 //  Returns:    QTSS_NoErr
 //              QTSS_BadArgument
 //              QTSS_AttrDoesntExist
-QTSS_Error QTSS_GetAttrInfoByName(QTSS_Object inObject, char* inAttrName,
+QTSS_Error QTSS_GetAttrInfoByName(QTSS_Object inObject, const char* inAttrName,
                                     QTSS_AttrInfoObject* outAttrInfoObject);
 
 /********************************************************************/
@@ -1493,7 +1493,7 @@ QTSS_Error QTSS_GetValueAsString (QTSS_Object inObject, QTSS_AttributeID inID, U
 //  Returns:    QTSS_NoErr
 //              QTSS_BadArgument
 QTSS_Error  QTSS_TypeStringToType(const char* inTypeString, QTSS_AttrDataType* outType);
-QTSS_Error  QTSS_TypeToTypeString(const QTSS_AttrDataType inType, char** outTypeString);
+QTSS_Error  QTSS_TypeToTypeString(const QTSS_AttrDataType inType, const char** outTypeString);
 
 
 /********************************************************************/

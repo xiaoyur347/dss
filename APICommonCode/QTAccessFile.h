@@ -79,7 +79,7 @@ class QTAccessFile
                                     );
 
         static void SetAccessFileName(const char *inQTAccessFileName); //makes a copy and stores it
-        static char* GetAccessFileName() { return sQTAccessFileName; }; // a reference. Don't delete!
+        static const char* GetAccessFileName() { return sQTAccessFileName; }; // a reference. Don't delete!
         
         // allocates memory for outUsersFilePath and outGroupsFilePath - remember to delete
         // returns the auth scheme
@@ -92,8 +92,8 @@ class QTAccessFile
         static char* sQTAccessFileName; // managed by the QTAccess module
         static Bool16 sAllocatedName;
         static OSMutex* sAccessFileMutex;
-        static char* sAccessValidUser;
-        static char* sAccessAnyUser;
+        static const char* sAccessValidUser;
+        static const char* sAccessAnyUser;
         
 
 };

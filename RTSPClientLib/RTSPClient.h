@@ -346,7 +346,7 @@ class RTSPClient
         OSMutex*            GetMutex()      { return &fMutex; }
 
     private:
-        static char*    sUserAgent;
+        static const char*    sUserAgent;
 
     
         // Helper methods
@@ -448,17 +448,17 @@ class RTSPClient
 
             
         char*       fUserAgent;
-static  char*       sControlID;
-        char*       fControlID;
+        static  const char* sControlID;
+        char* fControlID;
 
         //These values are for the wireless links only -- not end-to-end
 		//For the following values; use 0 for undefined.
         UInt32 fGuarenteedBitRate;				//kbps
-        UInt32 fMaxBitRate;						//kbps
+        UInt32 fMaxBitRate;					//kbps
         UInt32 fMaxTransferDelay;				//milliseconds
-		UInt32 fBandwidth;						//bps
-		UInt32 fBufferSpace;					//bytes
-		UInt32 fDelayTime;						//milliseconds
+        UInt32 fBandwidth;					//bps
+        UInt32 fBufferSpace;					//bytes
+        UInt32 fDelayTime;					//milliseconds
         
         struct InterleavedParams
         {

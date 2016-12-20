@@ -62,7 +62,7 @@ private:
     static Bool16 SetEnabled( const char* value, Bool16* field);
     static void PrintPlaylistElement(PLDoubleLinkedListNode<SimplePlayListElement> *node,void *file);
 
-    void    CreateWorkingFilePath(char* extension, char* result);
+    void    CreateWorkingFilePath(const char* extension, char* result);
     bool    FileCreateAndCheckAccess(char *theFileName);
     void    CreateCurrentAndUpcomingFiles();
     void    UpdatePlaylistFiles(PlaylistPicker *picker,PlaylistPicker *insertPicker);
@@ -73,7 +73,7 @@ private:
     int     SendXAudioCastHeaders();
     void    ShowSetupParams();
     void    RemoveFiles();
-    char*   MapErrorToString(int error);
+    const char* MapErrorToString(int error);
 
     Bool16  mValid;
     

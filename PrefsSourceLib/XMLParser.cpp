@@ -34,7 +34,7 @@
 #include "XMLParser.h"
 #include "OSMemory.h"
 
-XMLParser::XMLParser( char* inPath, DTDVerifier* verifier)
+XMLParser::XMLParser( const char* inPath, DTDVerifier* verifier)
     : fRootTag(NULL), fFilePath(NULL)
 {
     StrPtrLen thePath(inPath);
@@ -143,7 +143,7 @@ void XMLParser::SetRootTag(XMLTag* tag)
     fRootTag = tag;
 }
     
-void XMLParser::WriteToFile(char** fileHeader)
+void XMLParser::WriteToFile(const char** fileHeader)
 {
     char theBuffer[8192];
     ResizeableStringFormatter formatter(theBuffer, 8192);
@@ -215,7 +215,7 @@ XMLTag::XMLTag() :
 { fElem = this;
 }
 
-XMLTag::XMLTag(char* tagName) :
+XMLTag::XMLTag(const char* tagName) :
     fTag(NULL),
     fValue(NULL),
     fElem(NULL)
@@ -571,7 +571,7 @@ XMLTag* XMLTag::GetEmbeddedTagByNameAndAttr(const char* tagName, const char* att
     return result;
 }
 
-void XMLTag::AddAttribute( char* attrName, char* attrValue)
+void XMLTag::AddAttribute( const char* attrName, const char* attrValue)
 {
     XMLAttribute* attr = NEW XMLAttribute;
     StrPtrLen temp(attrName);
@@ -582,7 +582,7 @@ void XMLTag::AddAttribute( char* attrName, char* attrValue)
     fAttributes.EnQueue(&attr->fElem);
 }
 
-void XMLTag::RemoveAttribute(char* attrName)
+void XMLTag::RemoveAttribute(const char* attrName)
 {
     for (OSQueueIter iter(&fAttributes); !iter.IsDone(); iter.Next())
     {
@@ -606,7 +606,7 @@ void XMLTag::RemoveEmbeddedTag(XMLTag* tag)
     fEmbeddedTags.Remove(&tag->fElem);
 }
 
-void XMLTag::SetTagName( char* name)
+void XMLTag::SetTagName(const char* name)
 {
     Assert (name != NULL);  // can't have a tag without a name!
     
@@ -617,7 +617,7 @@ void XMLTag::SetTagName( char* name)
     fTag = temp.GetAsCString();
 }
     
-void XMLTag::SetValue( char* value)
+void XMLTag::SetValue(const char* value)
 {
     if (fEmbeddedTags.GetLength() > 0)
         return;     // can't have a value with embedded tags

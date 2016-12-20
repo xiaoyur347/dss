@@ -74,7 +74,7 @@ static bool IsDir(char* path)
 
 static void DisplayPickerErr( int pickErr, const char *message, const char*fname, int lineCount, const char*lineBuff )
 {
-    char *errMessage;
+    const char *errMessage;
     
     qtss_printf( "- %s:\n", message );
     

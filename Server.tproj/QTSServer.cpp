@@ -122,7 +122,7 @@ class RTPSocketPool : public UDPSocketPool
 
 
 
-char*           QTSServer::sPortPrefString = "rtsp_port";
+const char*     QTSServer::sPortPrefString = "rtsp_port";
 QTSS_Callbacks  QTSServer::sCallbacks;
 XMLPrefsParser* QTSServer::sPrefsSource = NULL;
 PrefsSource*    QTSServer::sMessagesSource = NULL;

@@ -106,12 +106,12 @@ QTSS_Error  QTSS_AddAttribute(QTSS_ObjectType inType, const char* inTag, void* i
     return (sCallbacks->addr [kAddAttributeCallback]) (inType, inTag, inUnused);    
 }
 
-QTSS_Error  QTSS_AddStaticAttribute(QTSS_ObjectType inObjectType, char* inAttrName, void* inUnused, QTSS_AttrDataType inAttrDataType)
+QTSS_Error  QTSS_AddStaticAttribute(QTSS_ObjectType inObjectType, const char* inAttrName, void* inUnused, QTSS_AttrDataType inAttrDataType)
 {
     return (sCallbacks->addr [kAddStaticAttributeCallback]) (inObjectType, inAttrName, inUnused, inAttrDataType);   
 }
 
-QTSS_Error  QTSS_AddInstanceAttribute(QTSS_Object inObject, char* inAttrName, void* inUnused, QTSS_AttrDataType inAttrDataType)
+QTSS_Error  QTSS_AddInstanceAttribute(QTSS_Object inObject, const char* inAttrName, void* inUnused, QTSS_AttrDataType inAttrDataType)
 {
     return (sCallbacks->addr [kAddInstanceAttributeCallback]) (inObject, inAttrName, inUnused, inAttrDataType); 
 }
@@ -136,7 +136,7 @@ QTSS_Error QTSS_GetAttrInfoByID(QTSS_Object inObject, QTSS_AttributeID inAttrID,
     return (sCallbacks->addr [kGetAttrInfoByIDCallback]) (inObject, inAttrID, outAttrInfoObject);   
 }
 
-QTSS_Error QTSS_GetAttrInfoByName(QTSS_Object inObject, char* inAttrName, QTSS_Object* outAttrInfoObject)
+QTSS_Error QTSS_GetAttrInfoByName(QTSS_Object inObject, const char* inAttrName, QTSS_Object* outAttrInfoObject)
 {
     return (sCallbacks->addr [kGetAttrInfoByNameCallback]) (inObject, inAttrName, outAttrInfoObject);   
 }
@@ -161,7 +161,7 @@ QTSS_Error  QTSS_TypeStringToType(const char* inTypeString, QTSS_AttrDataType* o
     return (sCallbacks->addr [kTypeStringToTypeCallback]) (inTypeString, outType);  
 }
 
-QTSS_Error  QTSS_TypeToTypeString(const QTSS_AttrDataType inType, char** outTypeString)
+QTSS_Error  QTSS_TypeToTypeString(const QTSS_AttrDataType inType, const char** outTypeString)
 {
     return (sCallbacks->addr [kTypeToTypeStringCallback]) (inType, outTypeString);  
 }

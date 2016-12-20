@@ -144,10 +144,10 @@ StrPtrLen   RTPStream::sChannelNums[] =
     StrPtrLen("9")
 };
 
-char *RTPStream::noType = "no-type";
-char *RTPStream::UDP = "UDP";
-char *RTPStream::RUDP = "RUDP";
-char *RTPStream::TCP = "TCP";
+const char *RTPStream::noType = "no-type";
+const char *RTPStream::UDP = "UDP";
+const char *RTPStream::RUDP = "RUDP";
+const char *RTPStream::TCP = "TCP";
 
 QTSS_ModuleState RTPStream::sRTCPProcessModuleState = { NULL, 0, NULL, false, false, false, 0 };
 
@@ -1761,9 +1761,9 @@ void RTPStream::ProcessIncomingRTCPPacket(StrPtrLen* inPacket)
     fSession->GetSessionMutex()->Unlock();
 }
 
-char* RTPStream::GetStreamTypeStr()
+const char* RTPStream::GetStreamTypeStr()
 {
-    char *streamType = NULL;
+    const char *streamType = NULL;
      
     switch (fTransportType)
      {
@@ -1855,12 +1855,12 @@ void RTPStream::PrintRTCPSenderReport(char* packetBuff, UInt32 inLen)
 
 void RTPStream::PrintPacket(char *inBuffer, UInt32 inLen, SInt32 inType)
 {
-    static char* rr="RR";
-    static char* ack="ACK";
-    static char* sTypeAudio=" type=audio";
-    static char* sTypeVideo=" type=video";
-    static char* sUnknownTypeStr = "?";
-    char* theType = sUnknownTypeStr;
+    const char* rr="RR";
+    const char* ack="ACK";
+    const char* sTypeAudio=" type=audio";
+    const char* sTypeVideo=" type=video";
+    const char* sUnknownTypeStr = "?";
+    const char* theType = sUnknownTypeStr;
     
     if (fPayloadType == qtssVideoPayloadType)
         theType = sTypeVideo;

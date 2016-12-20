@@ -104,7 +104,7 @@ static void PrintfStrPtrLen( StrPtrLen *splRequest )
 #endif
 
 //hack stuff
-static char*                    sBroadcasterSessionName="QTSSReflectorModuleBroadcasterSession";
+static const char*              sBroadcasterSessionName="QTSSReflectorModuleBroadcasterSession";
 static QTSS_AttributeID         sClientBroadcastSessionAttr =   qtssIllegalAttrID;
 
 
@@ -130,8 +130,8 @@ StrPtrLen   RTSPSession::sHTTPResponseNoServerHeaderPtr(sHTTPResponseNoServerHea
 
 // stock reponse with place holder for server header and optional "x-server-ip-address" header ( %s%s%s for  "x-server-ip-address" + ip address + \r\n )
 // the optional version must be generated at runtime to include a valid IP address for the actual interface
-char*       RTSPSession::sHTTPResponseFormatStr =  "HTTP/1.0 200 OK\r\n%s%s%s%s\r\nConnection: close\r\nDate: Thu, 19 Aug 1982 18:30:00 GMT\r\nCache-Control: no-store\r\nPragma: no-cache\r\nContent-Type: application/x-rtsp-tunnelled\r\n\r\n";
-char*       RTSPSession::sHTTPNoServerResponseFormatStr =  "HTTP/1.0 200 OK\r\n%s%s%s%sConnection: close\r\nDate: Thu, 19 Aug 1982 18:30:00 GMT\r\nCache-Control: no-store\r\nPragma: no-cache\r\nContent-Type: application/x-rtsp-tunnelled\r\n\r\n";
+const char*       RTSPSession::sHTTPResponseFormatStr =  "HTTP/1.0 200 OK\r\n%s%s%s%s\r\nConnection: close\r\nDate: Thu, 19 Aug 1982 18:30:00 GMT\r\nCache-Control: no-store\r\nPragma: no-cache\r\nContent-Type: application/x-rtsp-tunnelled\r\n\r\n";
+const char*       RTSPSession::sHTTPNoServerResponseFormatStr =  "HTTP/1.0 200 OK\r\n%s%s%s%sConnection: close\r\nDate: Thu, 19 Aug 1982 18:30:00 GMT\r\nCache-Control: no-store\r\nPragma: no-cache\r\nContent-Type: application/x-rtsp-tunnelled\r\n\r\n";
 
 void RTSPSession::Initialize()
 {
@@ -1342,7 +1342,7 @@ QTSS_Error RTSPSession::PreFilterForHTTPProxyTunnel()
             Assert( localIPAddr.Len < sizeof( localIPAddrBuf ) );
             localIPAddrBuf[localIPAddr.Len] = 0;
             
-            char *headerFieldPtr = "";
+            const char *headerFieldPtr = "";
             if(showServerInfo)
             {
                 headerFieldPtr = QTSServerInterface::GetServerHeader().Ptr;    

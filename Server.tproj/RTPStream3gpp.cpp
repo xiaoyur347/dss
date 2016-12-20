@@ -459,7 +459,7 @@ void RTPStream3GPP::UpdateTimeAndQuality(SInt64 curTime)
 		DEBUG_PRINTF(("RTPStream3GPP::UpdateTimeAndQuality fNumSmallRTT (%" _S32BITARG_ ") >= levelTest(%" _S32BITARG_ ") maximum quality level increased: %" _S32BITARG_ "\n",fNumSmallRTT,  levelTest, fRTPStream.GetMaxQualityLevelLimit()));
 	}
 
-	char *payload = "?";
+	const char *payload = "?";
 	if (GetDebugPrintfs()) 
 	{
 		UInt8 payloadType = fRTPStream.GetPayLoadType();

@@ -76,21 +76,21 @@ static UInt32                   sRequestCount= 0;
 
 static QTSS_Initialize_Params sQTSSparams;
 
-//static char* sResponseHeader = "HTTP/1.0 200 OK\r\nServer: QTSS\r\nConnection: Close\r\nContent-Type: text/plain\r\n\r\n";
-static char* sResponseHeader = "HTTP/1.0 200 OK";
-static char* sUnauthorizedResponseHeader = "HTTP/1.1 401 Unauthorized\r\nWWW-Authenticate: Basic realm=\"QTSS/modules/admin\"\r\nServer: QTSS\r\nConnection: Close\r\nContent-Type: text/plain\r\n\r\n";
-static char* sPermissionDeniedHeader = "HTTP/1.1 403 Forbidden\r\nConnection: Close\r\nContent-Type: text/html\r\n\r\n";
-static char* sHTMLBody =  "<HTML><BODY>\n<P><b>Your request was denied by the server.</b></P>\n</BODY></HTML>\r\n\r\n";
+//static const char* sResponseHeader = "HTTP/1.0 200 OK\r\nServer: QTSS\r\nConnection: Close\r\nContent-Type: text/plain\r\n\r\n";
+static const char* sResponseHeader = "HTTP/1.0 200 OK";
+static const char* sUnauthorizedResponseHeader = "HTTP/1.1 401 Unauthorized\r\nWWW-Authenticate: Basic realm=\"QTSS/modules/admin\"\r\nServer: QTSS\r\nConnection: Close\r\nContent-Type: text/plain\r\n\r\n";
+static const char* sPermissionDeniedHeader = "HTTP/1.1 403 Forbidden\r\nConnection: Close\r\nContent-Type: text/html\r\n\r\n";
+static const char* sHTMLBody =  "<HTML><BODY>\n<P><b>Your request was denied by the server.</b></P>\n</BODY></HTML>\r\n\r\n";
     
 
-static char* sVersionHeader = NULL;
-static char* sConnectionHeader = "Connection: Close";
-static char* kDefaultHeader = "Server: QTSS";
-static char* sContentType = "Content-Type: text/plain";
-static char* sEOL = "\r\n";
-static char* sEOM = "\r\n\r\n";
-static char* sAuthRealm = "QTSS/modules/admin";
-static char* sAuthResourceLocalPath = "/modules/admin/";
+static const char* sVersionHeader = NULL;
+static const char* sConnectionHeader = "Connection: Close";
+static const char* kDefaultHeader = "Server: QTSS";
+static const char* sContentType = "Content-Type: text/plain";
+static const char* sEOL = "\r\n";
+static const char* sEOM = "\r\n\r\n";
+static const char* sAuthRealm = "QTSS/modules/admin";
+static const char* sAuthResourceLocalPath = "/modules/admin/";
 
 static QTSS_ServerObject        sServer = NULL;
 static QTSS_ModuleObject        sModule = NULL;
@@ -100,7 +100,7 @@ static AdminClass               *sAdminPtr = NULL;
 static QueryURI                 *sQueryPtr = NULL;
 static OSMutex*                 sAdminMutex = NULL;//admin module isn't reentrant
 static UInt32                   sVersion=20030306;
-static char *sDesc="Implements HTTP based Admin Protocol for accessing server attributes";
+static const char *sDesc="Implements HTTP based Admin Protocol for accessing server attributes";
 static char decodedLine[kAuthNameAndPasswordBuffSize] = { 0 };
 static char codedLine[kAuthNameAndPasswordBuffSize] = { 0 }; 
 static QTSS_TimeVal             sLastRequestTime = 0;
@@ -109,7 +109,7 @@ static UInt32                   sSessID = 0;
 static StrPtrLen            sAuthRef("AuthRef");
 #if __MacOSX__
 
-static char*                sSecurityServerAuthKey = "com.apple.server.admin.streaming";
+static const char*          sSecurityServerAuthKey = "com.apple.server.admin.streaming";
 static AuthorizationItem    sRight = { sSecurityServerAuthKey, 0, NULL, 0 };
 static AuthorizationRights  sRightSet = { 1, &sRight };
 #endif
@@ -133,18 +133,18 @@ static Bool16 sDefaultEnableRemoteAdmin = true;
 
 static QTSS_AttributeID sIPAccessListID = qtssIllegalAttrID;
 static char*            sIPAccessList = NULL;
-static char*            sLocalLoopBackAddress = "127.0.0.*";
+static const char*      sLocalLoopBackAddress = "127.0.0.*";
 
 static char*            sAdministratorGroup = NULL;
-static char*            sDefaultAdministratorGroup = "admin";
+static const char*      sDefaultAdministratorGroup = "admin";
 
 static Bool16           sFlushing = false;
 static QTSS_AttributeID sFlushingID = qtssIllegalAttrID;
-static char*            sFlushingName = "QTSSAdminModuleFlushingState";
+static const char*      sFlushingName = "QTSSAdminModuleFlushingState";
 static UInt32           sFlushingLen = sizeof(sFlushing);
 
 static QTSS_AttributeID sAuthenticatedID = qtssIllegalAttrID;
-static char*            sAuthenticatedName = "QTSSAdminModuleAuthenticatedState";
+static const char*      sAuthenticatedName = "QTSSAdminModuleAuthenticatedState";
 
 //**************************************************
 
@@ -381,7 +381,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_IDForAttr(qtssRTSPRequestObjectType, sAuthenticatedName, &sAuthenticatedID);
 
     // Tell the server our name!
-    static char* sModuleName = "QTSSAdminModule";
+    const char* sModuleName = "QTSSAdminModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;
@@ -616,7 +616,7 @@ inline Bool16 HasAuthentication(StringParser *theFullRequestPtr, StrPtrLen* name
         }
         else if (authType.Equal(sAuthRef) )
         {
-            namePtr->Set(NULL,0);
+            namePtr->Reset();
             passwordPtr->Set(authString.Ptr, authString.Len);
             hasAuthentication = true;
             break;

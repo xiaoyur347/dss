@@ -76,11 +76,11 @@ class QTSSModuleUtils
         static void     LogError(   QTSS_ErrorVerbosity inVerbosity,
                                     QTSS_AttributeID inTextMessage,
                                     UInt32 inErrNumber,
-                                    char* inArgument = NULL,
-                                    char* inArg2 = NULL);
+                                    const char* inArgument = NULL,
+                                    const char* inArg2 = NULL);
                                     
         static void   LogErrorStr( QTSS_ErrorVerbosity inVerbosity, const char* inMessage);
-        static void   LogPrefErrorStr( QTSS_ErrorVerbosity inVerbosity, char*  preference, char* inMessage);
+        static void   LogPrefErrorStr( QTSS_ErrorVerbosity inVerbosity, const char* preference, const char* inMessage);
      
         // This function constructs a C-string of the full path to the file being requested.
         // You may opt to append an optional suffix, or pass in NULL. You are responsible
@@ -179,10 +179,10 @@ class QTSSModuleUtils
         // Pass in NULL for the default value or 0 for the default value length if it is not known.
         //
         // This function logs an error if there was a default value provided.
-        static void GetAttribute(QTSS_Object inObject, char* inAttributeName, QTSS_AttrDataType inType,
+        static void GetAttribute(QTSS_Object inObject, const char* inAttributeName, QTSS_AttrDataType inType,
                             void* ioBuffer, void* inDefaultValue, UInt32 inBufferLen);
                             
-        static void GetIOAttribute(QTSS_Object inObject, char* inAttributeName, QTSS_AttrDataType inType,
+        static void GetIOAttribute(QTSS_Object inObject, const char* inAttributeName, QTSS_AttrDataType inType,
                             void* ioDefaultResultBuffer, UInt32 inBufferLen);
         //
         // GET STRING ATTRIBUTE
@@ -191,14 +191,14 @@ class QTSSModuleUtils
         // allocated buffer with the attribute value inside it.
         //
         // Pass in NULL for the default value or an empty string if the default is not known.
-        static char* GetStringAttribute(QTSS_Object inObject, char* inAttributeName, char* inDefaultValue);
+        static char* GetStringAttribute(QTSS_Object inObject, const char* inAttributeName, const char* inDefaultValue);
 
         //
         // GET ATTR ID
         //
         // Given an attribute in an object, returns its attribute ID
         // or qtssIllegalAttrID if it isn't found.
-        static QTSS_AttributeID GetAttrID(QTSS_Object inObject, char* inAttributeName);
+        static QTSS_AttributeID GetAttrID(QTSS_Object inObject, const char* inAttributeName);
         
         //
         //
@@ -220,7 +220,7 @@ class QTSSModuleUtils
 
         static void SetEnableRTSPErrorMsg(Bool16 enable) {QTSSModuleUtils::sEnableRTSPErrorMsg = enable; }
         
-        static QTSS_AttributeID CreateAttribute(QTSS_Object inObject, char* inAttributeName, QTSS_AttrDataType inType, void* inDefaultValue, UInt32 inBufferLen);
+        static QTSS_AttributeID CreateAttribute(QTSS_Object inObject, const char* inAttributeName, QTSS_AttrDataType inType, const void* inDefaultValue, UInt32 inBufferLen);
   
         static Bool16 AddressInList(QTSS_Object inObject, QTSS_AttributeID listID, StrPtrLen *theAddressPtr);
   
@@ -238,7 +238,7 @@ class QTSSModuleUtils
     
         //
         // Used in the implementation of the above functions
-        static QTSS_AttributeID CheckAttributeDataType(QTSS_Object inObject, char* inAttributeName, QTSS_AttrDataType inType, void* inDefaultValue, UInt32 inBufferLen);    
+        static QTSS_AttributeID CheckAttributeDataType(QTSS_Object inObject, const char* inAttributeName, QTSS_AttrDataType inType, const void* inDefaultValue, UInt32 inBufferLen);    
 
         static QTSS_TextMessagesObject  sMessages;
         static QTSS_ServerObject        sServer;
@@ -258,7 +258,7 @@ class IPComponentStr
     static IPComponentStr sLocalIPCompStr;
 
     IPComponentStr() : fIsValid(false) {}
-    IPComponentStr(char *theAddress);
+    IPComponentStr(const char *theAddress);
     IPComponentStr(StrPtrLen *sourceStrPtr);
     
 inline  StrPtrLen*  GetComponent(UInt16 which);

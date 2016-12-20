@@ -44,7 +44,7 @@
 static const StrPtrLen kEnabledStr("true");
 static const StrPtrLen kDisabledStr("false");
 
-static char* kDataTypeStrings[] =
+static const char* kDataTypeStrings[] =
 {
     "Unknown",
     "CharArray",
@@ -95,14 +95,14 @@ static const UInt8 sCharToNums[] =
     0, 0, 0, 0, 0, 0             //250-255
 };
 
-char*   QTSSDataConverter::TypeToTypeString( QTSS_AttrDataType inType)
+const char*   QTSSDataConverter::TypeToTypeString( QTSS_AttrDataType inType)
 {
     if (inType < qtssAttrDataTypeNumTypes)
         return kDataTypeStrings[inType];
     return kDataTypeStrings[qtssAttrDataTypeUnknown];
 }
 
-QTSS_AttrDataType QTSSDataConverter::TypeStringToType( char* inTypeString)
+QTSS_AttrDataType QTSSDataConverter::TypeStringToType(const char* inTypeString)
 {
     for (UInt32 x = 0; x < qtssAttrDataTypeNumTypes; x++)
     {
@@ -113,13 +113,13 @@ QTSS_AttrDataType QTSSDataConverter::TypeStringToType( char* inTypeString)
     return qtssAttrDataTypeUnknown;
 }
 
-QTSS_Error QTSSDataConverter::StringToValue(    char* inValueAsString,
+QTSS_Error QTSSDataConverter::StringToValue(    const char* inValueAsString,
                                                 QTSS_AttrDataType inType,
                                                 void* ioBuffer,
                                                 UInt32* ioBufSize)
 {
     UInt32 theBufSize = 0;
-    char* theFormat = NULL;
+    const char* theFormat = NULL;
 
     if ( inValueAsString == NULL || ioBufSize == NULL)
         return QTSS_BadArgument;
@@ -249,7 +249,7 @@ QTSS_Error QTSSDataConverter::StringToValue(    char* inValueAsString,
     return QTSS_NoErr;
 }
 
-QTSS_Error QTSSDataConverter::ConvertCHexStringToBytes(  char* inValueAsString,
+QTSS_Error QTSSDataConverter::ConvertCHexStringToBytes(  const char* inValueAsString,
                                                     void* ioBuffer,
                                                     UInt32* ioBufSize)
 {

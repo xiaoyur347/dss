@@ -310,12 +310,12 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_AddRole(QTSS_RereadPrefs_Role);
 
     // Add text messages attributes
-    static char*        sSeekToNonexistentTimeName  = "QTSSFileModuleSeekToNonExistentTime";
-    static char*        sNoSDPFileFoundName         = "QTSSFileModuleNoSDPFileFound";
-    static char*        sBadQTFileName              = "QTSSFileModuleBadQTFile";
-    static char*        sFileIsNotHintedName        = "QTSSFileModuleFileIsNotHinted";
-    static char*        sExpectedDigitFilenameName  = "QTSSFileModuleExpectedDigitFilename";
-    static char*        sTrackDoesntExistName       = "QTSSFileModuleTrackDoesntExist";
+    const char* sSeekToNonexistentTimeName  = "QTSSFileModuleSeekToNonExistentTime";
+    const char* sNoSDPFileFoundName         = "QTSSFileModuleNoSDPFileFound";
+    const char* sBadQTFileName              = "QTSSFileModuleBadQTFile";
+    const char* sFileIsNotHintedName        = "QTSSFileModuleFileIsNotHinted";
+    const char* sExpectedDigitFilenameName  = "QTSSFileModuleExpectedDigitFilename";
+    const char* sTrackDoesntExistName       = "QTSSFileModuleTrackDoesntExist";
     
     (void)QTSS_AddStaticAttribute(qtssTextMessagesObjectType, sSeekToNonexistentTimeName, NULL, qtssAttrDataTypeCharArray);
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sSeekToNonexistentTimeName, &sSeekToNonexistentTimeErr);
@@ -336,29 +336,29 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sTrackDoesntExistName, &sTrackDoesntExistErr);
     
     // Add an RTP session attribute for tracking FileSession objects
-    static char*        sFileSessionName    = "QTSSFileModuleSession";
+    const char* sFileSessionName    = "QTSSFileModuleSession";
     (void)QTSS_AddStaticAttribute(qtssClientSessionObjectType, sFileSessionName, NULL, qtssAttrDataTypeVoidPointer);
     (void)QTSS_IDForAttr(qtssClientSessionObjectType, sFileSessionName, &sFileSessionAttr);
     
-    static char*        sFileSessionPlayCountName   = "QTSSFileModulePlayCount";
+    const char* sFileSessionPlayCountName   = "QTSSFileModulePlayCount";
     (void)QTSS_AddStaticAttribute(qtssClientSessionObjectType, sFileSessionPlayCountName, NULL, qtssAttrDataTypeUInt32);
     (void)QTSS_IDForAttr(qtssClientSessionObjectType, sFileSessionPlayCountName, &sFileSessionPlayCountAttrID);
     
-    static char*        sFileSessionBufferDelayName = "QTSSFileModuleSDPBufferDelay";
+    const char* sFileSessionBufferDelayName = "QTSSFileModuleSDPBufferDelay";
     (void)QTSS_AddStaticAttribute(qtssClientSessionObjectType, sFileSessionBufferDelayName, NULL, qtssAttrDataTypeFloat32);
     (void)QTSS_IDForAttr(qtssClientSessionObjectType, sFileSessionBufferDelayName, &sFileSessionBufferDelayAttrID);
     
-     static char*        sRTPStreamLastSentPacketSeqNumName   = "QTSSFileModuleLastSentPacketSeqNum";
+    const char* sRTPStreamLastSentPacketSeqNumName   = "QTSSFileModuleLastSentPacketSeqNum";
     (void)QTSS_AddStaticAttribute(qtssRTPStreamObjectType, sRTPStreamLastSentPacketSeqNumName, NULL, qtssAttrDataTypeUInt16);
     (void)QTSS_IDForAttr(qtssRTPStreamObjectType, sRTPStreamLastSentPacketSeqNumName, &sRTPStreamLastSentPacketSeqNumAttrID);
    
 
-    static char*        sRTPStreamLastPacketSeqNumName   = "QTSSFileModuleLastPacketSeqNum";
+    const char* sRTPStreamLastPacketSeqNumName   = "QTSSFileModuleLastPacketSeqNum";
     (void)QTSS_AddStaticAttribute(qtssRTPStreamObjectType, sRTPStreamLastPacketSeqNumName, NULL, qtssAttrDataTypeUInt16);
     (void)QTSS_IDForAttr(qtssRTPStreamObjectType, sRTPStreamLastPacketSeqNumName, &sRTPStreamLastPacketSeqNumAttrID);
 
     // Tell the server our name!
-    static char* sModuleName = "QTSSFileModule";
+    const char* sModuleName = "QTSSFileModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;

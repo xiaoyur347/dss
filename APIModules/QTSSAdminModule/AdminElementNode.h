@@ -56,8 +56,8 @@ void PRINT_STR(StrPtrLen *spl);
 void COPYBUFFER(char *dest,char *src,SInt8 size);
 
 void ElementNode_InitPtrArray();
-void ElementNode_InsertPtr(void *ptr, char * src);
-void ElementNode_RemovePtr(void *ptr, char * src);
+void ElementNode_InsertPtr(void *ptr, const char * src);
+void ElementNode_RemovePtr(void *ptr, const char * src);
 SInt32 ElementNode_CountPtrs();
 void ElementNode_ShowPtrs();
 
@@ -128,7 +128,7 @@ class ElementNode
         UInt32  GetMyIndex()                    { Assert (fSelfPtr); return fSelfPtr->fIndex;           };
         
         UInt32  GetMyAPI_Type()                 { Assert (fSelfPtr); return fSelfPtr->fAPI_Type;        };
-        char*   GetMyAPI_TypeStr()              { Assert (fSelfPtr); char* theTypeString = NULL; (void)QTSS_TypeToTypeString(GetMyAPI_Type(), &theTypeString); return theTypeString;    };
+        const char*   GetMyAPI_TypeStr()              { Assert (fSelfPtr); const char* theTypeString = NULL; (void)QTSS_TypeToTypeString(GetMyAPI_Type(), &theTypeString); return theTypeString;    };
         UInt32  GetMyFieldType()                { Assert (fSelfPtr); return fSelfPtr->fFieldType;       };
         
         char*   GetMyAccessData()               { Assert (fSelfPtr); return fSelfPtr->fAccessData;          };
@@ -153,7 +153,7 @@ class ElementNode
         UInt32  GetAPI_ID(SInt32 index)                     { return fFieldIDs[index].fAPI_ID;          };
         UInt32  GetAttributeIndex(SInt32 index)             { return fFieldIDs[index].fIndex;           };
         UInt32  GetAPI_Type(SInt32 index)                   { return fFieldIDs[index].fAPI_Type;            };
-        char*   GetAPI_TypeStr(SInt32 index)                { char* theTypeStr = NULL; (void)QTSS_TypeToTypeString(GetAPI_Type(index), &theTypeStr); return theTypeStr; };
+        const char*   GetAPI_TypeStr(SInt32 index)                { const char* theTypeStr = NULL; (void)QTSS_TypeToTypeString(GetAPI_Type(index), &theTypeStr); return theTypeStr; };
         UInt32  GetFieldType(SInt32 index)                  { return fFieldIDs[index].fFieldType;       };
         char*   GetAccessData(SInt32 index)                 { return fFieldIDs[index].fAccessData;      };
         UInt32  GetAccessLen(SInt32 index)                  { return fFieldIDs[index].fAccessLen;           };

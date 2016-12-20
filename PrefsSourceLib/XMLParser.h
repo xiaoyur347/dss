@@ -46,7 +46,7 @@ class XMLTag
 {
 public:
     XMLTag();
-    XMLTag(char* tagName);
+    XMLTag(const char* tagName);
     ~XMLTag();
     
     bool ParseTag(StringParser* parser, DTDVerifier* verifier, char* errorBuffer = NULL, int errorBufferSize = 0);
@@ -62,13 +62,13 @@ public:
     XMLTag* GetEmbeddedTagByAttr(const char* attrName, const char* attrValue, const UInt32 index = 0);
     XMLTag* GetEmbeddedTagByNameAndAttr(const char* tagName, const char* attrName, const char* attrValue, const UInt32 index = 0);
     
-    void AddAttribute(char* attrName, char* attrValue);
-    void RemoveAttribute(char* attrName);
+    void AddAttribute(const char* attrName, const char* attrValue);
+    void RemoveAttribute(const char* attrName);
     void AddEmbeddedTag(XMLTag* tag);
     void RemoveEmbeddedTag(XMLTag* tag);
     
-    void SetTagName( char* name);
-    void SetValue( char* value);
+    void SetTagName( const char* name);
+    void SetValue( const char* value);
     
     void FormatData(ResizeableStringFormatter* formatter, UInt32 indent);
 
@@ -100,7 +100,7 @@ public:
 class XMLParser
 {
 public:
-    XMLParser( char* inPath, DTDVerifier* verifier = NULL);
+    XMLParser( const char* inPath, DTDVerifier* verifier = NULL);
     ~XMLParser();
     
     // Check for existence, man.
@@ -113,7 +113,7 @@ public:
     XMLTag* GetRootTag() { return fRootTag; }
     void SetRootTag(XMLTag* tag);
     
-    void WriteToFile(char** fileHeader);
+    void WriteToFile(const char** fileHeader);
     
 private:
     XMLTag*         fRootTag;

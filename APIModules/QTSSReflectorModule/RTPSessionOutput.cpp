@@ -92,31 +92,31 @@ RTPSessionOutput::RTPSessionOutput(QTSS_ClientSessionObject inClientSession, Ref
 void RTPSessionOutput::Register()
 {
     // Add some attributes to QTSS_RTPStream dictionary 
-    static char*        sNextSeqNum             = "qtssNextSeqNum";
-    static char*        sSeqNumOffset           = "qtssSeqNumOffset";
-    static char*        sLastQualityChange      = "qtssLastQualityChange";
+    const char*  sNextSeqNum             = "qtssNextSeqNum";
+    const char*  sSeqNumOffset           = "qtssSeqNumOffset";
+    const char*  sLastQualityChange      = "qtssLastQualityChange";
     
-    static char*        sLastRTPPacketID        = "qtssReflectorStreamLastRTPPacketID";
-    static char*        sLastRTCPPacketID       = "qtssReflectorStreamLastRTCPPacketID";
+    const char*  sLastRTPPacketID        = "qtssReflectorStreamLastRTPPacketID";
+    const char*  sLastRTCPPacketID       = "qtssReflectorStreamLastRTCPPacketID";
 
 
-    static char*        sFirstRTCPArrivalTime   = "qtssReflectorStreamStartRTCPArrivalTime";
-    static char*        sFirstRTCPTimeStamp     = "qtssReflectorStreamStartRTCPTimeStamp";
-    static char*        sFirstRTCPCurrentTime   = "qtssReflectorStreamStartRTCPCurrent";
+    const char*  sFirstRTCPArrivalTime   = "qtssReflectorStreamStartRTCPArrivalTime";
+    const char*  sFirstRTCPTimeStamp     = "qtssReflectorStreamStartRTCPTimeStamp";
+    const char*  sFirstRTCPCurrentTime   = "qtssReflectorStreamStartRTCPCurrent";
 
-    static char*        sFirstRTPArrivalTime    = "qtssReflectorStreamStartRTPArrivalTime";
-    static char*        sFirstRTPTimeStamp      = "qtssReflectorStreamStartRTPTimeStamp";
-    static char*        sFirstRTPCurrentTime    = "qtssReflectorStreamStartRTPCurrent";
+    const char*  sFirstRTPArrivalTime    = "qtssReflectorStreamStartRTPArrivalTime";
+    const char*  sFirstRTPTimeStamp      = "qtssReflectorStreamStartRTPTimeStamp";
+    const char*  sFirstRTPCurrentTime    = "qtssReflectorStreamStartRTPCurrent";
 
-    static char*        sBaseRTPTimeStamp       = "qtssReflectorStreamBaseRTPTimeStamp";
-    static char*        sBaseArrivalTimeStamp   = "qtssReflectorStreamBaseArrivalTime";
+    const char*  sBaseRTPTimeStamp       = "qtssReflectorStreamBaseRTPTimeStamp";
+    const char*  sBaseArrivalTimeStamp   = "qtssReflectorStreamBaseArrivalTime";
 
-    static char*        sLastRTPTimeStamp       = "qtssReflectorStreamLastRTPTimeStamp";
-    static char*        sLastRTCPTransmit       = "qtssReflectorStreamLastRTCPTransmit";
+    const char*  sLastRTPTimeStamp       = "qtssReflectorStreamLastRTPTimeStamp";
+    const char*  sLastRTCPTransmit       = "qtssReflectorStreamLastRTCPTransmit";
 
-    static char*        sStreamSSRC             = "qtssReflectorStreamSSRC";
-    static char*        sStreamPacketCount      = "qtssReflectorStreamPacketCount";
-    static char*        sStreamByteCount        = "qtssReflectorStreamByteCount";
+    const char*  sStreamSSRC             = "qtssReflectorStreamSSRC";
+    const char*  sStreamPacketCount      = "qtssReflectorStreamPacketCount";
+    const char*  sStreamByteCount        = "qtssReflectorStreamByteCount";
 
 
  

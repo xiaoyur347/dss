@@ -72,8 +72,8 @@ class QTSSMessages : public QTSSDictionary
             kNumMessages = 74 // 0 based count so it is one more than last message index number
         };
     
-        static char*        sMessagesKeyStrings[];
-        static char*        sMessages[];
+        static const char*        sMessagesKeyStrings[];
+        static const char*        sMessages[];
 };
 
 

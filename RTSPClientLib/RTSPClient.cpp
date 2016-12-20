@@ -140,7 +140,7 @@ StrPtrLen   Authenticator::sFalse("false");
 
 Authenticator::Authenticator()
 {
-    char *emptyBuff = "";
+    const char *emptyBuff = "";
     StrPtrLen emptySPL(emptyBuff);
     this->SetName(&emptySPL);
     this->SetPassword(&emptySPL);
@@ -150,12 +150,12 @@ Authenticator::Authenticator()
 
 void Authenticator::Clean()
 {  
-    delete [] fAuthBuffer.Ptr; fAuthBuffer.Set(NULL,0); 
-    delete [] fNameSPL.Ptr; fNameSPL.Set(NULL,0); 
-    delete [] fPasswordSPL.Ptr; fPasswordSPL.Set(NULL,0); 
-    delete [] fRealmSPL.Ptr;fRealmSPL.Set(NULL,0); 
-    delete [] fMethodSPL.Ptr; fMethodSPL.Set(NULL,0); 
-	delete [] fURISPL.Ptr ; fURISPL.Set(NULL);
+    delete [] fAuthBuffer.Ptr; fAuthBuffer.Reset(); 
+    delete [] fNameSPL.Ptr; fNameSPL.Reset(); 
+    delete [] fPasswordSPL.Ptr; fPasswordSPL.Reset(); 
+    delete [] fRealmSPL.Ptr; fRealmSPL.Reset(); 
+    delete [] fMethodSPL.Ptr; fMethodSPL.Reset(); 
+    delete [] fURISPL.Ptr; fURISPL.Reset();
 }
 
 
@@ -226,7 +226,7 @@ Bool16 Authenticator::CopyParam(StrPtrLen *inPtr, StrPtrLen *destPtr)
     Assert(inPtr);
     Assert(destPtr);    
     
-    delete [] destPtr->Ptr; destPtr->Set(NULL,0);
+    delete [] destPtr->Ptr; destPtr->Reset();
     destPtr->Ptr = NEW char[inPtr->Len + 1];
     
     if (destPtr->Ptr == NULL)
@@ -249,7 +249,7 @@ Bool16 Authenticator::GetParamValue(StringParser *valueSourcePtr, StrPtrLen *out
     Assert(outParamValuePtr);
     Assert(outParamValuePtr->Ptr == NULL);
     StrPtrLen temp;
-    outParamValuePtr->Set(NULL,0);
+    outParamValuePtr->Reset();
 
     //TODO: -Wshadow, and temp here seams useless
     //{   char temp[1024]; 
@@ -312,7 +312,7 @@ void    Authenticator::ResetRequestLen(StrPtrLen *theRequestPtr, StrPtrLen *theP
 {   // makes a new buffer and copies everything after first \r\n into the buffer and terminates the req.
     // after the \r\n 
     
-    static const char *requestParamStart = "\r\n";
+    const char *requestParamStart = "\r\n";
     Assert (theRequestPtr);
     Assert (theRequestPtr->Ptr);
     Assert (theRequestPtr->Len > ::strlen(requestParamStart) );
@@ -589,7 +589,7 @@ void DigestAuth::GenerateAuthorizationRequestLine(StrPtrLen *requestPtr)
 void DigestAuth::ResetAuthParams()
 {
     ReqFieldsClean();
-    delete [] fAuthBuffer.Ptr;  fAuthBuffer.Set(NULL,0);
+    delete [] fAuthBuffer.Ptr;  fAuthBuffer.Reset();
 
 }
 
@@ -679,7 +679,7 @@ void DigestAuth::AttachAuthParams(StrPtrLen *theRequestPtr)
     ::strcat(theRequestPtr->Ptr, fAuthBuffer.Ptr); 
     ::strcat(theRequestPtr->Ptr, requestParams.Ptr); // put the request params back
     theRequestPtr->Len = ::strlen(theRequestPtr->Ptr);
-    delete [] requestParams.Ptr; requestParams.Set(NULL,0);
+    delete [] requestParams.Ptr; requestParams.Reset();
     //qtss_printf(" DigestAuth::AttachAuthParams request OUT =%s\n", STRTOCHAR(theRequestPtr));
 }
 
@@ -708,15 +708,15 @@ UInt32 DigestAuth::ParamsLen(StrPtrLen *requestPtr)
 
 DigestAuth::~DigestAuth()
 {   ResetAuthParams();
-    delete [] fNonceCountStr.Ptr;   fNonceCountStr.Set(NULL,0);  
-    delete [] fRequestDigestStr.Ptr;fRequestDigestStr.Set(NULL,0);  
-    delete [] fURIStr.Ptr;          fURIStr.Set(NULL,0);  
-    delete [] fcnonce.Ptr;          fcnonce.Set(NULL,0);  
-    delete [] fnonce.Ptr;           fnonce.Set(NULL,0);  
-    delete [] fopaque.Ptr;          fopaque.Set(NULL,0);  
-    delete [] fqop.Ptr;             fqop.Set(NULL,0);  
-    delete [] fAlgorithmStr.Ptr;    fAlgorithmStr.Set(NULL,0);  
-    delete [] fStaleStr.Ptr;        fStaleStr.Set(NULL,0);  
+    delete [] fNonceCountStr.Ptr;   fNonceCountStr.Reset();  
+    delete [] fRequestDigestStr.Ptr;fRequestDigestStr.Reset();  
+    delete [] fURIStr.Ptr;          fURIStr.Reset();  
+    delete [] fcnonce.Ptr;          fcnonce.Reset();  
+    delete [] fnonce.Ptr;           fnonce.Reset();  
+    delete [] fopaque.Ptr;          fopaque.Reset();  
+    delete [] fqop.Ptr;             fqop.Reset();  
+    delete [] fAlgorithmStr.Ptr;    fAlgorithmStr.Reset();  
+    delete [] fStaleStr.Ptr;        fStaleStr.Reset();  
     Clean();
 }
 
@@ -814,9 +814,9 @@ Authenticator *AuthParser::ParseChallenge(StrPtrLen *challengePtr)
 
 
 
-static char* sEmptyString = "";
-char* RTSPClient::sUserAgent = "None";
-char* RTSPClient::sControlID = "trackID";
+static const char* sEmptyString = "";
+const char* RTSPClient::sUserAgent = "None";
+const char* RTSPClient::sControlID = "trackID";
 
 RTSPClient::InterleavedParams RTSPClient::sInterleavedParams;
 
@@ -847,7 +847,7 @@ RTSPClient::RTSPClient(ClientSocket* inSocket, Bool16 verbosePrinting, char* inU
     fPacketDataInHeaderBufferLen(0),
     fPacketDataInHeaderBuffer(NULL),
     fUserAgent(NULL),
-    fControlID(RTSPClient::sControlID),
+    fControlID(const_cast<char*>(RTSPClient::sControlID)),
 	fGuarenteedBitRate(0),
 	fMaxBitRate(0),
 	fMaxTransferDelay(0),

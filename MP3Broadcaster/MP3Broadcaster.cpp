@@ -321,7 +321,7 @@ Bool16 MP3Broadcaster::SetEnabled( const char* value, Bool16* field)
     return false;
 }
 
-void MP3Broadcaster::CreateWorkingFilePath(char* extension, char* result)
+void MP3Broadcaster::CreateWorkingFilePath(const char* extension, char* result)
 {
     if (strlen(mWorkingDirPath) + strlen(extension) >= PATH_MAX)
         result[0] = 0;
@@ -991,9 +991,9 @@ void MP3Broadcaster::RemoveFiles()
     remove(mUpcomingFile);  
 }
 
-char* MP3Broadcaster::MapErrorToString(int error)
+const char* MP3Broadcaster::MapErrorToString(int error)
 {
-    char* result = NULL;
+    const char* result = NULL;
         
     if (error == MP3FileBroadcaster::kBadFileFormat)
         result = "Bad file format.";

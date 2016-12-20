@@ -34,7 +34,7 @@
 
 static Bool16 sLogTimeInGMT = false;
 
-static char* sLogHeader =   "#Software: %s\n"
+static const char* sLogHeader =   "#Software: %s\n"
                             "#Version: %s\n"    //%s == version
                             "#Date: %s\n"       //%s == date/time
                             "#Remark: All date values are in %s.\n" //%s == "GMT" or "local time"

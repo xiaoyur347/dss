@@ -98,11 +98,11 @@ int main(int argc, char *argv[]);
 
 //
 // Helper functions
-char* 	GetClientTypeDescription(ClientSession::ClientType inClientType);
+const char* GetClientTypeDescription(ClientSession::ClientType inClientType);
 void	DoDNSLookup(SVector<char *> &theURLlist, SVector<UInt32> &ioIPAddrs);
 void 	RecordClientInfoBeforeDeath(ClientSession* inSession);
-char*	GetDeathReasonDescription(UInt32 inDeathReason);
-char*	GetPayloadDescription(QTSS_RTPPayloadType inPayload);
+const char* GetDeathReasonDescription(UInt32 inDeathReason);
+const char* GetPayloadDescription(QTSS_RTPPayloadType inPayload);
 void	CheckForStreamingLoadToolDotMov(SVector<UInt32> &ioIPAddrArray, SVector<char *> &theURLlist, UInt16 inPort, SVector<char *> &userList, SVector<char *> &passwordList, UInt32 verboseLevel);
 UInt32 CalcStartTime(Bool16 inRandomThumb, UInt32 inMovieLength);
 extern char* optarg;
@@ -170,9 +170,9 @@ int main(int argc, char *argv[])
 #endif
 
 #ifdef __Win32__
-	char* configFilePath = "streamingloadtool.cfg";
+	const char* configFilePath = "streamingloadtool.cfg";
 #else
-	char* configFilePath = "streamingloadtool.conf";
+	const char* configFilePath = "streamingloadtool.conf";
 #endif
     //Bool16 configFilePathIsSpecified = false;
 	Bool16 dropPost = false;
@@ -185,7 +185,7 @@ int main(int argc, char *argv[])
 	Bool16 runForever = false;
 	UInt32 theHTTPCookie = 1;
 	Bool16 shouldLog = false;
-	char* logPath = "streamingloadtool.log";
+	const char* logPath = "streamingloadtool.log";
 	UInt32 proxyIP = 0;
 	Bool16 appendJunk = false;
 	UInt32 theReadInterval = 50;
@@ -1027,13 +1027,13 @@ void	DoDNSLookup(SVector<char *> &theURLlist, SVector<UInt32> &ioIPAddrs)
 	}
 }
 
-char* 	GetClientTypeDescription(ClientSession::ClientType inClientType)
+const char* GetClientTypeDescription(ClientSession::ClientType inClientType)
 {
-	static char* kUDPString = "RTSP/UDP client";
-	static char* kTCPString = "RTSP/TCP client";
-	static char* kHTTPString = "RTSP/HTTP client";
-	static char* kHTTPDropPostString = "RTSP/HTTP drop post client";
-	static char* kReliableUDPString = "RTSP/ReliableUDP client";
+	const char* kUDPString = "RTSP/UDP client";
+	const char* kTCPString = "RTSP/TCP client";
+	const char* kHTTPString = "RTSP/HTTP client";
+	const char* kHTTPDropPostString = "RTSP/HTTP drop post client";
+	const char* kReliableUDPString = "RTSP/ReliableUDP client";
 	
 	switch (inClientType)
 	{
@@ -1052,15 +1052,15 @@ char* 	GetClientTypeDescription(ClientSession::ClientType inClientType)
 	return NULL;
 }
 
-char*	GetDeathReasonDescription(UInt32 inDeathReason)
+const char* GetDeathReasonDescription(UInt32 inDeathReason)
 {
-	static char* kDiedNormallyString = "Completed normally";
-	static char* kTeardownFailedString = "Failure: Couldn't complete TEARDOWN";
-	static char* kRequestFailedString = "Failure: Failed RTSP request";
-	static char* kBadSDPString = "Failure: misformatted SDP";
-	static char* kSessionTimedoutString = "Failure: Couldn't connect to server(timeout)";
-	static char* kConnectionFailedString = "Failure: Server refused connection";
-	static char* kDiedWhilePlayingString = "Failure: Disconnected while playing";
+	const char* kDiedNormallyString = "Completed normally";
+	const char* kTeardownFailedString = "Failure: Couldn't complete TEARDOWN";
+	const char* kRequestFailedString = "Failure: Failed RTSP request";
+	const char* kBadSDPString = "Failure: misformatted SDP";
+	const char* kSessionTimedoutString = "Failure: Couldn't connect to server(timeout)";
+	const char* kConnectionFailedString = "Failure: Server refused connection";
+	const char* kDiedWhilePlayingString = "Failure: Disconnected while playing";
 
 	switch (inDeathReason)
 	{
@@ -1083,11 +1083,11 @@ char*	GetDeathReasonDescription(UInt32 inDeathReason)
 	return NULL;
 }
 
-char*	GetPayloadDescription(QTSS_RTPPayloadType inPayload)
+const char* GetPayloadDescription(QTSS_RTPPayloadType inPayload)
 {
-	static char*	kSound = "Sound";
-	static char*	kVideo = "Video";
-	static char*	kUnknown = "Unknown";
+	const char*	kSound = "Sound";
+	const char*	kVideo = "Video";
+	const char*	kUnknown = "Unknown";
 
 	switch (inPayload)
 	{

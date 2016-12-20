@@ -46,7 +46,7 @@
 
 // STATIC DATA
 
-static char* sResponseHeader = "HTTP/1.0 200 OK\r\nServer: QTSS/3.0\r\nConnection: Close\r\nContent-Type: text/html\r\n\r\n";
+static const char* sResponseHeader = "HTTP/1.0 200 OK\r\nServer: QTSS/3.0\r\nConnection: Close\r\nContent-Type: text/html\r\n\r\n";
 
 static QTSS_ServerObject        sServer = NULL;
 static QTSS_ModulePrefsObject   sAccessLogPrefs = NULL;
@@ -58,9 +58,9 @@ static QTSS_PrefsObject         sServerPrefs = NULL;
 static Bool16                   sFalse = false;
 static time_t                   sStartupTime = 0;
 
-static char*	sDefaultURL = "";
+static const char*	sDefaultURL = "";
 static StrPtrLen sDefaultURLStr;
-static char*	sDefaultURLPrefName = "web_stats_url";
+static const char*	sDefaultURLPrefName = "web_stats_url";
 
 
 static QTSS_Error   QTSSWebStatsModuleDispatch(QTSS_Role inRole, QTSS_RoleParamPtr inParams);
@@ -68,7 +68,7 @@ static QTSS_Error   Register(QTSS_Register_Params* inParams);
 static QTSS_Error Initialize(QTSS_Initialize_Params* inParams);
 static QTSS_Error FilterRequest(QTSS_Filter_Params* inParams);
 static void SendStats(QTSS_StreamRef inStream, UInt32  refreshInterval, Bool16 displayHelp, StrPtrLen* fieldList);
-static char*    GetPrefAsString(QTSS_ModulePrefsObject inPrefsObject, char* inPrefName);
+static char*    GetPrefAsString(QTSS_ModulePrefsObject inPrefsObject, const char* inPrefName);
 
 
 // FUNCTION IMPLEMENTATIONS
@@ -101,7 +101,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_AddRole(QTSS_RTSPFilter_Role);
     
     // Tell the server our name!
-    static char* sModuleName = "QTSSWebStatsModule";
+    const char* sModuleName = "QTSSWebStatsModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;
@@ -239,7 +239,7 @@ QTSS_Error FilterRequest(QTSS_Filter_Params* inParams)
 void SendStats(QTSS_StreamRef inStream, UInt32  refreshInterval, Bool16 displayHelp, StrPtrLen* fieldList)
 {
     struct FieldIndex {
-        char*   fieldName;
+        const char* fieldName;
         int fieldIndex;
     };
     
@@ -301,8 +301,8 @@ void SendStats(QTSS_StreamRef inStream, UInt32  refreshInterval, Bool16 displayH
                                     {"numtaskthreads", 55}
     };
     const int kMaxFieldNum = 55;
-    static char* kEmptyStr = "?";
-    char* thePrefStr = kEmptyStr;
+    const char* kEmptyStr = "?";
+    char* thePrefStr = const_cast<char*>(kEmptyStr);
 
     char buffer[1024];
 
@@ -317,7 +317,7 @@ void SendStats(QTSS_StreamRef inStream, UInt32  refreshInterval, Bool16 displayH
     //qtss_sprintf(buffer, "<body text=\"#000000\" bgcolor=\"#C0C0C0\" link=\"#0000FF\" vlink=\"#551A8B\" alink=\"#0000FF\">\n");
     //(void)QTSS_Write(inStream, buffer, ::strlen(buffer), NULL, 0);
     
-    char *theHTML =  "<HTML><BODY>\n";
+    const char *theHTML =  "<HTML><BODY>\n";
     
     (void)QTSS_Write(inStream, theHTML, ::strlen(theHTML), NULL, 0);
     
@@ -955,7 +955,7 @@ void SendStats(QTSS_StreamRef inStream, UInt32  refreshInterval, Bool16 displayH
         if (thePrefStr != kEmptyStr)
             delete [] thePrefStr; 
             
-        thePrefStr = kEmptyStr;
+        thePrefStr = const_cast<char*>(kEmptyStr);
             
     } while (fieldNum != 0);
     
@@ -968,7 +968,7 @@ void SendStats(QTSS_StreamRef inStream, UInt32  refreshInterval, Bool16 displayH
 
 
 
-char*   GetPrefAsString(QTSS_ModulePrefsObject inPrefsObject, char* inPrefName)
+char*   GetPrefAsString(QTSS_ModulePrefsObject inPrefsObject, const char* inPrefName)
 {
     static StrPtrLen                sEmpty("");
 

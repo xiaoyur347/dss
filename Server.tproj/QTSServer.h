@@ -116,7 +116,7 @@ class QTSServer : public QTSServerInterface
         RTCPTask*           fRTCPTask;
         RTPStatsUpdaterTask*fStatsTask;
         SessionTimeoutTask  *fSessionTimeoutTask;
-        static char*        sPortPrefString;
+        static const char*     sPortPrefString;
         static XMLPrefsParser* sPrefsSource;
         static PrefsSource* sMessagesSource;
         

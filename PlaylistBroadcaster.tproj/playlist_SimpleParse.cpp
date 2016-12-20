@@ -31,7 +31,7 @@
 #include "playlist_SimpleParse.h"
 
 
-SimpleString::SimpleString(char *theString)
+SimpleString::SimpleString(const char *theString)
 {   
     fTheString = theString;
     if (theString == NULL)
@@ -47,7 +47,7 @@ void SimpleString::Init()
 
 }
 
-void SimpleString::SetString(char *theString, SInt32 len)
+void SimpleString::SetString(const char *theString, SInt32 len)
 {   
     fTheString = theString;
     fLen = len;
@@ -148,7 +148,7 @@ bool SimpleParser::FindString( SimpleString *sourcePtr,  SimpleString *findPtr, 
         if (findPtr->fLen > sourcePtr->fLen)
             break;
                     
-        char *start = strstr(sourcePtr->fTheString, findPtr->fTheString);       
+        const char *start = strstr(sourcePtr->fTheString, findPtr->fTheString);       
         if (start == NULL) break;
             
         if (NULL != resultStringPtr)
@@ -223,7 +223,7 @@ bool SimpleParser::FindDelimeter( SimpleString *sourcePtr, char *findChars, Simp
         if (NULL == resultStringPtr) break;
                     
         SInt32  charCount = 0;
-        char*   charOffset = sourcePtr->fTheString;
+        const char* charOffset = sourcePtr->fTheString;
         char*   foundChar = NULL;
         
         if ( (NULL == sourcePtr->fTheString) || (0 == sourcePtr->fLen) )
@@ -238,7 +238,7 @@ bool SimpleParser::FindDelimeter( SimpleString *sourcePtr, char *findChars, Simp
             charOffset ++; charCount ++;
         }
         
-        char *theChar = charOffset; // start past delimeters
+        const char *theChar = charOffset; // start past delimeters
         
         while ( (*theChar != 0) && (charCount <= sourcePtr->fLen) )  
         {

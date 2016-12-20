@@ -88,7 +88,7 @@ void TestBCasterTracker(int x )
 static void ShowElement( PLDoubleLinkedListNode<TrackingElement>* ten,  void* userData)
 {
     int*    showIndex = (int*)userData;
-    char    *info;
+    const char *info;
     
     if ( BCasterTracker::IsProcessRunning( ten->fElement->mPID ) )
         info = "";

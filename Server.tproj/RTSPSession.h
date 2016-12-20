@@ -115,8 +115,8 @@ class RTSPSession : public RTSPSessionInterface
     static              char        sHTTPResponseNoServerHeaderBuf[kMaxHTTPResponseLen];
     static              StrPtrLen   sHTTPResponseNoServerHeaderPtr;
     
-    static              char        *sHTTPResponseFormatStr;
-    static              char        *sHTTPNoServerResponseFormatStr;
+    static        const char        *sHTTPResponseFormatStr;
+    static        const char        *sHTTPNoServerResponseFormatStr;
     char                fProxySessionID[QTSS_MAX_SESSION_ID_LENGTH];    // our magic cookie to match proxy connections
     StrPtrLen           fProxySessionIDPtr;
         OSRef               fProxyRef;

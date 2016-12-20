@@ -67,7 +67,7 @@ class SourceInfo
         // the following metadata.
         struct StreamInfo
         {
-            StreamInfo() : fSrcIPAddr(0), fDestIPAddr(0), fPort(0), fTimeToLive(0), fPayloadType(0), fPayloadName(NULL), fTrackID(0), fBufferDelay((Float32) eDefaultBufferDelay), fIsTCP(false),fSetupToReceive(false), fTimeScale(0){}
+            StreamInfo() : fSrcIPAddr(0), fDestIPAddr(0), fPort(0), fTimeToLive(0), fPayloadType(0), fTrackID(0), fBufferDelay((Float32) eDefaultBufferDelay), fIsTCP(false),fSetupToReceive(false), fTimeScale(0){}
             ~StreamInfo(); // Deletes the memory allocated for the fPayloadName string 
             
             void Copy(const StreamInfo& copy);// Does copy dynamically allocated data

@@ -42,11 +42,11 @@ class QTSSDataConverter
     
         //
         // This function converts a type string, eg, "UInt32" to the enum, qtssAttrDataTypeUInt32
-        static QTSS_AttrDataType TypeStringToType( char* inTypeString);
+        static QTSS_AttrDataType TypeStringToType(const char* inTypeString);
         
         //
         // This function does the opposite conversion
-        static char*    TypeToTypeString( QTSS_AttrDataType inType);
+        static const char*    TypeToTypeString( QTSS_AttrDataType inType);
         
         //
         // This function converts a text-formatted value of a certain type
@@ -55,7 +55,7 @@ class QTSSDataConverter
         
         // String must be NULL-terminated.
         // If output value is a string, it will not be NULL-terminated
-        static QTSS_Error   StringToValue(		char* inValueAsString,
+        static QTSS_Error   StringToValue(	const char* inValueAsString,
                                                 QTSS_AttrDataType inType,
                                                 void* ioBuffer,
                                                 UInt32* ioBufSize);
@@ -71,7 +71,7 @@ class QTSSDataConverter
         static char* ConvertBytesToCHexString( void* inValue, const UInt32 inValueLen);
         
         // Takes a string of hex values and converts to bytes in high to low order
-        static QTSS_Error ConvertCHexStringToBytes( char* inValueAsString,
+        static QTSS_Error ConvertCHexStringToBytes( const char* inValueAsString,
                                                     void* ioBuffer,
                                                     UInt32* ioBufSize);
 };

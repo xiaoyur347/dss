@@ -98,9 +98,9 @@ class SDPFileParser : SimpleParser
     private: 
     enum { cMaxBytes = 4096}; // maximum accepted sdp file size
     
-    static char* sMediaTag;
-    static char* sAttributeTag;
-    static char* sConnectionTag;
+    static const char* sMediaTag;
+    static const char* sAttributeTag;
+    static const char* sConnectionTag;
 
         char *fSDPBuff;
 };

@@ -45,7 +45,7 @@
 #endif
  
 
-char* QTSServerPrefs::sAdditionalDefaultPorts[] =
+const char* QTSServerPrefs::sAdditionalDefaultPorts[] =
 {
     "7070",
     "8000",
@@ -53,41 +53,41 @@ char* QTSServerPrefs::sAdditionalDefaultPorts[] =
     NULL
 };
 
-char* QTSServerPrefs::sRTP_Header_Players[] =
+const char* QTSServerPrefs::sRTP_Header_Players[] =
 {
     "Real",
     NULL
 };
 
-char* QTSServerPrefs::sAdjust_Bandwidth_Players[] =
+const char* QTSServerPrefs::sAdjust_Bandwidth_Players[] =
 {
     "Real",
     NULL
 };
 
-char* QTSServerPrefs::sNo_Pause_Time_Adjustment_Players[] =
+const char* QTSServerPrefs::sNo_Pause_Time_Adjustment_Players[] =
 {
     "Real",
     "PVPlayer",
     NULL
 };
 
-char* QTSServerPrefs::sRTP_Start_Time_Players[] =
+const char* QTSServerPrefs::sRTP_Start_Time_Players[] =
 {
     NULL
 };
 
-char* QTSServerPrefs::sDisable_Rate_Adapt_Players[] =
+const char* QTSServerPrefs::sDisable_Rate_Adapt_Players[] =
 {
     NULL
 };
 
-char* QTSServerPrefs::sFixed_Target_Time_Players[] =
+const char* QTSServerPrefs::sFixed_Target_Time_Players[] =
 {
     NULL
 };
 
-char* QTSServerPrefs::sDisable_Thinning_Players[] =
+const char* QTSServerPrefs::sDisable_Thinning_Players[] =
 {
     NULL
 };
@@ -475,7 +475,7 @@ void QTSServerPrefs::RereadServerPreferences(Bool16 inWriteMissingPrefs)
         char* thePrefValue = NULL;
         if (pref != NULL)
             thePrefValue = fPrefsSource->GetPrefValueByRef( pref, 0, &thePrefName,
-                                                                    (char**)&thePrefTypeStr);
+                                                                    (const char**)&thePrefTypeStr);
         
         if ((thePrefValue == NULL) && (x < qtssPrefsNumParams)) // Only generate errors for server prefs
         {

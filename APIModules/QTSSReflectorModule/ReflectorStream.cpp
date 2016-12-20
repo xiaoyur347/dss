@@ -76,8 +76,8 @@ SInt32                          ReflectorStream::sFirstPacketOffsetMsec = 500;
 void ReflectorStream::Register()
 {
     // Add text messages attributes
-    static char*        sCantBindReflectorSocket= "QTSSReflectorModuleCantBindReflectorSocket";
-    static char*        sCantJoinMulticastGroup = "QTSSReflectorModuleCantJoinMulticastGroup";
+    const char*  sCantBindReflectorSocket= "QTSSReflectorModuleCantBindReflectorSocket";
+    const char*  sCantJoinMulticastGroup = "QTSSReflectorModuleCantJoinMulticastGroup";
     
     (void)QTSS_AddStaticAttribute(qtssTextMessagesObjectType, sCantBindReflectorSocket, NULL, qtssAttrDataTypeCharArray);
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sCantBindReflectorSocket, &sCantBindReflectorSocketErr);

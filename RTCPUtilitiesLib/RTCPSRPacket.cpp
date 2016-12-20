@@ -86,7 +86,7 @@ struct qtss_rtcp_struct
 
 UInt32 RTCPSRPacket::GetACName(char* ioCNameBuffer)
 {
-    static char*    sCNameBase = "QTSS";
+    const char* sCNameBase = "QTSS";
 
     //clear out the whole buffer
     ::memset(ioCNameBuffer, 0, kMaxCNameLen);

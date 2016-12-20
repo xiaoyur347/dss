@@ -95,16 +95,16 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_AddRole(QTSS_OpenFile_Role);
 
     // Add an attribute to the file object type to store a pointer to our OSFileSource  
-    static char*        sOSFileSourceName   = "QTSSPosixFileSysModuleOSFileSource";
+    const char* sOSFileSourceName   = "QTSSPosixFileSysModuleOSFileSource";
     (void)QTSS_AddStaticAttribute(qtssFileObjectType, sOSFileSourceName, NULL, qtssAttrDataTypeVoidPointer);
     (void)QTSS_IDForAttr(qtssFileObjectType, sOSFileSourceName, &sOSFileSourceAttr);
 
-    static char*        sEventContextName   = "QTSSPosixFileSysModuleEventContext";
+    const char* sEventContextName   = "QTSSPosixFileSysModuleEventContext";
     (void)QTSS_AddStaticAttribute(qtssFileObjectType, sEventContextName, NULL, qtssAttrDataTypeVoidPointer);
     (void)QTSS_IDForAttr(qtssFileObjectType, sEventContextName, &sEventContextAttr);
     
     // Tell the server our name!
-    static char* sModuleName = "QTSSPosixFileSysModule";
+    const char* sModuleName = "QTSSPosixFileSysModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;

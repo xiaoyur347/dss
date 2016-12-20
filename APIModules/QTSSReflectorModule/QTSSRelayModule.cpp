@@ -85,7 +85,7 @@ static QTSS_ServerObject        sServer         = NULL;
 static QTSS_Object          sAttributes     = NULL;
 static Bool16               sSkipAuthorization  = true;
 static Bool16               sIsRelaySession     = true;
-static char*                sIsRelaySessionAttrName = "QTSSRelayModuleIsRelaySession";
+static const char*          sIsRelaySessionAttrName = "QTSSRelayModuleIsRelaySession";
 static QTSS_AttributeID         sIsRelaySessionAttr = qtssIllegalAttrID;
 
 static int                  sRelayPrefModDate = -1;
@@ -94,7 +94,7 @@ static int                  sRelayPrefModDate = -1;
 
 static QTSS_AttributeID     sRelayModulePrefParseErr  = qtssIllegalAttrID;
 
-static char* sDefaultRelayPrefs = DEFAULTPATHS_ETC_DIR "relayconfig.xml";
+static const char* sDefaultRelayPrefs = DEFAULTPATHS_ETC_DIR "relayconfig.xml";
 
 #ifdef __MacOSX__
 #define kResponseHeader	"HTTP/1.0 200 OK\r\nServer: QuickTimeStreamingServer/%s/%s\r\nConnection: Close\r\nContent-Type: text/html\r\n\r\n<HTML><TITLE>Relay Stats</TITLE><BODY>"
@@ -287,14 +287,14 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_AddRole(QTSS_RTSPPostProcessor_Role);
     
     // get the text for the error message from the server atrribute.
-    static char* sRelayModulePrefParseErrName   = "QTSSRelayModulePrefParseError";
+    const char* sRelayModulePrefParseErrName   = "QTSSRelayModulePrefParseError";
     (void)QTSS_AddStaticAttribute(qtssTextMessagesObjectType, sRelayModulePrefParseErrName, NULL, qtssAttrDataTypeCharArray);
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sRelayModulePrefParseErrName, &sRelayModulePrefParseErr);
 
-        // add a boolean attribute for the relay session to the client session object
-        // we set it to true if we know that it is a relay session else we set it to false
-        // (set to true for those client sessions that are created for the relay when announces come in) 
-        (void)QTSS_AddStaticAttribute(qtssClientSessionObjectType, sIsRelaySessionAttrName, NULL, qtssAttrDataTypeBool16);
+    // add a boolean attribute for the relay session to the client session object
+    // we set it to true if we know that it is a relay session else we set it to false
+    // (set to true for those client sessions that are created for the relay when announces come in) 
+    (void)QTSS_AddStaticAttribute(qtssClientSessionObjectType, sIsRelaySessionAttrName, NULL, qtssAttrDataTypeBool16);
     (void)QTSS_IDForAttr(qtssClientSessionObjectType, sIsRelaySessionAttrName, &sIsRelaySessionAttr);
        
     RelaySession::Register();
@@ -304,7 +304,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     ReflectorStream::Register();
 
     // Tell the server our name!
-    static char* sModuleName = "QTSSRelayModule";
+    const char* sModuleName = "QTSSRelayModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;

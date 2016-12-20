@@ -116,9 +116,9 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     
 
     // Add other attributes
-    static char*        sNumLossesAboveToleranceName    =   "QTSSFlowControlModuleLossAboveTol";
-    static char*        sNumLossesBelowToleranceName    =   "QTSSFlowControlModuleLossBelowTol";
-    static char*        sNumGettingWorsesName           =   "QTSSFlowControlModuleGettingWorses";
+    const char*  sNumLossesAboveToleranceName    =   "QTSSFlowControlModuleLossAboveTol";
+    const char*  sNumLossesBelowToleranceName    =   "QTSSFlowControlModuleLossBelowTol";
+    const char*  sNumGettingWorsesName           =   "QTSSFlowControlModuleGettingWorses";
 
     (void)QTSS_AddStaticAttribute(qtssRTPStreamObjectType, sNumLossesAboveToleranceName, NULL, qtssAttrDataTypeUInt32);
     (void)QTSS_IDForAttr(qtssRTPStreamObjectType, sNumLossesAboveToleranceName, &sNumLossesAboveTolAttr);
@@ -130,7 +130,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_IDForAttr(qtssRTPStreamObjectType, sNumGettingWorsesName, &sNumWorsesAttr);
 
     // Tell the server our name!
-    static char* sModuleName = "QTSSFlowControlModule";
+    const char* sModuleName = "QTSSFlowControlModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;

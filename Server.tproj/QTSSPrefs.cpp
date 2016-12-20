@@ -105,7 +105,7 @@ void QTSSPrefs::RereadObjectPreferences(ContainerRef container)
     
     for (UInt32 x = 0; x < theNumPrefs; x++)
     {
-        char* thePrefTypeStr = NULL;
+        const char* thePrefTypeStr = NULL;
         char* thePrefName = NULL;
         (void)fPrefsSource->GetPrefValueByIndex(container, x, 0, &thePrefName, &thePrefTypeStr);
 
@@ -224,7 +224,7 @@ void QTSSPrefs::SetPrefValuesFromFileWithRef(ContainerRef pref, QTSS_AttributeID
         
     char* thePrefName = NULL;
     char* thePrefValue = NULL;
-    char* thePrefTypeStr = NULL;
+    const char* thePrefTypeStr = NULL;
     QTSS_AttrDataType thePrefType = qtssAttrDataTypeUnknown;
     
     // find the type.  If this is a QTSSObject, then we need to call a different routine
@@ -299,7 +299,7 @@ void QTSSPrefs::SetObjectValuesFromFile(ContainerRef pref, QTSS_AttributeID inAt
 }
 
 void    QTSSPrefs::SetPrefValue(QTSS_AttributeID inAttrID, UInt32 inAttrIndex,
-                                char* inPrefValue, QTSS_AttrDataType inPrefType, UInt32 inValueSize)
+                                const char* inPrefValue, QTSS_AttrDataType inPrefType, UInt32 inValueSize)
                         
 {
     static const UInt32 kMaxPrefValueSize = 1024;

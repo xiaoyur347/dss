@@ -87,7 +87,7 @@ static QTSS_Error   StateChange(QTSS_StateChange_Params* stateChangeParams);
 static void         WriteStartupMessage();
 static void         WriteShutdownMessage();
 
-typedef char* LevelMsg;
+typedef const char* LevelMsg;
 
 static LevelMsg sErrorLevel[] = {
 	"FATAL:",
@@ -188,7 +188,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     WriteStartupMessage();
     
     // Tell the server our name!
-    static char* sModuleName = "QTSSErrorLogModule";
+    const char* sModuleName = "QTSSErrorLogModule";
     ::strcpy(inParams->outModuleName, sModuleName);
     
     sErrorLogCheckTask = NEW ErrorLogCheckTask();

@@ -634,6 +634,21 @@ void    QTSSDictionary::SetVal( QTSS_AttributeID inAttrID,
     fAttributes[inAttrID].fNumAttributes = 1;
 }
 
+void    QTSSDictionary::SetVal( QTSS_AttributeID inAttrID,
+                                    const void* inValueBuffer,
+                                    UInt32 inBufferLen)
+{ 
+    Assert(inAttrID >= 0);
+    Assert(fMap);
+    Assert((UInt32)inAttrID < fMap->GetNumAttrs());
+    fAttributes[inAttrID].fAttributeData.Ptr = (char*)inValueBuffer;
+    fAttributes[inAttrID].fAttributeData.Len = inBufferLen;
+    fAttributes[inAttrID].fAllocatedLen = inBufferLen;
+    
+    // This function assumes there is only one value and that it isn't allocated internally
+    fAttributes[inAttrID].fNumAttributes = 1;
+}
+
 void    QTSSDictionary::SetEmptyVal(QTSS_AttributeID inAttrID, void* inBuf, UInt32 inBufLen)
 {
     Assert(inAttrID >= 0);

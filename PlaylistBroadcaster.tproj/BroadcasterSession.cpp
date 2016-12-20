@@ -244,7 +244,7 @@ OS_Error    BroadcasterSession::SendPacket(char* data, UInt32 len,UInt8 channel)
     {
         char *theSendData = NEW char[len + 12];
         memcpy(theSendData,data,len);
-        static char* tag="aktt";
+        const char* tag="aktt";
         memcpy(&theSendData[len],tag,4);
         SInt64 currentTime= OS::HostToNetworkSInt64(OS::Milliseconds());
         memcpy(&theSendData[len+4],&currentTime,8);

@@ -107,7 +107,7 @@ void SDPContainer::SetLine(SInt32 index)
 
 void SDPContainer::Parse()
 {
-	char*	    validChars = "vosiuepcbtrzkam";
+	const char* validChars = "vosiuepcbtrzkam";
 	char        nameValueSeparator = '=';
 	
 	Bool16      valid = true;

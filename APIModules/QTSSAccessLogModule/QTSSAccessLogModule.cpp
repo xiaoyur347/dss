@@ -54,13 +54,13 @@ class LogCheckTask;
 
 // Default values for preferences
 static Bool16   sDefaultLogEnabled          = true;
-static char*    sDefaultLogName             = "StreamingServer";
+static const char* sDefaultLogName          = "StreamingServer";
 static char*    sDefaultLogDir = NULL;
 static QTSS_PrefsObject     sServerPrefs = NULL;
  
 static UInt32   sDefaultMaxLogBytes         = 10240000;
 static UInt32   sDefaultRollInterval        = 7;
-static char*    sVoidField                  = "-";
+static const char* sVoidField               = "-";
 static Bool16   sStartedUp                  = false;
 static Bool16   sDefaultLogTimeInGMT        = true;
 
@@ -81,7 +81,7 @@ static LogCheckTask* sLogCheckTask = NULL;
 // This header conforms to the W3C "Extended Log File Format". 
 // (See "http://www.w3.org/TR/WD-logfile.html" for details.)
 // The final remark filed of the log header tells us if the logged times are in GMT or in system local time.
-static char* sLogHeader =   "#Software: %s\n"
+static const char* sLogHeader =   "#Software: %s\n"
                     "#Version: %s\n"    //%s == version
                     "#Date: %s\n"   //%s == date/time
                     "#Remark: all time values are in %s.\n" //%s == qtss_localtime or GMT
@@ -135,7 +135,7 @@ static QTSS_Error   LogRequest( QTSS_ClientSessionObject inClientSession,
                             QTSS_RTSPSessionObject inRTSPSession,QTSS_CliSesClosingReason *inCloseReasonPtr);
 static void             CheckAccessLogState(Bool16 forceEnabled);
 static QTSS_Error   RollAccessLog(QTSS_ServiceFunctionArgsPtr inArgs);
-static void         ReplaceSpaces(StrPtrLen *sourcePtr, StrPtrLen *destPtr, char *replaceStr);
+static void         ReplaceSpaces(StrPtrLen *sourcePtr, StrPtrLen *destPtr, const char *replaceStr);
 
 static QTSS_Error   StateChange(QTSS_StateChange_Params* stateChangeParams);
 static void         WriteStartupMessage();
@@ -187,10 +187,10 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_AddService("RollAccessLog", &RollAccessLog);
     
     // Tell the server our name!
-    static char* sModuleName = "QTSSAccessLogModule";
+    const char* sModuleName = "QTSSAccessLogModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
-    static char*        sLoggedAuthorizationName = "QTSSAccessLogModuleLoggedAuthorization";
+    const char* sLoggedAuthorizationName = "QTSSAccessLogModuleLoggedAuthorization";
     
     (void)QTSS_AddStaticAttribute(qtssClientSessionObjectType, sLoggedAuthorizationName, NULL, qtssAttrDataTypeUInt32);
     (void)QTSS_IDForAttr(qtssClientSessionObjectType, sLoggedAuthorizationName, &sLoggedAuthorizationAttrID);
@@ -313,7 +313,7 @@ QTSS_Error ClientSessionClosing(QTSS_ClientSessionClosing_Params* inParams)
     return LogRequest(inParams->inClientSession, NULL, &inParams->inReason);
 }
 
-void ReplaceSpaces(StrPtrLen *sourcePtr, StrPtrLen *destPtr, char *replaceStr)
+void ReplaceSpaces(StrPtrLen *sourcePtr, StrPtrLen *destPtr, const char *replaceStr)
 {
 
     if ( (NULL != destPtr) && (NULL != destPtr->Ptr) && (0 < destPtr->Len) ) destPtr->Ptr[0] = 0;

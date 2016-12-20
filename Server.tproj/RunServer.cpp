@@ -242,7 +242,7 @@ void CleanPid(Bool16 force)
 void LogStatus(QTSS_ServerState theServerState)
 {
     static QTSS_ServerState lastServerState = 0;
-    static char *sPLISTHeader[] =
+    const char *sPLISTHeader[] =
     {     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
 #if __MacOSX__
         "<!DOCTYPE plist SYSTEM \"file://localhost/System/Library/DTDs/PropertyList.dtd\">",
@@ -272,15 +272,15 @@ void LogStatus(QTSS_ServerState theServerState)
 
     static int numHeaderLines = sizeof(sPLISTHeader) / sizeof(char*);
 
-    static char*    sPlistStart = "<plist version=\"0.9\">";
-    static char*    sPlistEnd = "</plist>";
-    static char*    sDictStart = "<dict>";
-    static char*    sDictEnd = "</dict>";
+    const char*    sPlistStart = "<plist version=\"0.9\">";
+    const char*    sPlistEnd = "</plist>";
+    const char*    sDictStart = "<dict>";
+    const char*    sDictEnd = "</dict>";
     
-    static char*    sKey    = "     <key>%s</key>\n";
-    static char*    sValue  = "     <string>%s</string>\n";
+    const char*    sKey    = "     <key>%s</key>\n";
+    const char*    sValue  = "     <string>%s</string>\n";
     
-    static char *sAttributes[] =
+    const char *sAttributes[] =
     {
         "qtssSvrServerName",
         "qtssSvrServerVersion",
@@ -291,7 +291,7 @@ void LogStatus(QTSS_ServerState theServerState)
         "qtssSvrStartupTime",
         "qtssSvrCurrentTimeMilliseconds",
         "qtssSvrCPULoadPercent",
-         "qtssSvrState",
+        "qtssSvrState",
         "qtssRTPSvrCurConn",
         "qtssRTSPCurrentSessionCount",
         "qtssRTSPHTTPCurrentSessionCount",
@@ -385,7 +385,7 @@ void LogStatus(QTSS_ServerState theServerState)
     lastServerState = theServerState;
 }
 
-void print_status(FILE* file, FILE* console, char* format, char* theStr)
+void print_status(FILE* file, FILE* console, const char* format, const char* theStr)
 {
     if (file) qtss_fprintf(file, format, theStr);
     if (console) qtss_fprintf(console, format, theStr);
@@ -523,7 +523,7 @@ void FormattedTotalBytesBuffer(char *outBuffer, int outBufferLen, UInt64 totalBy
 {
     Float32 displayBytes = 0.0;
     char  sizeStr[] = "B";
-    char* format = NULL;
+    const char* format = NULL;
         
     if (totalBytes > 1073741824 ) //GBytes
     {   displayBytes = (Float32) ( (Float64) (SInt64) totalBytes /  (Float64) (SInt64) 1073741824 );

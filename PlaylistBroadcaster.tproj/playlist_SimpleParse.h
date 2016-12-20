@@ -34,11 +34,11 @@ class SimpleString {
     
     public:         
             SInt32 fLen;
-            char *fTheString;
+            const char *fTheString;
             
-            SimpleString(char *theString = NULL);
+            SimpleString(const char *theString = NULL);
             void Init();
-            void SetString(char *theString, SInt32 len);
+            void SetString(const char *theString, SInt32 len);
             SInt32 GetString(char *theString, SInt32 len);
             SInt32 GetInt();
             void Print();
@@ -65,7 +65,7 @@ class SimpleParser {
     
     static bool Compare(SimpleString *str1, SimpleString*str2, bool caseSensitive);     
     
-    bool Compare(SimpleString *str1Ptr, char *str, bool caseSensitive)
+    bool Compare(SimpleString *str1Ptr, const char *str, bool caseSensitive)
     {
         if (str == NULL) return false;
         SimpleString string(str);

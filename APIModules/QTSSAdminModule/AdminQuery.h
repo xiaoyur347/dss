@@ -127,7 +127,7 @@ class QueryURI
         static UInt8 sWhitespaceOrQuoteMask[];
         
         static URIField sURIFields[];
-        static char *sCommandDefs[];
+        static const char *sCommandDefs[];
         
         URIField *fURIFieldsPtr;
         

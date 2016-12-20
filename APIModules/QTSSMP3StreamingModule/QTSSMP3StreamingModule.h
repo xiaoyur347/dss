@@ -187,7 +187,7 @@ public:
 
     // Session data field accessor methods
 
-    void            SetMountpoint(char* mp);
+    void            SetMountpoint(const char* mp);
     
     void            SetMountpoint(StrPtrLen& mp);
     

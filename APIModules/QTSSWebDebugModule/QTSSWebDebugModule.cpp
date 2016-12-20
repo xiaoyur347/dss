@@ -76,12 +76,12 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_AddRole(QTSS_RTSPFilter_Role);
     
     // Register an attribute
-    static char*        sStateName          =   "QTSSWebDebugModuleState";
+    const char* sStateName = "QTSSWebDebugModuleState";
     (void)QTSS_AddStaticAttribute(qtssRTSPRequestObjectType, sStateName, NULL, qtssAttrDataTypeUInt32);
     (void)QTSS_IDForAttr(qtssRTSPRequestObjectType, sStateName, &sStateAttr);
     
     // Tell the server our name!
-    static char* sModuleName = "QTSSWebDebugModule";
+    const char* sModuleName = "QTSSWebDebugModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;

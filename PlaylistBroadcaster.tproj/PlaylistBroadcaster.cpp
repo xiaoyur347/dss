@@ -153,8 +153,8 @@ static void RemoveFiles(PLBroadcastDef* broadcastParms);
     local variables
 */
 static char*                sgProgramName; // the actual program name as input at commmand line
-static char*                sgTrackerDirPath = "/var/run";
-static char*                sgTrackerFilePath = "/var/run/broadcastlist";
+static const char*          sgTrackerDirPath = "/var/run";
+static const char*          sgTrackerFilePath = "/var/run/broadcastlist";
 static BroadcastLog*        sgLogger = NULL;
 static bool             sgTrackingSucceeded = false;
 static BroadcasterSession* sBroadcasterSession = NULL;
@@ -687,7 +687,7 @@ static void PreFlightOrBroadcast( const char *bcastSetupFilePath, bool preflight
     bool    generateNewSDP = false;
     int     numErrorsBeforeSDPGen = 0;
     char    theUserAgentStr[128];
-    char*   thePLBStr = "PlaylistBroadcaster";
+    const char* thePLBStr = "PlaylistBroadcaster";
        
     RegisterEventHandlers();
 

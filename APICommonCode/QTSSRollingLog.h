@@ -131,7 +131,7 @@ class QTSSRollingLog : public Task
         Bool16          RenameLogFile(const char* inFileName);
         Bool16          DoesFileExist(const char *inPath);
         static void     ResetToMidnight(time_t* inTimePtr, time_t* outTimePtr);
-        char*           GetLogPath(char *extension);
+        char*           GetLogPath(const char *extension);
         
         // To make sure what happens in Run doesn't also happen at the same time
         // in the public functions.

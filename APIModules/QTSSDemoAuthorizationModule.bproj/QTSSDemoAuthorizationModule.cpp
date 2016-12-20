@@ -54,7 +54,7 @@ static QTSS_ModulePrefsObject	sModulePrefs    = NULL;
 const UInt32 kBuffLen = 512;
 
 // Module description and version
-static char*            sDescription        = "Demonstrates an authorization method using client IP addresses for access control";
+static const char*      sDescription        = "Demonstrates an authorization method using client IP addresses for access control";
 static UInt32           sVersion            = 0x00010000;
 
 // FUNCTION PROTOTYPES
@@ -112,7 +112,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_AddRole(QTSS_RTSPAuthorize_Role);
 
     // Tell the server our name
-    static char* sModuleName = "QTSSDemoAuthorizationModule";
+    const char* sModuleName = "QTSSDemoAuthorizationModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;

@@ -126,8 +126,8 @@ void UserAgentParser::Parse(StrPtrLen *inStream)
     while (startFields.Len != 0)
     {
         //stop when we reach an empty line.
-        tempID.Set(NULL,0);
-        tempData.Set(NULL,0);
+        tempID.Reset();
+        tempData.Reset();
         
         parser.ConsumeLength(NULL, 1); // step past '(' or ';' if not found or at end of line does nothing
         parser.ConsumeWhitespace(); // search for non-white space if not found does nothing

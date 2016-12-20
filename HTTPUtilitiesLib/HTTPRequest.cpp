@@ -80,10 +80,6 @@ HTTPRequest::HTTPRequest(StrPtrLen* serverHeader, StrPtrLen* requestPtr)
     fResponseFormatter = NULL;
     fMethod = httpIllegalMethod;
     fVersion = httpIllegalVersion;
-    fAbsoluteURI = NULL;
-    fRelativeURI = NULL;
-    fAbsoluteURIScheme = NULL;
-    fHostHeader = NULL;
     fRequestPath = NULL;    
     fStatusCode = httpOK;
     fRequestKeepAlive = false; // Default value when there is no version string
@@ -96,15 +92,9 @@ HTTPRequest::HTTPRequest(StrPtrLen* serverHeader)
     fSvrHeader = *serverHeader;
   
     // We do not require any of these:
-    fRequestHeader = NULL;
  
     fMethod = httpIllegalMethod;
     fVersion = httpIllegalVersion;
-    fRequestLine = NULL;
-    fAbsoluteURI = NULL;
-    fRelativeURI = NULL;
-    fAbsoluteURIScheme = NULL;
-    fHostHeader = NULL;
     fRequestPath = NULL;    
     fStatusCode = 0;
     fRequestKeepAlive = false; 

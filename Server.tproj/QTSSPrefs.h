@@ -88,7 +88,7 @@ class QTSSPrefs : public QTSSDictionary
         // value when setting the value. If you wish to override this size, specify inValueSize,
         // otherwise it can be 0.
         void SetPrefValue(QTSS_AttributeID inAttrID, UInt32 inAttrIndex,
-                         char* inPrefValue, QTSS_AttrDataType inPrefType, UInt32 inValueSize = 0);
+                         const char* inPrefValue, QTSS_AttrDataType inPrefType, UInt32 inValueSize = 0);
 
         
     protected:

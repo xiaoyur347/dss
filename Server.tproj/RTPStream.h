@@ -373,10 +373,10 @@ class RTPStream : public QTSSDictionary, public UDPDemuxerTask
         static StrPtrLen                    sChannelNums[];
         static QTSS_ModuleState             sRTCPProcessModuleState;
 
-        static char *noType;
-        static char *UDP;
-        static char *RUDP;
-        static char *TCP;
+        static const char *noType;
+        static const char *UDP;
+        static const char *RUDP;
+        static const char *TCP;
         
         Bool16 UpdateQualityLevel(const SInt64& inTransmitTime, const SInt64& inCurrentPacketDelay,
                                         const SInt64& inCurrentTime, UInt32 inPacketSize);
@@ -386,7 +386,7 @@ class RTPStream : public QTSSDictionary, public UDPDemuxerTask
         Bool16          Supports3GPPQualityLevels();
 		void			SetInitialMaxQualityLevel();
         
-        char *GetStreamTypeStr();
+        const char *GetStreamTypeStr();
         enum { rtp = 0, rtcpSR = 1, rtcpRR = 2, rtcpACK = 3, rtcpAPP = 4 };
         Float32 GetStreamStartTimeSecs() { return (Float32) ((OS::Milliseconds() - this->fSession->GetSessionCreateTime())/1000.0); }
         void PrintPacket(char *inBuffer, UInt32 inLen, SInt32 inType); 

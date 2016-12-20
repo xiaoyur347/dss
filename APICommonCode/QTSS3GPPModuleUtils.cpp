@@ -71,7 +71,7 @@ void    QTSS3GPPModuleUtils::ValidatePrefs()
 
 // min and max values per 3gpp rel-6 A26234  5.3.3.5 
      if (s3gppRateAdaptationReportFrequency < 1 || s3gppRateAdaptationReportFrequency > 9)
-        QTSSModuleUtils::LogPrefErrorStr( qtssWarningVerbosity, (char*) k3gppRateAdaptationReportFreqPrefName, "has an invalid value: valid range is [1..9]");
+        QTSSModuleUtils::LogPrefErrorStr( qtssWarningVerbosity, k3gppRateAdaptationReportFreqPrefName, "has an invalid value: valid range is [1..9]");
    
     if (s3gppRateAdaptationReportFrequency < 1)
         s3gppRateAdaptationReportFrequency = 1;

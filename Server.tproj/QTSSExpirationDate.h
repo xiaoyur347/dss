@@ -29,7 +29,7 @@
 
     Written by: Denis Serenyi
 
-    Copyright:  © 1998 by Apple Computer, Inc., all rights reserved.
+    Copyright:  1998 by Apple Computer, Inc., all rights reserved.
 
 
 */
@@ -52,7 +52,7 @@ class QTSSExpirationDate
     private:
     
         static Bool16 sIsExpirationEnabled;
-        static char*    sExpirationDate;
+        static const char*    sExpirationDate;
         
 };
 

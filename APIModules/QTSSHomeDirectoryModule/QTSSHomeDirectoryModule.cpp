@@ -49,31 +49,31 @@
 #define	HOME_DIRECTORY_MODULE_DEBUGGING 0
 
 // STATIC DATA
-static QTSS_ServerObject		sServer						= NULL;
-static QTSS_ModuleObject        sModule						= NULL;
-static QTSS_ModulePrefsObject	sPrefs						= NULL;
+static QTSS_ServerObject        sServer = NULL;
+static QTSS_ModuleObject        sModule = NULL;
+static QTSS_ModulePrefsObject	sPrefs  = NULL;
 
 // Attributes
-static char*					sIsFirstRequestName			= "QTSSHomeDirectoryModuleIsFirstRequest";
-static QTSS_AttributeID         sIsFirstRequestAttr			= qtssIllegalAttrID;
-static char*					sRequestHomeDirAttrName			= "QTSSHomeDirectoryModuleHomeDir";
-static QTSS_AttributeID         sRequestHomeDirAttr				= qtssIllegalAttrID;
-static char*					sSessionHomeDirAttrName			= "QTSSHomeDirectoryModuleHomeDir";
-static QTSS_AttributeID         sSessionHomeDirAttr				= qtssIllegalAttrID;
+static const char*      sIsFirstRequestName = "QTSSHomeDirectoryModuleIsFirstRequest";
+static QTSS_AttributeID sIsFirstRequestAttr = qtssIllegalAttrID;
+static const char* sRequestHomeDirAttrName = "QTSSHomeDirectoryModuleHomeDir";
+static QTSS_AttributeID sRequestHomeDirAttr = qtssIllegalAttrID;
+static const char* sSessionHomeDirAttrName = "QTSSHomeDirectoryModuleHomeDir";
+static QTSS_AttributeID sSessionHomeDirAttr = qtssIllegalAttrID;
 
 // Module description and version
-static char*					sDescription				= "Provides support for streaming from users' home directories";
-static UInt32                   sVersion 					= 0x00010000;
+static const char* sDescription = "Provides support for streaming from users' home directories";
+static UInt32      sVersion     = 0x00010000;
 
 // Module preferences and their defaults
-static Bool16					sEnabled					= false;
-static Bool16					kDefaultEnabled				= false;
-static char*					sMoviesDirectory			= NULL; // Streaming dir in user's home dir
-static char*					kDefaultMoviesDirectory		= "/Sites/Streaming/";
-static UInt32                   sMaxNumConnsPerHomeDir		= 0; //Max conns. allowed per home directory
-static UInt32                   kDefaultMaxNumConnsPerHomeDir	= 0; // 0 => no limit enforced
-static UInt32                   sMaxBWInKbpsPerHomeDir			= 0; // Max BW allowed per home directory
-static UInt32                   kDefaultMaxBWInKbpsPerHomeDir	= 0; // 0 => no limit enforced
+static Bool16 sEnabled         = false;
+static Bool16 kDefaultEnabled  = false;
+static char*  sMoviesDirectory = NULL; // Streaming dir in user's home dir
+static const char* kDefaultMoviesDirectory	= "/Sites/Streaming/";
+static UInt32 sMaxNumConnsPerHomeDir		= 0; //Max conns. allowed per home directory
+static UInt32 kDefaultMaxNumConnsPerHomeDir	= 0; // 0 => no limit enforced
+static UInt32 sMaxBWInKbpsPerHomeDir		= 0; // Max BW allowed per home directory
+static UInt32 kDefaultMaxBWInKbpsPerHomeDir	= 0; // 0 => no limit enforced
 
 enum { kDefaultHomeDirSize = 64 };
 static Bool16 					sTrue						= true;
@@ -157,7 +157,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
 
 
     // Tell the server our name!
-    static char* sModuleName = "QTSSHomeDirectoryModule";
+    const char* sModuleName = "QTSSHomeDirectoryModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;

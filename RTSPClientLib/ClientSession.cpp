@@ -66,7 +66,7 @@ UInt32          ClientSession::sPacketsReceived = 0;
 
 char* ConvertBytesToCHexString( void* inValue, const UInt32 inValueLen)
 {
-    static const char* kHEXChars={ "0123456789ABCDEF" };
+    const char* kHEXChars={ "0123456789ABCDEF" };
 
     UInt8* theDataPtr = (UInt8*) inValue;
     UInt32 len = inValueLen *2;

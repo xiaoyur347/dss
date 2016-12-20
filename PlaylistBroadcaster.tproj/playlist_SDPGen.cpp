@@ -133,7 +133,7 @@ char *SDPGen::Process(  char *sdpFileName,
         }
             
         //    o=<username> <session id = random time> <version = random time *> <network type = IN> <address type = IP4> <address>
-        {   char *userName = "QTSS_Play_List";
+        {   const char *userName = "QTSS_Play_List";
             UInt32 sessIDAsRandomTime = RandomTime();
             UInt32 versAsRandomTime = RandomTime();
             char  ownerLine[255];
@@ -215,7 +215,7 @@ char *SDPGen::Process(  char *sdpFileName,
                 aLine[resultString.fLen] = '\0';
                 
                 int newBuffSize = sdpBuffString.fLen - (resultString.fLen);
-                char *newBuffPtr = &resultString.fTheString[resultString.fLen];
+                const char *newBuffPtr = &resultString.fTheString[resultString.fLen];
                 
                 sdpBuffString.SetString(newBuffPtr, newBuffSize);   
 

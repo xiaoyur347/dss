@@ -72,13 +72,13 @@ static OSMutex*     sUserMutex              = NULL;
 static Bool16         sDefaultAuthenticationEnabled   = true;
 static Bool16         sAuthenticationEnabled          = true;
 
-static char* sDefaultUsersFilePath  = DEFAULTPATHS_ETC_DIR "qtusers";
+static const char* sDefaultUsersFilePath  = DEFAULTPATHS_ETC_DIR "qtusers";
 static char* sUsersFilePath = NULL;
 
-static char* sDefaultGroupsFilePath = DEFAULTPATHS_ETC_DIR "qtgroups";
+static const char* sDefaultGroupsFilePath = DEFAULTPATHS_ETC_DIR "qtgroups";
 static char* sGroupsFilePath = NULL;
 
-static char* sDefaultAccessFileName = "qtaccess";
+static const char* sDefaultAccessFileName = "qtaccess";
 
 static QTSS_AttributeID sBadNameMessageAttrID               = qtssIllegalAttrID;
 static QTSS_AttributeID sUsersFileNotFoundMessageAttrID     = qtssIllegalAttrID;
@@ -161,11 +161,11 @@ QTSS_Error Register()
     (void)QTSS_AddRole(QTSS_RTSPAuthorize_Role);
         
     // Add AuthenticateName and Password attributes
-    static char*        sBadAccessFileName  = "QTSSAccessModuleBadAccessFileName";
-    static char*        sUsersFileNotFound  = "QTSSAccessModuleUsersFileNotFound";
-    static char*        sGroupsFileNotFound = "QTSSAccessModuleGroupsFileNotFound";
-    static char*        sBadUsersFile       = "QTSSAccessModuleBadUsersFile";
-    static char*        sBadGroupsFile      = "QTSSAccessModuleBadGroupsFile";
+    const char*  sBadAccessFileName  = "QTSSAccessModuleBadAccessFileName";
+    const char*  sUsersFileNotFound  = "QTSSAccessModuleUsersFileNotFound";
+    const char*  sGroupsFileNotFound = "QTSSAccessModuleGroupsFileNotFound";
+    const char*  sBadUsersFile       = "QTSSAccessModuleBadUsersFile";
+    const char*  sBadGroupsFile      = "QTSSAccessModuleBadGroupsFile";
     
     (void)QTSS_AddStaticAttribute(qtssTextMessagesObjectType, sBadAccessFileName, NULL, qtssAttrDataTypeCharArray);
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sBadAccessFileName, &sBadNameMessageAttrID);
@@ -238,7 +238,7 @@ QTSS_Error Shutdown()
 char* GetCheckedFileName()
 {
     char        *result = NULL;
-    static char *badChars = "/'\"";
+    const char  *badChars = "/'\"";
     char        theBadCharMessage[] = "' '";
     char        *theBadChar = NULL;
     result = QTSSModuleUtils::GetStringAttribute(sPrefs, MODPREFIX_"qtaccessfilename", sDefaultAccessFileName);

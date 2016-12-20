@@ -166,7 +166,7 @@ char *StrPtrLen::FindStringCase(char *queryCharStr, StrPtrLen *resultStr, Bool16
     // 
 
     if (resultStr)
-        resultStr->Set(NULL,0);
+        resultStr->Reset();
 
     Assert (NULL != queryCharStr);
     if (NULL == queryCharStr) return NULL;
@@ -230,6 +230,75 @@ char *StrPtrLen::FindStringCase(char *queryCharStr, StrPtrLen *resultStr, Bool16
     return resultChar;
 }
 
+char *StrPtrLen::FindStringCase(const char *queryCharStr, StrPtrLen *resultStr, Bool16 caseSensitive) const
+{
+    // Be careful about exiting this method from the middle. This routine deletes allocated memory at the end.
+    // 
+
+    if (resultStr)
+        resultStr->Reset();
+
+    Assert (NULL != queryCharStr);
+    if (NULL == queryCharStr) return NULL;
+    if (NULL == Ptr) return NULL;
+    if (0 == Len) return NULL;
+    
+
+    StrPtrLen queryStr(queryCharStr);
+    char *editSource = NULL;
+    char *resultChar = NULL;
+    char lastSourceChar = Ptr[Len -1];
+    
+    if (lastSourceChar != 0) // need to modify for termination. 
+    {   editSource = NEW char[Len + 1]; // Ptr could be a static string so make a copy
+        ::memcpy( editSource, Ptr, Len );
+        editSource[Len] = 0; // this won't work on static strings so we are modifing a new string here
+    }
+
+    const char *queryString = queryCharStr;       
+    char *dupSourceString = NULL;
+    char *dupQueryString = NULL;
+    char *sourceString = Ptr;
+    UInt32 foundLen = 0;
+    
+    if (editSource != NULL) // a copy of the source ptr and len 0 terminated
+        sourceString = editSource;
+    
+    if (!caseSensitive)
+    {   dupSourceString = ::strdup(sourceString);
+        dupQueryString = ::strdup(queryCharStr);                
+        if (dupSourceString && dupQueryString) 
+        {   sourceString = StrPtrLen(dupSourceString).ToUpper();
+            queryString = StrPtrLen(dupQueryString).ToUpper();
+            resultChar = ::strstr(sourceString,queryString);
+			
+			::free(dupSourceString);
+			::free(dupQueryString);
+        }
+    }
+    else
+    {   resultChar = ::strstr(sourceString,queryString);        
+    }
+    
+    if (resultChar != NULL) // get the start offset
+    {   foundLen = resultChar - sourceString;
+        resultChar = Ptr + foundLen;  // return a pointer in the source buffer
+        if (resultChar > (Ptr + Len)) // make sure it is in the buffer
+            resultChar = NULL;
+    }
+    
+    if (editSource != NULL)  
+        delete [] editSource;
+    
+    if (resultStr != NULL && resultChar != NULL)
+        resultStr->Set(resultChar,queryStr.Len);
+    
+#if STRPTRLENTESTING    
+    qtss_printf("StrPtrLen::FindStringCase found string=%s\n",resultChar);
+#endif
+
+    return resultChar;
+}
 
 UInt32 StrPtrLen::RemoveWhitespace()
 {
@@ -317,14 +386,14 @@ void StrPtrLen::PrintStr()
     }   
 }
 
-void StrPtrLen::PrintStr(char *appendStr)
+void StrPtrLen::PrintStr(const char *appendStr)
 {
     StrPtrLen::PrintStr();
     if (appendStr != NULL)
         qtss_printf(appendStr);
 }
 
-void StrPtrLen::PrintStr(char* prependStr, char *appendStr)
+void StrPtrLen::PrintStr(const char* prependStr, const char *appendStr)
 {
     if (prependStr != NULL)
         qtss_printf(prependStr);
@@ -336,7 +405,7 @@ void StrPtrLen::PrintStr(char* prependStr, char *appendStr)
 }
 
 
-void StrPtrLen::PrintStrEOL(char* stopStr, char *appendStr)
+void StrPtrLen::PrintStrEOL(const char* stopStr, const char *appendStr)
 {
            
  
@@ -376,8 +445,8 @@ void StrPtrLen::PrintStrEOL(char* stopStr, char *appendStr)
     char * theStrLine = thestr;
     char * nextLine = NULL;
     const char * theChar = NULL;
-    static const char *cr="\\r";
-    static const char *lf="\\n\n";
+    const char *cr="\\r";
+    const char *lf="\\n\n";
     SInt32 tempLen = i;
     for (i = 0; i < tempLen; i ++) 
     {   

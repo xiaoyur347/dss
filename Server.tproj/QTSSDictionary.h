@@ -166,6 +166,7 @@ class QTSSDictionary : public QTSSStream
 
         // They don't set fNumAttributes & fAllocatedInternally.
         void    SetVal(QTSS_AttributeID inAttrID, void* inValueBuffer, UInt32 inBufferLen);
+	void    SetVal(QTSS_AttributeID inAttrID, const void* inValueBuffer, UInt32 inBufferLen);
         void    SetVal(QTSS_AttributeID inAttrID, StrPtrLen* inNewValue)
                     { this->SetVal(inAttrID, inNewValue->Ptr, inNewValue->Len); }
 

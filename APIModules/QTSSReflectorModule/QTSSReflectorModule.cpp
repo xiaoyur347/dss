@@ -146,7 +146,7 @@ static UInt32   sDefaultMaxAnnouncedSDPLengthInKbytes = 4;
 
 static QTSS_AttributeID sIPAllowListID = qtssIllegalAttrID;
 static char*            sIPAllowList = NULL;
-static char*            sLocalLoopBackAddress = "127.0.0.*";
+static const char*      sLocalLoopBackAddress = "127.0.0.*";
 
 static Bool16   sAuthenticateLocalBroadcast = false;
 static Bool16   sDefaultAuthenticateLocalBroadcast = false;
@@ -175,11 +175,11 @@ static Bool16   sForceRTPInfoSeqAndTime = false;
 static Bool16   sDefaultForceRTPInfoSeqAndTime = false;
 
 static char*	sRedirectBroadcastsKeyword = NULL;
-static char*    sDefaultRedirectBroadcastsKeyword = "";
+static const char*    sDefaultRedirectBroadcastsKeyword = "";
 static char*    sBroadcastsRedirectDir = NULL;
-static char*    sDefaultBroadcastsRedirectDir = ""; // match none
-static char*    sDefaultBroadcastsDir = ""; // match all
-static char*	sDefaultsBroadcasterGroup = "broadcaster";
+static const char*    sDefaultBroadcastsRedirectDir = ""; // match none
+static const char*    sDefaultBroadcastsDir = ""; // match all
+static const char*    sDefaultsBroadcasterGroup = "broadcaster";
 static StrPtrLen sBroadcasterGroup;
 
 static QTSS_AttributeID sBroadcastDirListID = qtssIllegalAttrID;
@@ -286,11 +286,11 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     
     
     // Add text messages attributes
-    static char*        sExpectedDigitFilenameName      = "QTSSReflectorModuleExpectedDigitFilename";
-    static char*        sReflectorBadTrackIDErrName     = "QTSSReflectorModuleBadTrackID";
-    static char*        sDuplicateBroadcastStreamName   = "QTSSReflectorModuleDuplicateBroadcastStream";
-    static char*        sAnnounceRequiresSDPinName      = "QTSSReflectorModuleAnnounceRequiresSDPSuffix";
-    static char*        sAnnounceDisabledName           = "QTSSReflectorModuleAnnounceDisabled";
+    const char*  sExpectedDigitFilenameName      = "QTSSReflectorModuleExpectedDigitFilename";
+    const char*  sReflectorBadTrackIDErrName     = "QTSSReflectorModuleBadTrackID";
+    const char*  sDuplicateBroadcastStreamName   = "QTSSReflectorModuleDuplicateBroadcastStream";
+    const char*  sAnnounceRequiresSDPinName      = "QTSSReflectorModuleAnnounceRequiresSDPSuffix";
+    const char*  sAnnounceDisabledName           = "QTSSReflectorModuleAnnounceDisabled";
     
     (void)QTSS_AddStaticAttribute(qtssTextMessagesObjectType, sDuplicateBroadcastStreamName, NULL, qtssAttrDataTypeCharArray);
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sDuplicateBroadcastStreamName, &sDuplicateBroadcastStreamErr);
@@ -308,34 +308,34 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_AddStaticAttribute(qtssTextMessagesObjectType, sReflectorBadTrackIDErrName, NULL, qtssAttrDataTypeCharArray);
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sReflectorBadTrackIDErrName, &sReflectorBadTrackIDErr);
     
-    static char* sSDPcontainsInvalidMinumumPortErrName  = "QTSSReflectorModuleSDPPortMinimumPort";
+    const char* sSDPcontainsInvalidMinumumPortErrName  = "QTSSReflectorModuleSDPPortMinimumPort";
     (void)QTSS_AddStaticAttribute(qtssTextMessagesObjectType, sSDPcontainsInvalidMinumumPortErrName, NULL, qtssAttrDataTypeCharArray);
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sSDPcontainsInvalidMinumumPortErrName, &sSDPcontainsInvalidMinimumPortErr);
 
-    static char* sSDPcontainsInvalidMaximumPortErrName  = "QTSSReflectorModuleSDPPortMaximumPort";
+    const char* sSDPcontainsInvalidMaximumPortErrName  = "QTSSReflectorModuleSDPPortMaximumPort";
     (void)QTSS_AddStaticAttribute(qtssTextMessagesObjectType, sSDPcontainsInvalidMaximumPortErrName, NULL, qtssAttrDataTypeCharArray);
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sSDPcontainsInvalidMaximumPortErrName, &sSDPcontainsInvalidMaximumPortErr);
     
-    static char* sStaticPortsConflictErrName    = "QTSSReflectorModuleStaticPortsConflict";
+    const char* sStaticPortsConflictErrName    = "QTSSReflectorModuleStaticPortsConflict";
     (void)QTSS_AddStaticAttribute(qtssTextMessagesObjectType, sStaticPortsConflictErrName, NULL, qtssAttrDataTypeCharArray);
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sStaticPortsConflictErrName, &sStaticPortsConflictErr);
 
-    static char* sInvalidPortRangeErrName   = "QTSSReflectorModuleStaticPortPrefsBadRange";
+    const char* sInvalidPortRangeErrName   = "QTSSReflectorModuleStaticPortPrefsBadRange";
     (void)QTSS_AddStaticAttribute(qtssTextMessagesObjectType, sInvalidPortRangeErrName, NULL, qtssAttrDataTypeCharArray);
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sInvalidPortRangeErrName, &sInvalidPortRangeErr);
     
     
     // Add an RTP session attribute for tracking ReflectorSession objects
-    static char*        sOutputName         = "QTSSReflectorModuleOutput";
-    static char*        sSessionName        = "QTSSReflectorModuleSession";
-    static char*        sStreamCookieName   = "QTSSReflectorModuleStreamCookie";
-    static char*        sRequestBufferName  = "QTSSReflectorModuleRequestBuffer";
-    static char*        sRequestBufferLenName= "QTSSReflectorModuleRequestBufferLen";
-    static char*        sBroadcasterSessionName= "QTSSReflectorModuleBroadcasterSession";
-    static char*        sAnnouncedFileName     = "QTSSReflectorModuleAnnouncedFileName";
-    static char*        sKillClientsEnabledName= "QTSSReflectorModuleTearDownClients";
+    const char*  sOutputName         = "QTSSReflectorModuleOutput";
+    const char*  sSessionName        = "QTSSReflectorModuleSession";
+    const char*  sStreamCookieName   = "QTSSReflectorModuleStreamCookie";
+    const char*  sRequestBufferName  = "QTSSReflectorModuleRequestBuffer";
+    const char*  sRequestBufferLenName = "QTSSReflectorModuleRequestBufferLen";
+    const char*  sBroadcasterSessionName = "QTSSReflectorModuleBroadcasterSession";
+    const char*  sAnnouncedFileName  = "QTSSReflectorModuleAnnouncedFileName";
+    const char*  sKillClientsEnabledName= "QTSSReflectorModuleTearDownClients";
 
-    static char*        sRTPInfoWaitTime         = "QTSSReflectorModuleRTPInfoWaitTime";
+    const char*  sRTPInfoWaitTime    = "QTSSReflectorModuleRTPInfoWaitTime";
     (void)QTSS_AddStaticAttribute(qtssClientSessionObjectType, sRTPInfoWaitTime, NULL, qtssAttrDataTypeSInt32);
     (void)QTSS_IDForAttr(qtssClientSessionObjectType, sRTPInfoWaitTime, &sRTPInfoWaitTimeAttr);
 
@@ -373,7 +373,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     RTPSessionOutput::Register();
 
     // Tell the server our name!
-    static char* sModuleName = "QTSSReflectorModule";
+    const char* sModuleName = "QTSSReflectorModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;

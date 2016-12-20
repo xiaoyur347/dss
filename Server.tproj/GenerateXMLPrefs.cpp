@@ -35,8 +35,8 @@
 
 struct PrefConversionInfo
 {
-    char*               fPrefName;
-    char*               fModuleName;
+    const char*         fPrefName;
+    const char*         fModuleName;
     QTSS_AttrDataType   fPrefType;
 };
 
@@ -130,14 +130,14 @@ int GenerateAllXMLPrefs(FilePrefsSource* inPrefsSource, XMLPrefsParser* inXMLPre
             if (::strcmp(thePrefName, kPrefs[y].fPrefName) == 0)
                 break;
         
-        char* theTypeString = (char*)QTSSDataConverter::TypeToTypeString(kPrefs[y].fPrefType);
+        const char* theTypeString = QTSSDataConverter::TypeToTypeString(kPrefs[y].fPrefType);
         ContainerRef module = inXMLPrefs->GetRefForModule(kPrefs[y].fModuleName);
         ContainerRef pref = inXMLPrefs->AddPref(module, thePrefName, theTypeString);
 
-        char* theValue = inPrefsSource->GetValueAtIndex(x);
+        const char* theValue = inPrefsSource->GetValueAtIndex(x);
             
-        static char* kTrue = "true";
-        static char* kFalse = "false";
+        const char* kTrue = "true";
+        const char* kFalse = "false";
         
         //
         // If the pref is a Bool16, the new pref format uses "true" & "false",
@@ -161,7 +161,7 @@ int GenerateStandardXMLPrefs(PrefsSource* inPrefsSource, XMLPrefsParser* inXMLPr
     
     for (UInt32 x = 0; kPrefs[x].fPrefName != NULL; x++)
     {
-        char* theTypeString = (char*)QTSSDataConverter::TypeToTypeString(kPrefs[x].fPrefType);
+        const char* theTypeString = QTSSDataConverter::TypeToTypeString(kPrefs[x].fPrefType);
         ContainerRef module = inXMLPrefs->GetRefForModule(kPrefs[x].fModuleName);
         ContainerRef pref = inXMLPrefs->AddPref(module, kPrefs[x].fPrefName, theTypeString);
 

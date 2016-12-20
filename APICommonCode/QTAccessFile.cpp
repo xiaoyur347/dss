@@ -56,8 +56,8 @@
 #define DEBUG_QTACCESS 0
 #define debug_printf if (DEBUG_QTACCESS) qtss_printf
 
-char* QTAccessFile::sAccessValidUser = "require valid-user\n";
-char* QTAccessFile::sAccessAnyUser = "require any-user\n";
+const char* QTAccessFile::sAccessValidUser = "require valid-user\n";
+const char* QTAccessFile::sAccessAnyUser = "require any-user\n";
 
 UInt8 QTAccessFile::sWhitespaceAndGreaterThanMask[] =
 {
@@ -89,7 +89,7 @@ UInt8 QTAccessFile::sWhitespaceAndGreaterThanMask[] =
     0, 0, 0, 0, 0, 0             //250-255
 };
 
-char*       QTAccessFile::sQTAccessFileName = "qtaccess";
+char* QTAccessFile::sQTAccessFileName = const_cast<char*>("qtaccess");
 Bool16      QTAccessFile::sAllocatedName = false;
 OSMutex*    QTAccessFile::sAccessFileMutex = NULL;//QTAccessFile isn't reentrant
 const int kBuffLen = 512;

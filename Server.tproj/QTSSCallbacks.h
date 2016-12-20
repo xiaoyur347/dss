@@ -84,8 +84,8 @@ class QTSSCallbacks
 
         // TYPE INFO & TYPE CONVERSIONS
         
-        static QTSS_Error   QTSS_TypeToTypeString(const QTSS_AttrDataType inType, char** outTypeString);
-        static QTSS_Error   QTSS_TypeStringToType( char* inTypeString, QTSS_AttrDataType* outType);
+        static QTSS_Error   QTSS_TypeToTypeString(const QTSS_AttrDataType inType, const char** outTypeString);
+        static QTSS_Error   QTSS_TypeStringToType(const char* inTypeString, QTSS_AttrDataType* outType);
         static QTSS_Error   QTSS_StringToValue( char* inValueAsString, const QTSS_AttrDataType inType, void* ioBuffer, UInt32* ioBufSize);
         static QTSS_Error   QTSS_ValueToString( void* inValue, const UInt32 inValueLen, const QTSS_AttrDataType inType, char** outString);
 

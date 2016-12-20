@@ -212,7 +212,7 @@ QTSS_Error RTSPRequest::ParseURI(StringParser &parser)
 
     //
     // In case there is no URI at all... we have to fake it.
-    static char* sSlashURI = "/";
+    const char* sSlashURI = "/";
         
     //whatever is in this position in the URL must be the URI. Store that
     //in the qtssURLParam. Confused?
@@ -417,7 +417,7 @@ Bool16 RTSPRequest::ParseNetworkModeSubHeader(StrPtrLen* inSubHeader)
 
 void RTSPRequest::ParseTransportHeader()
 {
-	static char* sRTPAVPTransportStr = "RTP/AVP";
+    const char* sRTPAVPTransportStr = "RTP/AVP";
 	
     StringParser theTransParser(fHeaderDictionary.GetValue(qtssTransportHeader));
     

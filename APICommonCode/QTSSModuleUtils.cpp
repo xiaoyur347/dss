@@ -142,10 +142,10 @@ void    QTSSModuleUtils::SetupSupportedMethods(QTSS_Object inServer, QTSS_RTSPMe
 void    QTSSModuleUtils::LogError(  QTSS_ErrorVerbosity inVerbosity,
                                     QTSS_AttributeID inTextMessage,
                                     UInt32 /*inErrNumber*/,
-                                    char* inArgument,
-                                    char* inArg2)
+                                    const char* inArgument,
+                                    const char* inArg2)
 {
-    static char* sEmptyArg = "";
+    const char* sEmptyArg = "";
     
     if (sMessages == NULL)
         return;
@@ -185,7 +185,7 @@ void QTSSModuleUtils::LogErrorStr( QTSS_ErrorVerbosity inVerbosity, const char* 
 }
 
 
-void QTSSModuleUtils::LogPrefErrorStr( QTSS_ErrorVerbosity inVerbosity, char*  preference, char* inMessage)
+void QTSSModuleUtils::LogPrefErrorStr( QTSS_ErrorVerbosity inVerbosity, const char*  preference, const char* inMessage)
 {  	
 	if (inMessage == NULL || preference == NULL) 
 	{  Assert(0);
@@ -430,7 +430,7 @@ QTSS_Error	QTSSModuleUtils::SendErrorResponseWithMessage( QTSS_RTSPRequestObject
     //set RTSP headers necessary for this error response message
     (void)QTSS_SetValue(inRequest, qtssRTSPReqStatusCode, 0, &inStatusCode, sizeof(inStatusCode));
     (void)QTSS_SetValue(inRequest, qtssRTSPReqRespKeepAlive, 0, &sFalse, sizeof(sFalse));
-    StrPtrLen theErrorMessage(NULL, 0);
+    StrPtrLen theErrorMessage;
     
     if (sEnableRTSPErrorMsg)
     {
@@ -480,7 +480,7 @@ QTSS_Error	QTSSModuleUtils::SendHTTPErrorResponse( QTSS_RTSPRequestObject inRequ
 
     // ToDo: put in a more meaningful http error message for each error. Not required by spec.
     // ToDo: maybe use the HTTP protcol class static error strings.
-    char* errorMsg = "error"; 
+    const char* errorMsg = "error"; 
 
     DateBuffer theDate;
     DateTranslator::UpdateDateBuffer(&theDate, 0); // get the current GMT date and time
@@ -650,7 +650,7 @@ QTSS_ModulePrefsObject QTSSModuleUtils::GetModuleObjectByName(const StrPtrLen& i
     return NULL;
 }
 
-void    QTSSModuleUtils::GetAttribute(QTSS_Object inObject, char* inAttributeName, QTSS_AttrDataType inType, 
+void    QTSSModuleUtils::GetAttribute(QTSS_Object inObject, const char* inAttributeName, QTSS_AttrDataType inType, 
                                                 void* ioBuffer, void* inDefaultValue, UInt32 inBufferLen)
 {
     //
@@ -694,7 +694,7 @@ void    QTSSModuleUtils::GetAttribute(QTSS_Object inObject, char* inAttributeNam
     }
 }
 
-char*   QTSSModuleUtils::GetStringAttribute(QTSS_Object inObject, char* inAttributeName, char* inDefaultValue)
+char*   QTSSModuleUtils::GetStringAttribute(QTSS_Object inObject, const char* inAttributeName, const char* inDefaultValue)
 {
     UInt32 theDefaultValLen = 0;
     if (inDefaultValue != NULL)
@@ -741,7 +741,7 @@ char*   QTSSModuleUtils::GetStringAttribute(QTSS_Object inObject, char* inAttrib
     return NULL;
 }
 
-void    QTSSModuleUtils::GetIOAttribute(QTSS_Object inObject, char* inAttributeName, QTSS_AttrDataType inType,
+void    QTSSModuleUtils::GetIOAttribute(QTSS_Object inObject, const char* inAttributeName, QTSS_AttrDataType inType,
                             void* ioDefaultResultBuffer, UInt32 inBufferLen)
 {
     char *defaultBuffPtr = NEW char[inBufferLen];
@@ -752,7 +752,7 @@ void    QTSSModuleUtils::GetIOAttribute(QTSS_Object inObject, char* inAttributeN
 }
                             
 
-QTSS_AttributeID QTSSModuleUtils::GetAttrID(QTSS_Object inObject, char* inAttributeName)
+QTSS_AttributeID QTSSModuleUtils::GetAttrID(QTSS_Object inObject, const char* inAttributeName)
 {
     //
     // Get the attribute ID of this attribute.
@@ -769,7 +769,7 @@ QTSS_AttributeID QTSSModuleUtils::GetAttrID(QTSS_Object inObject, char* inAttrib
     return theID;
 }
 
-QTSS_AttributeID QTSSModuleUtils::CheckAttributeDataType(QTSS_Object inObject, char* inAttributeName, QTSS_AttrDataType inType, void* inDefaultValue, UInt32 inBufferLen)
+QTSS_AttributeID QTSSModuleUtils::CheckAttributeDataType(QTSS_Object inObject, const char* inAttributeName, QTSS_AttrDataType inType, const void* inDefaultValue, UInt32 inBufferLen)
 {
     //
     // Get the attribute type of this attribute.
@@ -807,7 +807,7 @@ QTSS_AttributeID QTSSModuleUtils::CheckAttributeDataType(QTSS_Object inObject, c
     return theID;
 }
 
-QTSS_AttributeID QTSSModuleUtils::CreateAttribute(QTSS_Object inObject, char* inAttributeName, QTSS_AttrDataType inType, void* inDefaultValue, UInt32 inBufferLen)
+QTSS_AttributeID QTSSModuleUtils::CreateAttribute(QTSS_Object inObject, const char* inAttributeName, QTSS_AttrDataType inType, const void* inDefaultValue, UInt32 inBufferLen)
 {
     QTSS_Error theErr = QTSS_AddInstanceAttribute(inObject, inAttributeName, NULL, inType);
     Assert((theErr == QTSS_NoErr) || (theErr == QTSS_AttrNameExists));
@@ -1068,10 +1068,10 @@ QTSS_Error QTSSModuleUtils::AuthorizeRequest(QTSS_RTSPRequestObject theRTSPReque
 
 IPComponentStr IPComponentStr::sLocalIPCompStr("127.0.0.*");
 
-IPComponentStr::IPComponentStr(char *theAddressPtr)
+IPComponentStr::IPComponentStr(const char *theAddressPtr)
 {
     StrPtrLen sourceStr(theAddressPtr);
-     (void) this->Set(&sourceStr);    
+    (void) this->Set(&sourceStr);    
 }
 
 IPComponentStr::IPComponentStr(StrPtrLen *sourceStrPtr)

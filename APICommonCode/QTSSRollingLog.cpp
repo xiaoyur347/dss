@@ -122,7 +122,7 @@ Bool16 QTSSRollingLog::RollLog()
     return result;
 }
 
-char* QTSSRollingLog::GetLogPath(char *extension)
+char* QTSSRollingLog::GetLogPath(const char *extension)
 {
     char *thePath = NULL;
     
@@ -138,7 +138,7 @@ char* QTSSRollingLog::GetLogPath(char *extension)
     formatPath.PutTerminator();
     thePath = formatPath.GetBufPtr();
     
-    formatPath.Set(NULL,0); //don't delete buffer we are returning the path as  a result
+    formatPath.Reset(); //don't delete buffer we are returning the path as  a result
     
     return thePath;
 }
@@ -156,7 +156,7 @@ void QTSSRollingLog::EnableLog( Bool16 appendDotLog )
     if (fLogging == false)
         return;
 
-    char *extension = ".log";
+    const char *extension = ".log";
     if (!appendDotLog)
         extension = NULL;
         

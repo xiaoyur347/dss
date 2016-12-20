@@ -144,10 +144,10 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
 {
     // The spam defense module has one preference, the number of connections
     // to allow per ip addr
-    static char*        sIsFirstRequestName = "QTSSSpamDefenseModuleIsFirstRequest";
+    const char*        sIsFirstRequestName = "QTSSSpamDefenseModuleIsFirstRequest";
 
     // Add text messages attributes
-    static char*        sTooManyConnectionsName = "QTSSSpamDefenseModuleTooManyConnections";
+    const char*        sTooManyConnectionsName = "QTSSSpamDefenseModuleTooManyConnections";
 
     // Do role & attribute setup
     (void)QTSS_AddRole(QTSS_Initialize_Role);
@@ -163,7 +163,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_IDForAttr(qtssTextMessagesObjectType, sTooManyConnectionsName, &sTooManyConnectionsErr);
 
     // Tell the server our name!
-    static char* sModuleName = "QTSSSpamDefenseModule";
+    const char* sModuleName = "QTSSSpamDefenseModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;

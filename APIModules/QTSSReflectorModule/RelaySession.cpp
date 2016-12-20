@@ -42,18 +42,18 @@ static StrPtrLen    sRTSPSourceStr("rtsp_source");
 static StrPtrLen    sAnnouncedSourceStr("announced_source");
 static StrPtrLen    sEmptyStr("");
 
-static char*        sRelaySessionObjectName     = "relay_session";
-static char*        sRelayNameName              = "relay_name";
-static char*        sSourceTypeName             = "source_type";
-static char*        sSourceIPAddrName           = "source_ip_addr";
-static char*        sSourceInIPAddrName         = "source_in_ip_addr";
-static char*        sSourceUDPPortsName         = "source_udp_ports";
-static char*        sSourceRTSPPortName         = "source_rtsp_port";
-static char*        sSourceURLName              = "source_url";
-static char*        sSourceUsernameName         = "source_username";
-static char*        sSourcePasswordName         = "source_password";
-static char*        sSourceTTLName              = "source_ttl";
-static char*        sRelayOutputObjectName          = "relay_output";
+static const char*  sRelaySessionObjectName     = "relay_session";
+static const char*  sRelayNameName              = "relay_name";
+static const char*  sSourceTypeName             = "source_type";
+static const char*  sSourceIPAddrName           = "source_ip_addr";
+static const char*  sSourceInIPAddrName         = "source_in_ip_addr";
+static const char*  sSourceUDPPortsName         = "source_udp_ports";
+static const char*  sSourceRTSPPortName         = "source_rtsp_port";
+static const char*  sSourceURLName              = "source_url";
+static const char*  sSourceUsernameName         = "source_username";
+static const char*  sSourcePasswordName         = "source_password";
+static const char*  sSourceTTLName              = "source_ttl";
+static const char*  sRelayOutputObjectName      = "relay_output";
 
 QTSS_Object     RelaySession::relayModuleAttributesObject;
 QTSS_ObjectType     RelaySession::qtssRelaySessionObjectType;
@@ -115,7 +115,7 @@ void RelaySession::Register()
     (void)QTSS_IDForAttr(qtssRelaySessionObjectType, sRelayOutputObjectName, &sRelayOutputObject);  // relay output
         
     //char* strEnd        = NULL;
-    char* relayStr = "QTSS_Relay/";
+    const char* relayStr = "QTSS_Relay/";
     //kVersionString is changed now -- it doesn't contain any spaces or the build number
     //strEnd = strchr(kVersionString, ' ');
     //Assert(strEnd != NULL);

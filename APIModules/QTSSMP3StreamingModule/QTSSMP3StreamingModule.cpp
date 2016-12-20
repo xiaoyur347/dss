@@ -91,7 +91,7 @@ static MP3SessionTable      sMP3SessionTable;
 static UInt32           sBroadcastBufferSize        = 8192;
 static UInt32           sDefaultBroadcastBufferSize     = 8192;
 static char*            sBroadcastPassword      = NULL;
-static char*            sDefaultBroadcastPassword   = " ";
+static const char*      sDefaultBroadcastPassword   = " ";
 static Bool16           sMP3StreamingEnabled        = true;
 static Bool16           sDefaultMP3StreamingEnabled     = true;
 static SInt32           sMaximumConnections         = 0;
@@ -103,7 +103,7 @@ static SInt32           sDefaultFlowControlTimeInMSec   = 10000;
 static SInt32           sMaxFlowControlTimeInMSec       = 10000;
 
 static Bool16   sDefaultLogEnabled  = true;
-static char*    sDefaultLogName     = "mp3_access";
+static const char* sDefaultLogName     = "mp3_access";
 static char*    sDefaultLogDir = NULL;
 
 static char*    sLogName        = NULL;
@@ -113,7 +113,7 @@ static UInt32   sMaxLogBytes    = 10240000;
 static UInt32   sRollInterval   = 7;
 static Bool16   sLogTimeInGMT   = true;
 
-static char* sLogHeader =   "#Software: %s\n"
+static const char* sLogHeader =   "#Software: %s\n"
                                 "#Version: %s\n"    //%s == version
                                 "#Date: %s\n"       //%s == date/time
                                 "#Remark: All date values are in %s.\n" //%s == "GMT" or "local time"
@@ -387,7 +387,7 @@ void MP3BroadcasterSession::ShutDownState()
 
 // Set the mount point URL that clients will associate
 // with this broadcaster session.
-void MP3BroadcasterSession::SetMountpoint(char* mp)
+void MP3BroadcasterSession::SetMountpoint(const char* mp)
 {
     StrPtrLen mpStr(mp);    
     SetMountpoint(mpStr);
@@ -1803,7 +1803,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_AddRole(QTSS_Shutdown_Role);
     
     // Tell the server our name!
-    static char* sModuleName = "QTSSMP3StreamingModule";
+    const char* sModuleName = "QTSSMP3StreamingModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;
@@ -2133,7 +2133,7 @@ Bool16 IsShoutcastPassword(StrPtrLen& theRequest)
     return true;
 }
 
-Bool16 IsProtocolString(StrPtrLen& source, char *protocol)
+Bool16 IsProtocolString(StrPtrLen& source, const char *protocol)
 {
 
     UInt32 protocolLen = ::strlen(protocol);
@@ -2148,7 +2148,7 @@ Bool16 IsProtocolString(StrPtrLen& source, char *protocol)
 
 }
 
-Bool16 IsProtocol(StrPtrLen& theRequest, char* protocol)
+Bool16 IsProtocol(StrPtrLen& theRequest, const char* protocol)
 {
     StringParser reqParse(&theRequest);
 	StrPtrLen line;
@@ -2338,7 +2338,7 @@ void ParseMetaDataURL(char* theURL)
     xs->SetSongName(urlParser.GetCurrentPosition());
 }
 
-void SendBroadcastAuthErr(QTSS_Filter_Params* inParams, char * errormessage)
+void SendBroadcastAuthErr(QTSS_Filter_Params* inParams, const char * errormessage)
 {
     if (errormessage != NULL)
     {
@@ -2409,8 +2409,7 @@ Bool16 CheckPassword(QTSS_Filter_Params* inParams, StrPtrLen& theRequest, StrPtr
             return false;
         }
         delete[] tmp;
-        mountpoint.Ptr = "/";
-        mountpoint.Len = 1;
+        mountpoint.Set("/", 1);
         passwordOK = true;
     }
     return passwordOK;

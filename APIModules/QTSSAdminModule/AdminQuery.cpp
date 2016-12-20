@@ -70,7 +70,7 @@ StrPtrLen * QueryURI::NextSegment(StrPtrLen *currentPathPtr, StrPtrLen *outNextP
     StrPtrLen *result = NULL;
     StrPtrLen *theURLPtr = GetURL();
     if (outNextPtr)
-        outNextPtr->Set(NULL,0);
+        outNextPtr->Reset();
 
     if (currentPathPtr && outNextPtr && theURLPtr && currentPathPtr->Len > 0)
     {
@@ -126,7 +126,7 @@ QueryURI::URIField QueryURI::sURIFields[] =
     { "",   0,      -1,     NULL    }
 };
 
-char *QueryURI::sCommandDefs[] =
+const char *QueryURI::sCommandDefs[] =
 {
     "GET",
     "SET",
@@ -386,7 +386,7 @@ UInt32 QueryURI::CheckInvalidIterator(char* evalMessageBuff)
     parser.ConsumeUntil(NULL,'*');
     if (parser.PeekFast() == '*')
     {   result = 405;
-        static char *message = "* iterator not valid";
+        const char *message = "* iterator not valid";
         qtss_sprintf(evalMessageBuff, "%s",message);
     }
     
@@ -402,7 +402,7 @@ UInt32 QueryURI::CheckInvalidArrayIterator(char* evalMessageBuff)
     parser.ConsumeUntil(NULL,':');
     if (parser.PeekFast() == ':')
     {   result = 405;
-        static char *message = ": array iterator not valid";
+        const char *message = ": array iterator not valid";
         qtss_sprintf(evalMessageBuff, "%s",message);
     }
     
@@ -416,7 +416,7 @@ UInt32 QueryURI::CheckInvalidRecurseParam(char* evalMessageBuff)
     
     if (RecurseParam())
     {   result = 405;
-        static char *message = "(r)ecurse parameter not valid";
+        const char *message = "(r)ecurse parameter not valid";
         qtss_sprintf(evalMessageBuff, "%s",message);
     }
     
@@ -467,7 +467,7 @@ UInt32  QueryURI::EvalQuery(UInt32 *forceResultPtr, char *forceMessagePtr)
             {   // special case test. A query with no parameters is a get. A query with parameters requires a command.
                 if (fHasQuery && (this->GetCommand() == NULL || this->GetCommand()->Len == 0))
                 {   result = 400;
-                    static char *message = "reason=\"command parameter is missing\"";
+                    const char *message = "reason=\"command parameter is missing\"";
                     qtss_sprintf(evalMessageBuff, "%s",message);                         
                     fQueryEvalMessage.Set(evalMessageBuff, strlen(evalMessageBuff));
                     fQueryEvalResult = result;
@@ -480,7 +480,7 @@ UInt32  QueryURI::EvalQuery(UInt32 *forceResultPtr, char *forceMessagePtr)
             {
                 if (NULL==GetValue())
                 {   result = 400;
-                    static char *message = "No value";
+                    const char *message = "No value";
                     qtss_sprintf(evalMessageBuff, "%s",message);
                     break;
                 }
@@ -506,14 +506,14 @@ UInt32  QueryURI::EvalQuery(UInt32 *forceResultPtr, char *forceMessagePtr)
                 if (0)
                 {   
                     result = 501;
-                    static char *message="No implementation";
+                    const char *message="No implementation";
                     qtss_sprintf(evalMessageBuff, "%s",message);
                     break;
                 }
 
                 if (NULL==GetValue())
                 {   result = 400;
-                    static char *message = "Attribute value not defined";
+                    const char *message = "Attribute value not defined";
                     qtss_sprintf(evalMessageBuff, "%s",message);
                     break;
                 }
@@ -554,7 +554,7 @@ UInt32  QueryURI::EvalQuery(UInt32 *forceResultPtr, char *forceMessagePtr)
             default:
                 {   
                     result = 501;
-                    static char *message="No implementation";
+                    const char *message="No implementation";
                     qtss_sprintf(evalMessageBuff, "%s",message);
                     break;
                 }
@@ -766,7 +766,7 @@ void QueryURI::URLParse(StrPtrLen *inStream)
                 
                 //qtss_printf("queryParser=");PRINT_STR(fURIFieldsPtr[eQuery].fData);
                 while (queryParser.GetDataRemaining() != 0) 
-                {   tempData.Set(NULL,0);
+                {   tempData.Reset();
                     if (queryParser.GetDataRemaining())queryParser.ConsumeWhitespace();
                     if (queryParser.GetDataRemaining())queryParser.ConsumeUntil(&tempStr,(UInt8*) sNotQueryData); 
                     if (tempStr.Len == 0) 

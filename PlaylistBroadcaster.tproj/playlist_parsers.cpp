@@ -25,9 +25,9 @@
 
 #include "playlist_parsers.h"
 
-char* SDPFileParser::sMediaTag = "m";
-char* SDPFileParser::sAttributeTag  = "a";
-char* SDPFileParser::sConnectionTag = "c";
+const char* SDPFileParser::sMediaTag = "m";
+const char* SDPFileParser::sAttributeTag  = "a";
+const char* SDPFileParser::sConnectionTag = "c";
 
 SDPFileParser::~SDPFileParser()
 {
@@ -221,7 +221,7 @@ bool SDPFileParser::GetQTTextFromLine(TextLine *theLinePtr)
 
     bool result = false;
     SimpleString *aWordPtr; 
-    char *xString ="a=x-qt-text";
+    const char *xString ="a=x-qt-text";
     do 
     {
         aWordPtr = theLinePtr->fWords.Begin();

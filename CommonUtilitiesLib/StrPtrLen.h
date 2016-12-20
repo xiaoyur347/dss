@@ -56,6 +56,8 @@ class StrPtrLen
         StrPtrLen() : Ptr(NULL), Len(0) {}
         StrPtrLen(char* sp) : Ptr(sp), Len(sp != NULL ? strlen(sp) : 0) {}
         StrPtrLen(char *sp, UInt32 len) : Ptr(sp), Len(len) {}
+        StrPtrLen(const char* sp) : Ptr(const_cast<char*>(sp)), Len(sp != NULL ? strlen(sp) : 0) {}
+        StrPtrLen(const char *sp, UInt32 len) : Ptr(const_cast<char*>(sp)), Len(len) {}
         virtual ~StrPtrLen() {}
         
         //OPERATORS:
@@ -69,6 +71,7 @@ class StrPtrLen
         char *ToUpper() { for (UInt32 x = 0; x < Len ; x++) Ptr[x] = toupper (Ptr[x]); return Ptr;}
         
         char *FindStringCase(char *queryCharStr, StrPtrLen *resultStr, Bool16 caseSensitive) const;
+        char *FindStringCase(const char *queryCharStr, StrPtrLen *resultStr, Bool16 caseSensitive) const;
 
         char *FindString(StrPtrLen *queryStr, StrPtrLen *outResultStr)              {   Assert(queryStr != NULL);   Assert(queryStr->Ptr != NULL); Assert(0 == queryStr->Ptr[queryStr->Len]);
                                                                                         return FindStringCase(queryStr->Ptr, outResultStr,true);    
@@ -87,7 +90,9 @@ class StrPtrLen
                                                                                     }
                                                                                     
         char *FindString(char *queryCharStr)                                        { return FindStringCase(queryCharStr, NULL,true);   }
+        char *FindString(const char *queryCharStr)                                  { return FindStringCase(queryCharStr, NULL,true);   }
         char *FindStringIgnoreCase(char *queryCharStr)                              { return FindStringCase(queryCharStr, NULL,false);  }
+	char *FindStringIgnoreCase(const char *queryCharStr)                        { return FindStringCase(queryCharStr, NULL,false);  }
         char *FindString(char *queryCharStr, StrPtrLen *outResultStr)               { return FindStringCase(queryCharStr, outResultStr,true);   }
         char *FindStringIgnoreCase(char *queryCharStr, StrPtrLen *outResultStr)     { return FindStringCase(queryCharStr, outResultStr,false);  }
 
@@ -101,7 +106,9 @@ class StrPtrLen
         char operator[](int i) { /*Assert(i<Len);i*/ return Ptr[i]; }
         void Set(char* inPtr, UInt32 inLen) { Ptr = inPtr; Len = inLen; }
         void Set(char* inPtr) { Ptr = inPtr; Len = (inPtr) ?  ::strlen(inPtr) : 0; }
-
+        void Set(const char* inPtr, UInt32 inLen) { Ptr = const_cast<char*>(inPtr); Len = inLen; }
+        void Set(const char* inPtr) { Ptr = const_cast<char*>(inPtr); Len = (inPtr) ?  ::strlen(inPtr) : 0; }
+        void Reset() { Ptr = NULL; Len = 0; }
         //This is a non-encapsulating interface. The class allows you to access its
         //data.
         char*       Ptr;
@@ -110,10 +117,10 @@ class StrPtrLen
         // convert to a "NEW'd" zero terminated char array
         char*   GetAsCString() const;
         void    PrintStr();
-        void    PrintStr(char *appendStr);
-        void    PrintStr(char* prependStr, char *appendStr);
+        void    PrintStr(const char *appendStr);
+        void    PrintStr(const char* prependStr, const char *appendStr);
 
-        void    PrintStrEOL(char* stopStr = NULL, char *appendStr = NULL); //replace chars x0A and x0D with \r and \n
+        void    PrintStrEOL(const char* stopStr = NULL, const char *appendStr = NULL); //replace chars x0A and x0D with \r and \n
  
         //Utility function
         UInt32    TrimTrailingWhitespace();

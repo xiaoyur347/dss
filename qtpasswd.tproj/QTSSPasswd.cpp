@@ -669,7 +669,7 @@ static void AddOrDeleteGroup(int add, char *groupName, char *inGroupsFilePath, c
  }
 
 /* Allocates memory; remember to delete it afterwards */
-char* GetTempFileAtPath(char* templatePath, int templatePathLength)
+char* GetTempFileAtPath(const char* templatePath, int templatePathLength)
 {
 	char* tempFile = new char[templatePathLength];
 	memcpy(tempFile, templatePath, templatePathLength);
@@ -1009,10 +1009,10 @@ int main(int argc, char *argv[])
 #else
     char separator = '/';
 #endif
-	char* tmpFile = "tmp.XXXXXX";
-	char* alternateTempPath = "./tmp.XXXXXX";
+    const char* tmpFile = "tmp.XXXXXX";
+    const char* alternateTempPath = "./tmp.XXXXXX";
     char* tempFilePath;
-	int	tempFilePathLength = 0;
+    int	tempFilePathLength = 0;
     char* lastOccurOfSeparator = strrchr(qtusersFilePath, separator);
     int pathLength = strlen(qtusersFilePath);
 	

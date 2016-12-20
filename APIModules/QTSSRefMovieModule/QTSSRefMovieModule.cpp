@@ -56,7 +56,7 @@ static QTSS_PrefsObject sServerPrefs = NULL;
 static QTSS_ServerObject sServer = NULL;
 
 // HTTP reply header
-static char*  sResponseHeader = "HTTP/1.0 200 OK\r\nServer: QTSS/4.0\r\n"
+static const char*  sResponseHeader = "HTTP/1.0 200 OK\r\nServer: QTSS/4.0\r\n"
                                 "Connection: Close\r\nContent-Type: video/quicktime\r\n";
 
 static Bool16 sRefMovieXferEnabled = true;
@@ -119,7 +119,7 @@ QTSS_Error Register(QTSS_Register_Params* inParams)
     (void)QTSS_AddRole(QTSS_RTSPFilter_Role);
     
     // Tell the server our name!
-    static char* sModuleName = "QTSSRefMovieModule";
+    const char* sModuleName = "QTSSRefMovieModule";
     ::strcpy(inParams->outModuleName, sModuleName);
 
     return QTSS_NoErr;
