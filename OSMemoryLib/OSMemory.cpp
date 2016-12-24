@@ -81,6 +81,7 @@ void operator delete[](void* mem)
     OSMemory::Delete(mem);
 }
 
+#if __cplusplus > 201103L
 void operator delete(void* mem, size_t)
 {
     OSMemory::Delete(mem);
@@ -90,6 +91,7 @@ void operator delete [](void* mem, size_t)
 {
     OSMemory::Delete(mem);
 }
+#endif
 
 void OSMemory::SetMemoryError(SInt32 inErr)
 {

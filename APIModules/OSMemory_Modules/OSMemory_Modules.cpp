@@ -67,6 +67,7 @@ void operator delete[](void* mem)
     QTSS_Delete(mem);
 }
 
+#if __cplusplus > 201103L
 void operator delete(void* mem, size_t)
 {
     QTSS_Delete(mem);
@@ -76,6 +77,7 @@ void operator delete [](void* mem, size_t)
 {
     QTSS_Delete(mem);
 }
+#endif
 
 #endif //__OS_MEMORY_H__
 
